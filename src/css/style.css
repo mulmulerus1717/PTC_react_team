@@ -1,0 +1,2429 @@
+/* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Franklin:wght@200;400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /*font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Libre Franklin', sans-serif;*/
+  font-style: normal;
+  font-weight: 400;
+}
+
+body {
+  /*min-height: 100vh;*/
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  /*  background: rgb(130, 106, 251) !important;*/
+  background-image: url(../../public/wrulf-bg-1.svg);
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+
+a {
+  text-decoration: none;
+  color: #000 !important;
+}
+
+.noMargin {
+  margin: 0 !important;
+}
+
+.noPadding {
+  padding: 0 !important;
+}
+
+.nextotp{
+  cursor: pointer;
+}
+
+.badge-danger {
+  background-color: #ff0000;
+  margin-left: 5px !important;
+}
+
+.nav-link .badge-danger{
+  position: absolute;
+    margin-top: -8px;
+    margin-left: -10px !important;
+    font-size: 10px;
+    border-radius: 50%;
+}
+
+.iconStyle .filter {
+  padding: 5px;
+  background-color: #7dd1eb;
+  border-radius: 1px;
+  font-size: 34px;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 10%);
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+.form-control{
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+.backgroundDark {
+  background-color: #f0d274;
+}
+
+.box {
+  position: relative;
+  background-color: #ffffff;
+  padding: 15px 40px;
+  min-height: 100vh;
+  padding-top: 3em;
+}
+.boxDesign{
+  background-image: url(../../public/wrulf-bg-1.svg), url(../../public/wrulf-bg-2.png);
+  background-position: right top, left bottom;
+  background-repeat: no-repeat, no-repeat;
+  background-size: 300px, 150px;
+}
+
+.box .form {
+  vertical-align: middle;
+}
+
+.box label {
+  margin: 10px 0 5px 0;
+  font-weight: 500;
+}
+
+.form-control {
+  box-shadow: none;
+  width: 100%;
+  border: none;
+  height: 38px !important;
+  border-radius: 3px;
+}
+
+.gender input, 
+.account input{
+  accent-color: #422311;
+}
+
+.form :where(.gender-option, .gender),
+.form :where(.account-option, .account) {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+  flex-wrap: wrap;
+}
+
+.form .gender, 
+.form .account{
+  column-gap: 5px;
+}
+
+.box header {
+  font-weight: 700;
+  text-align: center;
+}
+
+.popup button,
+.box button,
+.playerCardStats button,
+.score_card button {
+  width: 100%;
+  font-size: 14px;
+  height: 40px;
+  border-radius: 40px;
+  border: none;
+  color: #fff;
+  padding: 6px 18px;
+  margin-top: 10px;
+  background-color: #422311;
+  cursor: pointer;
+}
+
+.popup button:hover,
+.box button:hover,
+.playerCardStats button:hover,
+.score_card button:hover,
+.box button:focus,
+.playerCardStats button:focus,
+.score_card button:focus,
+.box button:active,
+.playerCardStats button:active,
+.score_card button:active {
+  background-color: #422311 !important;
+  opacity: 0.9;
+}
+
+.signupForm .addSports span{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.frontHead {
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 10%);
+}
+
+.frontHead span {
+  font-weight: 700;
+}
+
+.select2-container .select2-selection--single {
+  height: 38px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: 38px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 36px !important;
+}
+
+.posterFirst {
+  padding: 1em !important;
+}
+
+.posterFirst img {
+  height: 400px;
+  width: 90%;
+  margin: 1em auto;
+}
+
+.posterFirst p {
+  font-weight: 500;
+}
+.select2-container--default .select2-selection--single {
+  border: none !important;
+}
+
+.popup .form-control,
+.box .form-control,
+.searchBox .form-control,
+.select2-container--default .select2-selection--single {
+  border: none;
+  border-radius: 0 !important;
+  outline: none;
+  border-bottom: 1px solid #422311 !important;
+  margin: 5px 0;
+}
+
+.form-control:focus {
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-color: #ee964d !important;
+  outline: 0 !important;
+  box-shadow: 0 0 0 0 !important;
+  transition: 0.5s;
+}
+
+.fontStyle{
+  font-family: 'Bebas Neue', sans-serif !important;
+}
+
+.loginForm {
+  width: 70%;
+  margin: auto;
+}
+
+.signupForm {
+  width: 80%;
+  margin: auto;
+}
+
+.linkInfo {
+  padding: 2px 2px 2px 2px;
+  font-size: 14px;
+}
+
+.linkInfo .forgotPassword {
+  cursor: pointer;
+  margin: 0;
+}
+
+@media screen and (max-width: 780px) {
+  .posterFirst img {
+    height: 150px;
+  }
+
+  .box {
+    padding-top: 1.5em;
+  }
+  .boxDesign{
+    background-size: 180px, 200px;
+  }
+
+  .popup button{
+    margin-top: 40px;
+  }
+}
+
+
+
+#wrapper {
+  padding-left: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+  padding-left: 250px;
+}
+
+#sidebar-wrapper {
+  z-index: 1000;
+  position: fixed;
+  left: 250px;
+  width: 0;
+  height: 100%;
+  margin-left: -250px;
+  overflow-y: auto;
+  background: #7dd1eb;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  background-image: url(../../public/wrulf-bg-1.svg), url(../../public/wrulf-bg-2.png);
+  background-position: right top, left bottom;
+  background-repeat: no-repeat,no-repeat;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  width: 250px;
+}
+
+#page-content-wrapper {
+  width: 100%;
+  position: absolute;
+  padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+  position: absolute;
+  margin-left: 0px;
+}
+
+.frontlogo{
+  max-height: 80px;
+}
+
+/* Sidebar Styles */
+
+.navbarTop {
+  background-color: #f0d274;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.09em;
+  font-size: 20px;
+  position: fixed !important;
+  z-index: 1100 !important;
+  width: 100%;
+  box-shadow: 0 2px 4px 0 hsl(0deg 0% 7% / 50%);
+  height: auto;
+  background: url(../../public/header-rotate.png) left/contain no-repeat #f0d274;
+}
+
+.navbarTop a,
+.navbar-toggler-icon {
+  color: #000;
+  font-weight: 500;
+}
+.navbarTop a .material-symbols-outlined{
+  font-size: 38px;
+}
+.navbar{
+  padding: 0px !important;
+}
+.navbar-expand .navbar-nav{
+  flex-direction: row-reverse !important;
+}
+.navbar .menuAlign{
+  float:right;
+  width:100%;
+}
+
+.navbar-toggler-icon {
+  cursor: pointer;
+}
+
+.navbar-brand {
+  margin-left: 5px;
+  color: #000 !important;
+}
+
+.navbar-brand .menuNavbar {
+  font-size: 36px !important;
+  cursor: pointer;
+  position: absolute;
+  margin-top: -15px;
+}
+
+.navbar-expand .navbar-collapse {
+  margin-left: 4% !important;
+}
+
+@media screen and (max-width: 760px) {
+  .navbar-expand .navbar-collapse {
+    margin-left: 6% !important;
+  }
+}
+
+.navbar-toggler-icon {
+  filter: opacity(0.9) drop-shadow(0 0 0 #000);
+}
+
+.navbar-collapse .logoimg {
+  height: 50px;
+  margin-top: -1px;
+}
+
+.navbar-nav{
+  margin: auto;
+}
+
+@media screen and (max-width: 760px) {
+  .navbar-collapse .logoimg {
+    height: 40px;
+  }
+  .nav-link{
+    padding: 0 5px !important;
+  }
+}
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  margin: 0;
+  padding: 5px;
+  list-style: none;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.09em;
+}
+
+.sidebar-nav li {
+  line-height: 40px;
+}
+
+.sidebar-nav li a,
+.sidebar-nav .noHref {
+  text-decoration: none;
+  color: #000;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sidebar-nav li a span{
+  margin-top: -10px;
+  margin-right: 5px;
+}
+.sidebar-nav li a:hover,
+.sidebar-nav .noHref:hover {
+  text-decoration: none;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-nav li .profileName {
+  font-weight: 600;
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+  text-decoration: none;
+}
+
+.noPointer {
+  cursor: inherit !important;
+}
+
+.setPointer {
+  cursor: pointer;
+}
+
+.sidebar-nav>.sidebar-brand {
+  height: 65px;
+  font-size: 18px;
+  line-height: 60px;
+}
+
+.sidebar-nav>.sidebar-brand a {
+  color: #422311;
+}
+
+.sidebar-nav>.sidebar-brand a:hover {
+  color: #422311;
+  background: none;
+}
+
+.nav-link:focus,
+.nav-link:hover {
+  color: #c18a54 !important;
+}
+
+@media(min-width:768px) {
+  #wrapper {
+    padding-left: 0;
+  }
+
+  #wrapper.toggled {
+    padding-left: 250px;
+  }
+
+  #sidebar-wrapper {
+    width: 0;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+  }
+
+  #page-content-wrapper {
+    padding: 20px;
+    position: relative;
+  }
+
+  #wrapper.toggled #page-content-wrapper {
+    position: relative;
+    margin-right: 0;
+  }
+}
+
+.profileimg {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}
+
+.profileImgOuterCover .imageInfo{
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  float: right;
+  margin-right: 30%;
+  background-color:#fff;
+  color: #000;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+.profileImgOuterCover {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid #fff;
+}
+
+.profileImgOuterCover .uploadImage {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 50px;
+  color: #d4d2d2;
+  margin-top: -50px;
+  position: relative;
+  z-index: 1;
+  padding-top: 10px;
+  cursor: pointer;
+  visibility: hidden;
+}
+
+.profileImgOuterCover:hover .uploadImage {
+  visibility: visible;
+}
+
+.profileTop {
+  background-color: #c18a54;
+}
+
+.profileBox .profileTop .profileImgBox {
+  width: 80%;
+  height: auto;
+  position: relative;
+  z-index: 2;
+  max-height: 500;
+}
+
+.popupProfile .profileBox .profileTop .profileImgBox {
+  width: 200px;
+}
+
+.popupProfile .playernameTshirt h1 {
+  font-size: 24px;
+}
+
+.playernameTshirt {
+  position: absolute;
+  bottom: 60px;
+  z-index: 9;
+  left: 0;
+  width: 100%;
+}
+
+.membr-details-img::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 62%;
+  height: 332px;
+  right: 0;
+  border: 10px solid #fff;
+  margin: 0 auto;
+  top: 140px;
+}
+
+.popupProfile .membr-details-img::after {
+  height: 40px;
+}
+
+.popupProfile .contentProfileGredent {
+  height: 100px;
+  margin-top: -100px;
+}
+
+.playernameTshirt {
+  z-index: 200;
+  margin-bottom: -3em;
+}
+
+.playernameTshirt h1 {
+  text-align: center;
+  font-size: 36px;
+  color: #fff;
+  text-shadow: 0 9px 20px rgb(0 0 0 / 16%);
+  margin-bottom: 20PX;
+}
+
+.playernameTshirt span {
+  background: rgba(0, 0, 0, .2);
+  border: 1px solid #fff;
+  border-radius: 4px;
+  padding: 10px;
+  font-style: italic;
+  font-weight: 600;
+  color: #fff;
+  font-size: 12px;
+}
+
+.contentProfileGredent {
+  background: rgba(193, 138, 84, 0) linear-gradient(to bottom, rgba(0, 0, 0, 0) 10%, rgba(193, 138, 84, .1) 20%, rgba(193, 138, 84, .5) 25%, rgba(193, 138, 84, 1) 100%) repeat scroll 0 0;
+  position: relative;
+  z-index: 100;
+  margin-top: -300px;
+  height: 300px;
+}
+
+.playerOverview {
+  padding: 1em;
+  vertical-align: middle;
+  margin-top: 6em;
+}
+
+.popupProfile .playerOverview {
+  margin-top: 1em;
+}
+
+.playerOverview table {
+  width: 80%;
+}
+
+.playerOverview table td {
+  border: 2px solid #000;
+  padding: 1em;
+  text-align: center;
+  width: 50%;
+}
+
+.popupProfile .playerOverview table td {
+  padding: 5px;
+  font-size: 12px;
+}
+
+.playerOverview table td span {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.popupProfile .playerOverview table td span {
+  font-size: 12px;
+}
+
+.profileDetails {
+  padding: 2em;
+}
+
+.noVH {
+  min-height: auto;
+}
+
+.showPlayersHome,
+.messageBox {
+  padding: 2em 1em;
+}
+/*
+.playerCard {
+  border: 1px solid #b8b9bb;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.playerCard .profileImgSec .payerCardImg {
+  padding: 10px;
+  max-width: 100%;
+  margin: 0px auto;
+  height: 180px;
+}
+
+.playerCardDetails {
+  border-top: 1px solid #b8b9bb;
+}
+
+.playerCardDetails .playerCardPersonal {
+  text-align: center;
+  background-color: #fff;
+  background-image: linear-gradient(180deg, #f0d274 20%, #e8b617);
+  padding: 5px;
+  cursor: pointer;
+}
+
+.playerCardDetails .playerCardPersonal p {
+  margin: 2px;
+}
+
+.playerCardDetails .playerCardPersonal .playerCardName {
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.playerCardDetails .playerCardCareer .playerCardTshirt {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.playerCardCareerText {
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.playerCardDetails .playerCardCareer .playerCardTshirt span {
+  float: right;
+  border-left: 2px solid #000;
+  padding-left: 8px;
+}
+
+.playerCardCareer {
+  background-image: linear-gradient(to bottom, #f0d274 20%, #e9bc2f);
+  padding: 2px 10px;
+}
+
+.playerCardCareer .playerCardCareerText {
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.playerCardStats {
+  padding: 2px 10px 10px 10px;
+  font-size: 10px;
+  font-weight: 900;
+  font-size: 12px;
+  background-image: linear-gradient(to bottom, #f0d274 40%, #e9bc2f 60%);
+}
+
+.playerCardStatsDetails {
+  margin-bottom: 2px;
+}
+
+.playerCardStatsDetails span {
+  float: right;
+}
+
+.playerCardStats button,
+.score_card button {
+  height: 30px;
+  padding: 5px;
+}
+*/
+
+.topHeadline {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.messageProfileimg {
+  height: 80px;
+  border-radius: 50%;
+}
+
+.messageList,
+.resultListing,
+.blockList {
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-bottom: 1px solid #b8b9bb;
+}
+
+.resultListing {
+  padding: 0 0 10px 0;
+  margin-bottom: 2em !important;
+}
+
+.resultListing .trophy {
+  position: absolute;
+  margin-left: -25px;
+}
+
+.resultListing .addResultbtn {
+  margin: 5px auto;
+}
+
+.messageCard .unblockBtn {
+  margin-top: 5px;
+  background-color: #422311;
+  border-radius: 2px;
+  border: none;
+  outline: none;
+  opacity: 0.9;
+}
+
+.messageCard .unblockBtn:hover {
+  background-color: #422311 !important;
+  opacity: 1;
+}
+
+.messageList:hover,
+.blockList:hover,
+.resultListing:hover {
+  background-color: #e6e3e3;
+  transition: 0.5s;
+}
+
+.messageListDark,
+.blockListDark {
+  background-color: #e6e3e3 !important;
+}
+
+.messagelink {
+  text-decoration: none;
+  color: hsl(0, 0%, 0%);
+}
+
+.messagelink .playername {
+  text-transform: 'capitalize' !important;
+}
+
+.messageList .messageDetails h4,
+.blockList .blockDetails h4,
+.resultListing .messageDetails h4 {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.09em;
+}
+
+.messageList .messageDetails span,
+.blockList .blockDetails span,
+.resultListing .messageDetails span {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.messageList .messageDetails p,
+.blockList .blockDetails p,
+.resultListing .messageDetails p {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.resultListing .matchResultNote {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.messageDark {
+  background-color: #d4d2d2;
+}
+
+.css-b62m3t-container {
+  padding: .375rem .75rem !important;
+  border: none;
+  border-radius: 0 !important;
+  outline: none;
+  border-bottom: 1px solid #422311 !important;
+  margin: 5px 0;
+}
+
+.css-3w2yfm-ValueContainer {
+  padding: 0px !important;
+}
+
+.css-13cymwt-control,
+.css-t3ipsp-control {
+  background-color: rgba(0, 0, 0, 0) !important;
+  border-color: none !important;
+  border-radius: 0px !important;
+  border-style: solid !important;
+  border-width: 0px !important;
+  min-height: auto !important;
+  margin-top: -5px !important;
+  outline: none !important;
+  border: 0px !important;
+  box-shadow: 0 0 0 0px #ffffff !important;
+}
+
+.css-1fdsijx-ValueContainer {
+  padding: 2px 0px !important;
+}
+
+.css-t3ipsp-control:hover {
+  border: none !important;
+}
+
+/* remove increment number start */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* remove increment number end */
+
+
+
+/* Start Send Details */
+.sendChallengeBlock {
+  background-color: #fff;
+  padding: 5px;
+}
+
+/* End send challenge details */
+
+/* Popup Start */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 10;
+}
+
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 85px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+  font-family: 'Bebas Neue', sans-serif;
+  position: relative;
+  z-index: 10;
+}
+.popup h4{
+  font-size:16px;
+}
+
+.popupProfile {
+  width: 50%;
+}
+
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.popup .close:hover {
+  color: #422311;
+}
+
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+.popup .challengeBox {
+  height: 100px !important;
+}
+
+.popup .infoMessage{
+  display: flex;
+  align-items: center;
+}
+
+.popup .infoMessage .info_one{
+  width:90%;
+}
+.popup .infoMessage .info_two{
+  width:10%;
+}
+
+@media screen and (max-width: 700px) {
+  .popup {
+    width: 70%;
+  }
+}
+
+/* Popup Ends */
+
+
+
+/* start challenges Card */
+.challengesCard {
+  text-decoration: none;
+  padding: 0px !important;
+}
+
+.challengesCard .wapperChallenger {
+  margin-bottom: 10px !important;
+  border: 1px solid #f0d274;
+  border-radius: 2px;
+}
+
+.challengesCard h4 {
+  font-size: 14px;
+  margin: 0px;
+  font-weight: 600;
+}
+
+.challengesCard .tshirtN {
+  font-size: 12px;
+}
+
+.challengesCard .matchStatus {
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.challengesCard .sports {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.challengesCard .message {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border: 1px solid #d3d3d3;
+  margin-top: 15px;
+  border-radius: 5px;
+}
+
+.challengesCard .message span {
+  font-size: 8px;
+}
+
+.challengesCard .messageProfileimg {
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  background-color: #ffffff;
+}
+
+.challengesCard .backgroundColorAdd {
+  background: linear-gradient(to top, #ffffff 52%, #f0d274 48%);
+  padding: 10px 5px;
+}
+
+.challengesCard .buttonsSet {
+  margin: 5px 0px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.challengesCard .buttonAction {
+  padding: 1px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  margin-right: 10px;
+  min-height: 30px !important;
+  height: 30px;
+  min-width: 30px !important;
+  width: 30px;
+  cursor: pointer;
+}
+
+.challengesCard .acceptButton {
+  color: green;
+}
+
+.challengesCard .declineButton {
+  color: red;
+}
+
+/* end challenges Card */
+
+
+/* Chat Box Start */
+
+.msger {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  height: calc(100% - 0px);
+  border: 0;
+  padding: 0 !important;
+  border-radius: 2px;
+  background: var(--msger-bg);
+  box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2);
+}
+
+.msger-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background: #f0d274;
+  color: #000;
+  font-weight: 600;
+  padding-top: 25px;
+}
+
+.msger-chat::-webkit-scrollbar {
+  width: 6px;
+}
+
+.msger-chat::-webkit-scrollbar-track {
+  background: #ddd;
+}
+
+.msger-chat::-webkit-scrollbar-thumb {
+  background: #bdbdbd;
+}
+
+.msg {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+
+.msg:last-of-type {
+  margin: 0;
+}
+
+.msg-img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  background: #ddd;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.msg-bubble {
+  max-width: 450px;
+  padding: 15px;
+  border-radius: 15px;
+  background: #D4D4D4;
+}
+
+.msg-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.msg-info-name {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.msg-info-time {
+  font-size: 0.85em;
+}
+
+.left-msg .msg-bubble {
+  border-bottom-left-radius: 0;
+}
+
+.right-msg {
+  flex-direction: row-reverse;
+}
+
+.right-msg .msg-bubble {
+  background: #7dd1eb;
+  color: #000;
+  border-bottom-right-radius: 0;
+}
+
+.right-msg .msg-img {
+  margin: 0 0 0 10px;
+}
+
+.msger .arrowLeft {
+  position: absolute;
+}
+
+.msger .chat_name {
+  margin-left: 15%;
+  min-width: 100%;
+  cursor: pointer;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+.msger-inputarea {
+  display: flex;
+  padding: 10px;
+  background: #f0d274;
+}
+
+.msger-inputarea * {
+  padding: 10px;
+  border: 0;
+  border-color: #fff;
+  border: none !important;
+  border-radius: 3px;
+  font-size: 1em;
+}
+
+.msger-input {
+  flex: 1;
+  background: #fff;
+  border: none !important;
+  outline: none;
+}
+
+.msger-send-btn {
+  margin-left: 10px;
+  background: #422311;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.23s;
+}
+
+.msger-chat {
+  min-height: 575px;
+  max-height: 575px;
+  padding: 10px;
+}
+
+/* Chat box ends */
+
+/* Start Scroll to bottom */
+.scrollmeAuto {
+  background-color: #fcfcfe;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23dddddd' fill-opacity='0.4'%3E%3Cpath d='M24.37 16c.2.65.39 1.32.54 2H21.17l1.17 2.34.45.9-.24.11V28a5 5 0 0 1-2.23 8.94l-.02.06a8 8 0 0 1-7.75 6h-20a8 8 0 0 1-7.74-6l-.02-.06A5 5 0 0 1-17.45 28v-6.76l-.79-1.58-.44-.9.9-.44.63-.32H-20a23.01 23.01 0 0 1 44.37-2zm-36.82 2a1 1 0 0 0-.44.1l-3.1 1.56.89 1.79 1.31-.66a3 3 0 0 1 2.69 0l2.2 1.1a1 1 0 0 0 .9 0l2.21-1.1a3 3 0 0 1 2.69 0l2.2 1.1a1 1 0 0 0 .9 0l2.21-1.1a3 3 0 0 1 2.69 0l2.2 1.1a1 1 0 0 0 .86.02l2.88-1.27a3 3 0 0 1 2.43 0l2.88 1.27a1 1 0 0 0 .85-.02l3.1-1.55-.89-1.79-1.42.71a3 3 0 0 1-2.56.06l-2.77-1.23a1 1 0 0 0-.4-.09h-.01a1 1 0 0 0-.4.09l-2.78 1.23a3 3 0 0 1-2.56-.06l-2.3-1.15a1 1 0 0 0-.45-.11h-.01a1 1 0 0 0-.44.1L.9 19.22a3 3 0 0 1-2.69 0l-2.2-1.1a1 1 0 0 0-.45-.11h-.01a1 1 0 0 0-.44.1l-2.21 1.11a3 3 0 0 1-2.69 0l-2.2-1.1a1 1 0 0 0-.45-.11h-.01zm0-2h-4.9a21.01 21.01 0 0 1 39.61 0h-2.09l-.06-.13-.26.13h-32.31zm30.35 7.68l1.36-.68h1.3v2h-36v-1.15l.34-.17 1.36-.68h2.59l1.36.68a3 3 0 0 0 2.69 0l1.36-.68h2.59l1.36.68a3 3 0 0 0 2.69 0L2.26 23h2.59l1.36.68a3 3 0 0 0 2.56.06l1.67-.74h3.23l1.67.74a3 3 0 0 0 2.56-.06zM-13.82 27l16.37 4.91L18.93 27h-32.75zm-.63 2h.34l16.66 5 16.67-5h.33a3 3 0 1 1 0 6h-34a3 3 0 1 1 0-6zm1.35 8a6 6 0 0 0 5.65 4h20a6 6 0 0 0 5.66-4H-13.1z'/%3E%3Cpath id='path6_fill-copy' d='M284.37 16c.2.65.39 1.32.54 2H281.17l1.17 2.34.45.9-.24.11V28a5 5 0 0 1-2.23 8.94l-.02.06a8 8 0 0 1-7.75 6h-20a8 8 0 0 1-7.74-6l-.02-.06a5 5 0 0 1-2.24-8.94v-6.76l-.79-1.58-.44-.9.9-.44.63-.32H240a23.01 23.01 0 0 1 44.37-2zm-36.82 2a1 1 0 0 0-.44.1l-3.1 1.56.89 1.79 1.31-.66a3 3 0 0 1 2.69 0l2.2 1.1a1 1 0 0 0 .9 0l2.21-1.1a3 3 0 0 1 2.69 0l2.2 1.1a1 1 0 0 0 .9 0l2.21-1.1a3 3 0 0 1 2.69 0l2.2 1.1a1 1 0 0 0 .86.02l2.88-1.27a3 3 0 0 1 2.43 0l2.88 1.27a1 1 0 0 0 .85-.02l3.1-1.55-.89-1.79-1.42.71a3 3 0 0 1-2.56.06l-2.77-1.23a1 1 0 0 0-.4-.09h-.01a1 1 0 0 0-.4.09l-2.78 1.23a3 3 0 0 1-2.56-.06l-2.3-1.15a1 1 0 0 0-.45-.11h-.01a1 1 0 0 0-.44.1l-2.21 1.11a3 3 0 0 1-2.69 0l-2.2-1.1a1 1 0 0 0-.45-.11h-.01a1 1 0 0 0-.44.1l-2.21 1.11a3 3 0 0 1-2.69 0l-2.2-1.1a1 1 0 0 0-.45-.11h-.01zm0-2h-4.9a21.01 21.01 0 0 1 39.61 0h-2.09l-.06-.13-.26.13h-32.31zm30.35 7.68l1.36-.68h1.3v2h-36v-1.15l.34-.17 1.36-.68h2.59l1.36.68a3 3 0 0 0 2.69 0l1.36-.68h2.59l1.36.68a3 3 0 0 0 2.69 0l1.36-.68h2.59l1.36.68a3 3 0 0 0 2.56.06l1.67-.74h3.23l1.67.74a3 3 0 0 0 2.56-.06zM246.18 27l16.37 4.91L278.93 27h-32.75zm-.63 2h.34l16.66 5 16.67-5h.33a3 3 0 1 1 0 6h-34a3 3 0 1 1 0-6zm1.35 8a6 6 0 0 0 5.65 4h20a6 6 0 0 0 5.66-4H246.9z'/%3E%3Cpath d='M159.5 21.02A9 9 0 0 0 151 15h-42a9 9 0 0 0-8.5 6.02 6 6 0 0 0 .02 11.96A8.99 8.99 0 0 0 109 45h42a9 9 0 0 0 8.48-12.02 6 6 0 0 0 .02-11.96zM151 17h-42a7 7 0 0 0-6.33 4h54.66a7 7 0 0 0-6.33-4zm-9.34 26a8.98 8.98 0 0 0 3.34-7h-2a7 7 0 0 1-7 7h-4.34a8.98 8.98 0 0 0 3.34-7h-2a7 7 0 0 1-7 7h-4.34a8.98 8.98 0 0 0 3.34-7h-2a7 7 0 0 1-7 7h-7a7 7 0 1 1 0-14h42a7 7 0 1 1 0 14h-9.34zM109 27a9 9 0 0 0-7.48 4H101a4 4 0 1 1 0-8h58a4 4 0 0 1 0 8h-.52a9 9 0 0 0-7.48-4h-42z'/%3E%3Cpath d='M39 115a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm6-8a6 6 0 1 1-12 0 6 6 0 0 1 12 0zm-3-29v-2h8v-6H40a4 4 0 0 0-4 4v10H22l-1.33 4-.67 2h2.19L26 130h26l3.81-40H58l-.67-2L56 84H42v-6zm-4-4v10h2V74h8v-2h-8a2 2 0 0 0-2 2zm2 12h14.56l.67 2H22.77l.67-2H40zm13.8 4H24.2l3.62 38h22.36l3.62-38z'/%3E%3Cpath d='M129 92h-6v4h-6v4h-6v14h-3l.24 2 3.76 32h36l3.76-32 .24-2h-3v-14h-6v-4h-6v-4h-8zm18 22v-12h-4v4h3v8h1zm-3 0v-6h-4v6h4zm-6 6v-16h-4v19.17c1.6-.7 2.97-1.8 4-3.17zm-6 3.8V100h-4v23.8a10.04 10.04 0 0 0 4 0zm-6-.63V104h-4v16a10.04 10.04 0 0 0 4 3.17zm-6-9.17v-6h-4v6h4zm-6 0v-8h3v-4h-4v12h1zm27-12v-4h-4v4h3v4h1v-4zm-6 0v-8h-4v4h3v4h1zm-6-4v-4h-4v8h1v-4h3zm-6 4v-4h-4v8h1v-4h3zm7 24a12 12 0 0 0 11.83-10h7.92l-3.53 30h-32.44l-3.53-30h7.92A12 12 0 0 0 130 126z'/%3E%3Cpath d='M212 86v2h-4v-2h4zm4 0h-2v2h2v-2zm-20 0v.1a5 5 0 0 0-.56 9.65l.06.25 1.12 4.48a2 2 0 0 0 1.94 1.52h.01l7.02 24.55a2 2 0 0 0 1.92 1.45h4.98a2 2 0 0 0 1.92-1.45l7.02-24.55a2 2 0 0 0 1.95-1.52L224.5 96l.06-.25a5 5 0 0 0-.56-9.65V86a14 14 0 0 0-28 0zm4 0h6v2h-9a3 3 0 1 0 0 6H223a3 3 0 1 0 0-6H220v-2h2a12 12 0 1 0-24 0h2zm-1.44 14l-1-4h24.88l-1 4h-22.88zm8.95 26l-6.86-24h18.7l-6.86 24h-4.98zM150 242a22 22 0 1 0 0-44 22 22 0 0 0 0 44zm24-22a24 24 0 1 1-48 0 24 24 0 0 1 48 0zm-28.38 17.73l2.04-.87a6 6 0 0 1 4.68 0l2.04.87a2 2 0 0 0 2.5-.82l1.14-1.9a6 6 0 0 1 3.79-2.75l2.15-.5a2 2 0 0 0 1.54-2.12l-.19-2.2a6 6 0 0 1 1.45-4.46l1.45-1.67a2 2 0 0 0 0-2.62l-1.45-1.67a6 6 0 0 1-1.45-4.46l.2-2.2a2 2 0 0 0-1.55-2.13l-2.15-.5a6 6 0 0 1-3.8-2.75l-1.13-1.9a2 2 0 0 0-2.5-.8l-2.04.86a6 6 0 0 1-4.68 0l-2.04-.87a2 2 0 0 0-2.5.82l-1.14 1.9a6 6 0 0 1-3.79 2.75l-2.15.5a2 2 0 0 0-1.54 2.12l.19 2.2a6 6 0 0 1-1.45 4.46l-1.45 1.67a2 2 0 0 0 0 2.62l1.45 1.67a6 6 0 0 1 1.45 4.46l-.2 2.2a2 2 0 0 0 1.55 2.13l2.15.5a6 6 0 0 1 3.8 2.75l1.13 1.9a2 2 0 0 0 2.5.8zm2.82.97a4 4 0 0 1 3.12 0l2.04.87a4 4 0 0 0 4.99-1.62l1.14-1.9a4 4 0 0 1 2.53-1.84l2.15-.5a4 4 0 0 0 3.09-4.24l-.2-2.2a4 4 0 0 1 .97-2.98l1.45-1.67a4 4 0 0 0 0-5.24l-1.45-1.67a4 4 0 0 1-.97-2.97l.2-2.2a4 4 0 0 0-3.09-4.25l-2.15-.5a4 4 0 0 1-2.53-1.84l-1.14-1.9a4 4 0 0 0-5-1.62l-2.03.87a4 4 0 0 1-3.12 0l-2.04-.87a4 4 0 0 0-4.99 1.62l-1.14 1.9a4 4 0 0 1-2.53 1.84l-2.15.5a4 4 0 0 0-3.09 4.24l.2 2.2a4 4 0 0 1-.97 2.98l-1.45 1.67a4 4 0 0 0 0 5.24l1.45 1.67a4 4 0 0 1 .97 2.97l-.2 2.2a4 4 0 0 0 3.09 4.25l2.15.5a4 4 0 0 1 2.53 1.84l1.14 1.9a4 4 0 0 0 5 1.62l2.03-.87zM152 207a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm6 2a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm-11 1a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm-6 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm3-5a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm-8 8a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm3 6a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm0 6a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm4 7a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm5-2a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm5 4a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm4-6a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm6-4a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm-4-3a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm4-3a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm-5-4a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm-24 6a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm16 5a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm7-5a7 7 0 1 1-14 0 7 7 0 0 1 14 0zm86-29a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2h-2zm19 9a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2h-2a1 1 0 0 1-1-1zm-14 5a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2h-2zm-25 1a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2h-2zm5 4a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2h-2zm9 0a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2h-2a1 1 0 0 1-1-1zm15 1a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2h-2a1 1 0 0 1-1-1zm12-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2h-2zm-11-14a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2h-2a1 1 0 0 1-1-1zm-19 0a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2h-2zm6 5a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2h-2a1 1 0 0 1-1-1zm-25 15c0-.47.01-.94.03-1.4a5 5 0 0 1-1.7-8 3.99 3.99 0 0 1 1.88-5.18 5 5 0 0 1 3.4-6.22 3 3 0 0 1 1.46-1.05 5 5 0 0 1 7.76-3.27A30.86 30.86 0 0 1 246 184c6.79 0 13.06 2.18 18.17 5.88a5 5 0 0 1 7.76 3.27 3 3 0 0 1 1.47 1.05 5 5 0 0 1 3.4 6.22 4 4 0 0 1 1.87 5.18 4.98 4.98 0 0 1-1.7 8c.02.46.03.93.03 1.4v1h-62v-1zm.83-7.17a30.9 30.9 0 0 0-.62 3.57 3 3 0 0 1-.61-4.2c.37.28.78.49 1.23.63zm1.49-4.61c-.36.87-.68 1.76-.96 2.68a2 2 0 0 1-.21-3.71c.33.4.73.75 1.17 1.03zm2.32-4.54c-.54.86-1.03 1.76-1.49 2.68a3 3 0 0 1-.07-4.67 3 3 0 0 0 1.56 1.99zm1.14-1.7c.35-.5.72-.98 1.1-1.46a1 1 0 1 0-1.1 1.45zm5.34-5.77c-1.03.86-2 1.79-2.9 2.77a3 3 0 0 0-1.11-.77 3 3 0 0 1 4-2zm42.66 2.77c-.9-.98-1.87-1.9-2.9-2.77a3 3 0 0 1 4.01 2 3 3 0 0 0-1.1.77zm1.34 1.54c.38.48.75.96 1.1 1.45a1 1 0 1 0-1.1-1.45zm3.73 5.84c-.46-.92-.95-1.82-1.5-2.68a3 3 0 0 0 1.57-1.99 3 3 0 0 1-.07 4.67zm1.8 4.53c-.29-.9-.6-1.8-.97-2.67.44-.28.84-.63 1.17-1.03a2 2 0 0 1-.2 3.7zm1.14 5.51c-.14-1.21-.35-2.4-.62-3.57.45-.14.86-.35 1.23-.63a2.99 2.99 0 0 1-.6 4.2zM275 214a29 29 0 0 0-57.97 0h57.96zM72.33 198.12c-.21-.32-.34-.7-.34-1.12v-12h-2v12a4.01 4.01 0 0 0 7.09 2.54c.57-.69.91-1.57.91-2.54v-12h-2v12a1.99 1.99 0 0 1-2 2 2 2 0 0 1-1.66-.88zM75 176c.38 0 .74-.04 1.1-.12a4 4 0 0 0 6.19 2.4A13.94 13.94 0 0 1 84 185v24a6 6 0 0 1-6 6h-3v9a5 5 0 1 1-10 0v-9h-3a6 6 0 0 1-6-6v-24a14 14 0 0 1 14-14 5 5 0 0 0 5 5zm-17 15v12a1.99 1.99 0 0 0 1.22 1.84 2 2 0 0 0 2.44-.72c.21-.32.34-.7.34-1.12v-12h2v12a3.98 3.98 0 0 1-5.35 3.77 3.98 3.98 0 0 1-.65-.3V209a4 4 0 0 0 4 4h16a4 4 0 0 0 4-4v-24c.01-1.53-.23-2.88-.72-4.17-.43.1-.87.16-1.28.17a6 6 0 0 1-5.2-3 7 7 0 0 1-6.47-4.88A12 12 0 0 0 58 185v6zm9 24v9a3 3 0 1 0 6 0v-9h-6z'/%3E%3Cpath d='M-17 191a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2h-2zm19 9a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2H3a1 1 0 0 1-1-1zm-14 5a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2h-2zm-25 1a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2h-2zm5 4a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2h-2zm9 0a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2h-2a1 1 0 0 1-1-1zm15 1a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2h-2a1 1 0 0 1-1-1zm12-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2H4zm-11-14a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2h-2a1 1 0 0 1-1-1zm-19 0a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2h-2zm6 5a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2h-2a1 1 0 0 1-1-1zm-25 15c0-.47.01-.94.03-1.4a5 5 0 0 1-1.7-8 3.99 3.99 0 0 1 1.88-5.18 5 5 0 0 1 3.4-6.22 3 3 0 0 1 1.46-1.05 5 5 0 0 1 7.76-3.27A30.86 30.86 0 0 1-14 184c6.79 0 13.06 2.18 18.17 5.88a5 5 0 0 1 7.76 3.27 3 3 0 0 1 1.47 1.05 5 5 0 0 1 3.4 6.22 4 4 0 0 1 1.87 5.18 4.98 4.98 0 0 1-1.7 8c.02.46.03.93.03 1.4v1h-62v-1zm.83-7.17a30.9 30.9 0 0 0-.62 3.57 3 3 0 0 1-.61-4.2c.37.28.78.49 1.23.63zm1.49-4.61c-.36.87-.68 1.76-.96 2.68a2 2 0 0 1-.21-3.71c.33.4.73.75 1.17 1.03zm2.32-4.54c-.54.86-1.03 1.76-1.49 2.68a3 3 0 0 1-.07-4.67 3 3 0 0 0 1.56 1.99zm1.14-1.7c.35-.5.72-.98 1.1-1.46a1 1 0 1 0-1.1 1.45zm5.34-5.77c-1.03.86-2 1.79-2.9 2.77a3 3 0 0 0-1.11-.77 3 3 0 0 1 4-2zm42.66 2.77c-.9-.98-1.87-1.9-2.9-2.77a3 3 0 0 1 4.01 2 3 3 0 0 0-1.1.77zm1.34 1.54c.38.48.75.96 1.1 1.45a1 1 0 1 0-1.1-1.45zm3.73 5.84c-.46-.92-.95-1.82-1.5-2.68a3 3 0 0 0 1.57-1.99 3 3 0 0 1-.07 4.67zm1.8 4.53c-.29-.9-.6-1.8-.97-2.67.44-.28.84-.63 1.17-1.03a2 2 0 0 1-.2 3.7zm1.14 5.51c-.14-1.21-.35-2.4-.62-3.57.45-.14.86-.35 1.23-.63a2.99 2.99 0 0 1-.6 4.2zM15 214a29 29 0 0 0-57.97 0h57.96z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  min-height: 600px;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+/* Ends scroll to bottom */
+
+.msg-text span {
+  float: right;
+  margin-left: 5px;
+}
+
+
+/* Result Start */
+
+.resultListing .vsIcon {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 10px 0;
+}
+
+.resultListing .sportsName {
+  padding: 3px 7px;
+  background-color: #7dd1eb;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.resultListing button,
+.resultListing button:hover {
+  font-size: 12px;
+  background: #422311;
+  color: #fff;
+  outline: none;
+  border: 0px;
+}
+
+.resultListing .addedResultName {
+  padding: 3px 7px;
+  background-color: #f0d274;
+}
+
+.resultListing .playername {
+  margin-top: 10px !important;
+}
+
+.resultListing .winnerName,
+.resultListing .winnerDate {
+  background-color: #228B22;
+  padding: 3px 7px;
+  font-weight: 600;
+  color: #fff !important;
+  font-size: 14px !important;
+}
+
+.resultListing .winnerDate {
+  background-color: #8b0e0e;
+}
+
+.resultListing .matchStatus {
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 5px !important;
+}
+
+.resultListing .acceptStatus {
+  padding: 3px 7px;
+  background-color: #f0d274;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.statistics {
+  text-align: center;
+}
+
+/* Result Ends */
+
+
+
+/* Media screen start */
+
+@media only screen and (max-width: 379px) {
+
+  .msger-chat,
+  .scrollmeAuto {
+    min-height: 500px !important;
+    max-height: 500px !important;
+  }
+
+  .playerOverview table {
+    width: 100%;
+  }
+
+  .popupProfile .profileBox .profileTop .profileImgBox {
+    width: 150px;
+  }
+
+  .popupProfile .membr-details-img::after {
+    height: 40px;
+  }
+
+  .navbar-nav .logoimg {
+    height: 35px;
+  }
+
+  .navbarTop a,
+  .navbar-toggler-icon {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 380px) and (max-width: 400px) {
+
+  .msger-chat,
+  .scrollmeAuto {
+    min-height: 500px !important;
+    max-height: 500px !important;
+  }
+
+  .playerOverview table {
+    width: 100%;
+  }
+
+  .popupProfile .profileBox .profileTop .profileImgBox {
+    width: 150px;
+  }
+
+  .popupProfile .membr-details-img::after {
+    height: 40px;
+  }
+
+  .navbar-nav .logoimg {
+    height: 40px;
+  }
+
+  .navbarTop a,
+  .navbar-toggler-icon {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 401px) and (max-width: 449px) {
+
+  .msger-chat,
+  .scrollmeAuto {
+    min-height: 600px !important;
+    max-height: 600px !important;
+  }
+
+  .playerOverview table {
+    width: 100%;
+  }
+
+  .popupProfile .profileBox .profileTop .profileImgBox {
+    width: 150px;
+  }
+
+  .popupProfile .membr-details-img::after {
+    height: 40px;
+  }
+
+  .navbar-nav .logoimg {
+    height: 15px;
+  }
+
+  .navbarTop a,
+  .navbar-toggler-icon {
+    font-size: 14px;
+  }
+}
+
+
+@media only screen and (min-width: 450px) and (max-width: 669px) {
+
+  .msger-chat,
+  .scrollmeAuto {
+    min-height: 450px !important;
+    max-height: 450px !important;
+  }
+
+  .playerOverview table {
+    width: 100%;
+  }
+
+  .popupProfile .profileBox .profileTop .profileImgBox {
+    width: 150px;
+  }
+
+  .popupProfile .membr-details-img::after {
+    height: 40px;
+  }
+
+  .navbar-nav .logoimg {
+    height: 15px;
+  }
+
+  .navbarTop a,
+  .navbar-toggler-icon {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 670px) and (max-width: 749px) {
+
+  .msger-chat,
+  .scrollmeAuto {
+    min-height: 450px !important;
+    max-height: 450px !important;
+  }
+
+  .playerOverview table {
+    width: 100%;
+  }
+
+  .popupProfile .profileBox .profileTop .profileImgBox {
+    width: 150px;
+  }
+
+  .popupProfile .membr-details-img::after {
+    height: 40px;
+  }
+
+  .navbar-nav .logoimg {
+    height: 15px;
+  }
+
+  .navbarTop a,
+  .navbar-toggler-icon {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 750px) and (max-width: 949px) {
+  .msger-chat {
+    min-height: 480px !important;
+    max-height: 480px !important;
+  }
+
+  .playerOverview table {
+    width: 100%;
+  }
+
+  .popupProfile .profileBox .profileTop .profileImgBox {
+    width: 150px;
+  }
+
+  .popupProfile .membr-details-img::after {
+    height: 70px;
+  }
+
+  .navbar-nav .logoimg {
+    height: 15px;
+  }
+
+  .navbarTop a,
+  .navbar-toggler-icon {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 950px) and (max-width: 1029px) {
+
+  .msger-chat,
+  .scrollmeAuto {
+    min-height: 420px !important;
+    max-height: 420px !important;
+  }
+
+  .playerOverview table {
+    width: 100%;
+  }
+
+  .popupProfile .profileBox .profileTop .profileImgBox {
+    width: 150px;
+  }
+
+  .popupProfile .membr-details-img::after {
+    height: 40px;
+  }
+
+  .navbar-nav .logoimg {
+    height: 15px;
+  }
+
+  .navbarTop a,
+  .navbar-toggler-icon {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 1030px) and (max-width: 1250px) {
+
+  .msger-chat,
+  .scrollmeAuto {
+    min-height: 600px !important;
+    max-height: 600px !important;
+  }
+
+  .playerOverview table {
+    width: 100%;
+  }
+
+  .popupProfile .profileBox .profileTop .profileImgBox {
+    width: 150px;
+  }
+
+  .popupProfile .membr-details-img::after {
+    height: 40px;
+  }
+
+  .navbar-nav .logoimg {
+    height: 15px;
+  }
+
+  .navbarTop a,
+  .navbar-toggler-icon {
+    font-size: 14px;
+  }
+}
+
+/* Media Screen ends */
+
+
+/* Start home score cards */
+
+.score_card {
+  position: relative;
+  width: clamp(250px ,100% ,250px);
+  box-sizing: border-box;
+  padding: 16px 10px;
+  z-index: 0;
+  margin: 10px auto;
+
+}
+
+.score_card:hover::after {
+  transform: scale(1.03);
+  box-shadow: 0px 0px 13px rgba(0,0,0,0.2);
+}
+
+.score_card::after {
+  position: absolute;
+  content: '';
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 12.0942px;
+  transition: all 0.3s ease-in-out;
+  z-index: -1;
+}
+
+.pt-pos__number .ot-border {
+  position: absolute;
+  z-index: -1;
+  top: -3px;
+  left: 3px;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.2px #C4C4C4;
+}
+
+.pt-pos__tname {
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 24px;
+  margin-left: 10px;
+  text-align: left;
+  transform: translateY(4px);
+}
+.pt-pos__number {
+  position: relative;
+  z-index: 1;
+  font-weight: 400;
+  font-size: 65px;
+  line-height: 65px;
+}
+.pt-pos__tname {
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 24px;
+  margin-left: 10px;
+  text-align: left;
+  transform: translateY(4px);
+  font-family: 'Bebas Neue', sans-serif;
+}
+.pt-team__logo {
+  border-bottom: 1px solid #d9d9d9;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pt-stats_number {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  color: #11141c;
+}
+.pt-info {
+  justify-content: space-evenly;
+  margin-block-end: 30px;
+}
+
+.pt-recent__info:not(:last-child) {
+  margin-inline-end: 8px;
+}
+
+.pt-recent__info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  text-transform: uppercase;
+  font-size: 15px;
+  text-align: center;
+}
+.pt-G {
+  color: #2a841b;
+  border: 1px solid #2a841b;
+}
+
+.pt-R {
+  color: #d34646;
+  border: 1px solid #d34646;
+}
+
+.pt-O {
+  color: #da5c13;
+  border: 1px solid #da5c13;
+}
+
+.pt-recent__title {
+  font-size: 16px;
+  color: #11141c;
+  margin-bottom: 10px;
+  text-align: left;
+}
+.pt-team__logo img {
+  max-width: 100px;
+}
+.cardDetails{
+  font-family: 'Libre Franklin', sans-serif !important;
+}
+
+/* Ends home score cards */
+
+
+@media only screen and (max-width: 749px) {
+  .score_card {
+    width: clamp(250px ,100% ,100%);
+  }
+
+}
+
+/*======================
+    404 page start
+=======================*/
+
+.page_404 {
+  padding: 40px 0;
+  background: #fff;
+  font-family: 'Arvo', serif;
+}
+
+.page_404 img {
+  width: 100%;
+}
+
+.four_zero_four_bg {
+
+  background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+  height: 400px;
+  background-position: center;
+}
+
+
+.four_zero_four_bg h1 {
+  font-size: 80px;
+}
+
+.four_zero_four_bg h3 {
+  font-size: 80px;
+}
+
+.link_404 {
+  color: #fff !important;
+  padding: 10px 20px;
+  background: #39ac31;
+  margin: 20px 0;
+  display: inline-block;
+}
+
+.contant_box_404 {
+  margin-top: -50px;
+}
+
+/*======================
+    404 page ends
+=======================*/
+
+/* terms and condition */
+.termsCondition p,
+.termsCondition b,
+.termsCondition ul li
+{
+  font-family: 'Libre Franklin', sans-serif !important;
+}
+
+/* Start Result new */
+
+.card-result{
+  width: 100%;
+  min-width: 300px;
+  margin: 15px auto;
+  position: relative;
+  background: #FFFFFF;
+  border-radius: 2px;
+  transition: all 0.5s;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  min-height: 450px;
+}
+.scoreCard{
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #E8E8E8;
+}
+.noBorderBottom{
+  border-bottom: 0;
+}
+.scoreCard .scoreAlign{
+width: 100%;
+text-align: center;
+}
+.scoreCard .playerImgScore{
+min-height: 50px;
+max-height: 50px;
+}
+.scoreCard .vsScore{
+min-height: 25px;
+max-height: 25px;
+}
+.scoreCard .nameText{
+font-size: 14px;
+font-weight: 500;
+}
+.pointerScore {
+position: absolute;
+width: 150px;
+height: 20px;
+padding: 1px;
+transform: skew(-20deg);
+background: #422311;
+font-style: normal;
+color: #fff;
+text-align: center;
+margin-top: -10px;
+font-size: 12px;
+font-weight: 500;
+}
+.pointerResult{
+width: 150px;
+height: 20px;
+padding: 1px;
+transform: skew(-20deg);
+background: #17B169;
+font-style: normal;
+color: #fff;
+text-align: center;
+margin: auto;
+margin-top: -10px;
+font-size: 12px;
+font-weight: 500;
+}
+.scoreCard .scoreResult{
+text-align: center;
+font-size: 14px;
+width: 100%;
+margin: 0;
+color: #000;
+font-weight: 500;
+}
+.scoreCard .scoreMatch{
+display: flex;
+align-items: center;
+padding: 5px;
+}
+.scoreCard .scoreLength{
+width: 30% !important;
+}
+.scoreCard .scorePName{
+width: 70%;
+font-size: 16px;
+font-weight: 500;
+}
+.scoreCard .scorePName small{
+font-size: 12px;
+color: #909090;
+}
+.scoreCard .scoreResult,
+.scorePadding{
+padding: 5px !important;
+}
+.scoreCard .matchStatus{
+color: red;
+}
+.scoreCard .hilightName{
+background-color: #f0d274;
+  padding: 3px 7px;
+}
+.scoreCard .addedResultByPlayer{
+text-align: center;
+}
+.scoreCard .addResultScore,
+.scoreCard .addResultScore:hover,
+.scoreCard .addResultScore:focus
+{
+transform: skew(-20deg);
+background: #422311;
+outline: none;
+border:none;
+}
+.scoreCard .addResultScore:hover{
+opacity: 0.9;
+}
+
+/* End Result new */
+
+
+/* Start message new */
+
+.cardLink{
+  text-decoration: none;
+  color: #000;
+}
+.card-message{
+    width: 100%;
+    margin: 8px 0 0 0;
+    position: relative;
+    background: #FFFFFF;
+    border-radius: 2px;
+    transition: all 0.5s;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    margin-bottom: 1em;
+}
+.card-message:hover{
+  background-color: #F5F5F5;
+}
+.messageCard{
+  display: flex;
+  padding: 20px;
+  border-bottom: 1px solid #E8E8E8;
+}
+.messageCard .scoreMessage{
+  text-align: center;
+  margin-right: 10px;
+}
+.messageCard .playerImgMessage{
+  min-height: 50px;
+  max-height: 50px;
+}
+.messageCard .nameText{
+  font-size: 14px;
+  font-weight: 500;
+}
+.fontStyle{
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.05em;
+}
+.messageCard .nameText .datetime{
+  font-size: 12px;
+  color: #909090;
+  float: right;
+  margin-left: 10px;
+}
+@media only screen and (max-width: 749px) {
+  .messageCard .nameText .datetime{
+    font-size: 10px;
+  }
+}
+.pointerMessage {
+  position: absolute;
+  width: 150px;
+  height: 20px;
+  padding: 1px;
+  transform: skew(-20deg);
+  background: #422311;
+  font-style: normal;
+  color: #fff;
+  text-align: center;
+  margin-top: -10px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.messageCard .messageText{
+  font-size: 12px;
+  width: 100%;
+  margin: 0;
+  color: #000;
+  font-weight: 500;
+}
+.messageCard .messageText{
+  padding: 5px 0 !important;
+}
+.messageCard .badge-danger {
+    background-color: #ff0000;
+    margin-left: 5px !important;
+}
+
+/* End message new */
+
+
+/* Start home players details */
+
+.card-player{
+  width: 100%;
+  margin: 1em auto;
+  padding: 0 0 1em 0;
+  position: relative;
+  background: #FFFFFF;
+  border-radius: 2px;
+  transition: all 0.5s;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.card-player:hover{
+box-shadow: 0 0 13px rgb(0 0 0 / 20%);
+  /*-webkit-transform: scale(1.01);
+  transform: scale(1.01);*/
+}
+.card-player .noBorder{
+border:none;
+}
+.playerCard{
+display: flex;
+padding: 10px;
+border-bottom: 1px solid #E8E8E8;
+margin-top: 10px;
+}
+.playerCard .playerAlign{
+width: 60%;
+text-align: center;
+margin-top: 8px;
+}
+.playerCard .playerImgplayer{
+min-height: 150px;
+max-height: 150px;
+}
+.playerCard .nameText{
+font-weight: 500;
+  font-size: 22px;
+  line-height: 24px;
+  margin-left: 10px;
+  text-align: left;
+  transform: translateY(4px);
+  font-family: 'Bebas Neue', sans-serif;
+}
+.pointerplayer {
+position: absolute;
+width: 200px;
+height: 20px;
+padding: 1px;
+transform: skew(-20deg);
+background: #422311;
+font-style: normal;
+color: #fff;
+text-align: center;
+margin-top: -10px;
+font-size: 12px;
+font-weight: 500;
+}
+.pointerResult{
+width: 150px;
+height: 20px;
+padding: 1px;
+transform: skew(-20deg);
+background: #17B169;
+font-style: normal;
+color: #fff;
+text-align: center;
+margin: auto;
+margin-top: -10px;
+font-size: 12px;
+font-weight: 500;
+}
+.addResultplayer,
+.addResultplayer:focus,
+.addResultplayer:hover
+{
+/* transform: skew(-20deg); */
+background: #422311 !important;
+outline: none !important;
+border:none !important;
+margin-top: 1em !important;
+}
+.addResultplayer:hover
+{
+  opacity: 0.9;
+}
+.tshirtNumber {
+  position: relative;
+  z-index: 1;
+  font-weight: 400;
+  font-size: 45px;
+  line-height: 45px;
+}
+.tshirtNumber .ot-border {
+  position: absolute;
+  z-index: -1;
+  top: -3px;
+  left: 3px;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.2px #C4C4C4;
+}
+
+.playerCareer {
+justify-content: space-evenly;
+padding: 0 !important;
+}
+.playerCareer .columns,
+.playerRecent .columns{
+font-size: 12px;
+font-weight: 500;
+padding: 5px;
+text-align: center;
+color: #909090;
+}
+.playerRecent .columns{
+text-align: left;
+color: #000;
+}
+.playerCareer .columns span{
+font-size: 20px;
+color: #000;
+font-weight: 700;
+}
+.playerCareer .playerStats{
+width: 40%;
+}
+.card-player .noPadding{
+padding: 2px;
+}
+.otherDetails .columns span {
+  font-size: 14px;
+}
+.playerCard .recentMatches{
+float: left;
+}
+.playerRecent .winStats{
+display: flex;
+align-items: center;
+}
+.playerRecent .winStats .recentPoints{
+  align-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  text-transform: uppercase;
+  font-size: 12px;
+  text-align: center;
+  margin-right: 5px;
+}
+.playerRecent .colorGreen{
+color: #2a841b;
+  border: 1px solid #2a841b;
+}
+.playerRecent .colorRed{
+color: #2a841b;
+  border: 1px solid #2a841b;
+}
+.playerRecent .colorOrange{
+color: #cc5500;
+  border: 1px solid #cc5500;
+}
+.playerCard .nameText span{
+font-size: 12px;
+color: #909090;
+position: absolute;
+margin-top: -5px;
+}
+
+/* End of home players details */
+
+
+/* Start Challenge message */
+
+.card-challenge{
+  width: 100%;
+  margin: 1em auto;
+  padding: 0 0 1em 0;
+  position: relative;
+  background: #FFFFFF;
+  border-radius: 2px;
+  transition: all 0.5s;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.card-challenge:hover{
+  box-shadow: 0 0 13px rgb(0 0 0 / 20%);
+  /*-webkit-transform: scale(1.01);
+  transform: scale(1.01);*/
+}
+.card-challenge .noBorder{
+  border:none;
+}
+.challengeCard{
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid #E8E8E8;
+}
+.challengeCard .challengeAlign{
+  width: 60%;
+  text-align: center;
+}
+.challengeCard .challengeImgplayer{
+  min-height: 150px;
+  max-height: 150px;
+}
+.challengeCard .nameText{
+  font-weight: 500;
+  font-size: 16px;
+  font-family: 'Bebas Neue', sans-serif;
+  line-height: 24px;
+  margin-left: 10px;
+  text-align: left;
+  transform: translateY(4px);
+}
+.pointerchallenge {
+  position: absolute;
+  width: 200px;
+  height: 20px;
+  padding: 1px;
+  transform: skew(-20deg);
+  background: #422311;
+  font-style: normal;
+  color: #fff;
+  text-align: center;
+  margin-top: -10px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.pointerResult{
+  width: 150px;
+  height: 20px;
+  padding: 1px;
+  transform: skew(-20deg);
+  background: #17B169;
+  font-style: normal;
+  color: #fff;
+  text-align: center;
+  margin: auto;
+  margin-top: -10px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.addResultchallenge,
+.addResultchallenge:focus,
+.addResultchallenge:hover
+{
+  transform: skew(-20deg);
+  background: #422311;
+  outline: none;
+  border:none;
+  margin-top: 1em;
+}
+.tshirtNumber {
+  position: relative;
+  z-index: 1;
+  font-weight: 400;
+  font-size: 45px;
+  line-height: 45px;
+}
+.tshirtNumber .ot-border {
+  position: absolute;
+  z-index: -1;
+  top: -3px;
+  left: 3px;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.2px #C4C4C4;
+}
+
+.challengeCareer {
+  justify-content: space-evenly;
+  padding: 0 !important;
+}
+.challengeCareer .columns,
+.challengeRecent .columns{
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px;
+  text-align: center;
+  color: #909090;
+}
+.challengeRecent .columns{
+  text-align: left;
+  color: #000;
+  display: flex;
+}
+.challengeRecent .columns .matchText{
+  text-align:right;
+  width: 50%;
+  font-weight: 700;
+}
+.challengeRecent .recentMatches{
+  padding: 5px 0;
+}
+.challengeRecent p{
+  font-size: 12px;
+  margin: 0;
+}
+.challengeRecent span{
+  color: #A8A8A8;
+  font-size: 10px;
+}
+.challengeCareer .columns span{
+  font-size: 12px;
+  color: #000;
+}
+.challengeCareer .playerStats{
+  width: 40%;
+}
+.card-challenge .noPadding{
+  padding: 2px;
+}
+.otherDetails .columns span {
+  font-size: 14px;
+}
+.challengeCard .recentMatches{
+  float: left;
+}
+.challengeRecent .winStats{
+  display: flex;
+  align-items: center;
+}
+.challengeRecent .winStats .recentPoints{
+  align-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  text-transform: uppercase;
+  font-size: 12px;
+  text-align: center;
+  margin-right: 5px;
+}
+.challengeRecent .colorGreen{
+  color: #2a841b;
+  border: 1px solid #2a841b;
+}
+.challengeRecent .colorRed{
+  color: #2a841b;
+  border: 1px solid #2a841b;
+}
+.challengeRecent .colorOrange{
+  color: #cc5500;
+  border: 1px solid #cc5500;
+}
+.challengeCard .nameText span{
+  font-size: 12px;
+  color: #909090;
+  position: absolute;
+  margin-top: -5px;
+}
+
+
+.card-challenge .buttonsSet {
+  margin: 5px 0px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-challenge .buttonAction {
+  padding: 1px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  margin-right: 10px;
+  min-height: 30px !important;
+  height: 30px;
+  min-width: 30px !important;
+  width: 30px;
+  cursor: pointer;
+}
+
+.card-challenge .acceptButton {
+  color: green;
+}
+
+.card-challenge .declineButton {
+  color: red;
+}
+
+/* End of challenge message */
+
+/* Start Notification Block */
+.notificationBlock{
+  background-color: #fff;
+  position: absolute;
+  max-width: 300px;
+  min-width: 300px;
+  min-height: 400px;
+  max-height: 400px;
+  overflow-y: scroll;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  z-index: 1;
+  padding: 5px;
+  padding-top: 10px;
+  border-radius: 5px;
+  margin-left: -13em;
+}
+
+.notificationBlock::-webkit-scrollbar {
+  width: 6px;
+  border-radius: 5px;
+}
+
+.notificationBlock::-webkit-scrollbar-track {
+  background: #ddd;
+  border-radius: 5px;
+}
+
+.notificationBlock::-webkit-scrollbar-thumb {
+  background: #bdbdbd;
+  border-radius: 5px;
+}
+
+.notification-child{
+  padding: 5px;
+  border-radius: 5px;
+  font-family: 'Libre Franklin', sans-serif;
+  letter-spacing: 0;
+}
+.notification-child:hover{
+  background-color: #e6e3e3;
+  cursor: pointer;
+}
+.notification-child a{
+  text-decoration: none;
+}
+.notification-child img{
+  height: 50px;
+  width: 50px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+.notification-child .notify-child{
+  display: flex;
+  align-items: center;
+}
+.notification-child .notify-child p{
+  font-size: 12px;
+  margin: 0;
+}
+.notification-child .notify-child .seenIcon{
+  height: 8px;
+  width: 10px;
+  border-radius: 50%;
+  background-color: #422311;
+  margin-left: 10px;
+}
+.notification-child .dateFormat{
+  font-size: 10px;
+  text-align: right;
+}
+.notification-heading{
+  letter-spacing: 0;
+  margin-left: 10px;
+}
+.notification-head{
+  display: flex;
+  align-items: center;
+}
+.notification-head h5{
+  width: 50%;
+}
+.notification-head span{
+  text-align: right;
+  width: 50%;
+  font-size: 14px;
+}
+/* End Notification Block */
