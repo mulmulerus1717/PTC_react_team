@@ -4,7 +4,7 @@ import OpponentContext from "./OpponentContext";
 const OpponentState = (props) => {
 
     const userToken = localStorage.getItem('userToken');
-    const [opponentPlayerDetails, setOpponentPlayerDetails] = useState([{}]);
+    const [opponentTeamDetails, setOpponentTeamDetails] = useState([{}]);
     const [popupProfile, setPopupProfile] = useState({ visibility: "hidden", opacity: 0 });
 
     const OpponentUser = async (data) => {
@@ -29,7 +29,7 @@ const OpponentState = (props) => {
         const json = await response.json();
         if(json !== "" && json !== undefined){
             if(json.status){
-                setOpponentPlayerDetails(json.result);
+                setOpponentTeamDetails(json.result);
             }else if(json.status === false){
                 if(json.errors !== undefined && json.errors.length > 0){
                     let errorAPiMessage = "";
@@ -51,12 +51,12 @@ const OpponentState = (props) => {
     //Show Popup
     const opponentPopupShow = (token) => {
         var data = {token_id : token}
-        OpponentUser(data);//set player token for API fetch
+        OpponentUser(data);//set Team token for API fetch
         setPopupProfile({ visibility: "visible", opacity: 1 });
     }
 
     return (
-        <OpponentContext.Provider value={{opponentPlayerDetails, popupProfile, opponentPopup, opponentPopupShow}}>
+        <OpponentContext.Provider value={{opponentTeamDetails, popupProfile, opponentPopup, opponentPopupShow}}>
             {props.children}
         </OpponentContext.Provider>
     );

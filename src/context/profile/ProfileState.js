@@ -5,7 +5,7 @@ import TriggerToastify from "../../components/common/TriggerToastify";
 
 const ProfileState = (props) => {
 
-    const [progressLoadingBar, setProgressLoadingBar] = useState(0)
+    const [progressLoadingBar, setProgressLoadingBar] = useState(0);
     const [successMessage,setSuccessMessage] = useState("");
     const [errorMessage,setErrorMessage] = useState("");
     const [successMessageEmail,setSuccessMessageEmail] = useState("");
@@ -14,8 +14,8 @@ const ProfileState = (props) => {
     const [successMessageAccountSetting,setSuccessMessageAccountSetting] = useState("");
     const [errorMessagePassword,setErrorMessagePassword] = useState("");
     const [errorMessageAccountSettings,setErrorMessageAccountSettings] = useState("");
-    const [playerDetails,setPlayerDetails] = useState([{}]);
-    const [playerSportsDetails,setPlayerSportsDetails] = useState([]);
+    const [teamDetails,setTeamDetails] = useState([{}]);
+    const [teamSportsDetails,setTeamSportsDetails] = useState([]);
     const [emailSubmitStyle, setEmailSubmitStyle] = useState({
         display:"block"
     });
@@ -23,7 +23,7 @@ const ProfileState = (props) => {
     const navigate = useNavigate();
 
     const ProfileUser = async (data) => {
-        setProgressLoadingBar(30)
+        setProgressLoadingBar(30);
         var formBody = [];
         for (var property in data) {
             var encodedKeySignup = encodeURIComponent(property);
@@ -45,7 +45,7 @@ const ProfileState = (props) => {
         if(json !== "" && json !== undefined){
             setProgressLoadingBar(100)
             if(json.status){
-                setPlayerDetails(json.result);
+                setTeamDetails(json.result);
             }else if(json.status === false){
                 if(json.errors !== undefined && json.errors.length > 0){
                     let errorAPiMessage = "";
@@ -62,7 +62,7 @@ const ProfileState = (props) => {
         }
     }
 
-    //start player sports fetch
+    //start team sports fetch
     const ProfileUserSports = async (data) => {
         var formBody = [];
         for (var property in data) {
@@ -89,14 +89,14 @@ const ProfileState = (props) => {
                 resultSport.map(sport => (
                     SportsArray.push({value:sport.sport_id, label:sport.name})
                 ))
-                setPlayerSportsDetails(SportsArray);
+                setTeamSportsDetails(SportsArray);
             }
         }
     }
-    //end player sports fetch
+    //end team sports fetch
 
     //start update profile details
-    const updatePlayer = async (data) => {
+    const updateteam = async (data) => {
         setProgressLoadingBar(30)
         var formBody = [];
         for (var property in data) {
@@ -136,11 +136,8 @@ const ProfileState = (props) => {
                 if(json.errors !== undefined && json.errors.length > 0){
                     let errorAPiMessage = "";
                     for(let inc=0; inc < json.errors.length; inc++){
-                        if(json.errors[inc].firstname !== "" && json.errors[inc].firstname !== undefined){
-                            errorAPiMessage = json.errors[inc].firstname;
-                        }
-                        if(json.errors[inc].lastname !== "" && json.errors[inc].lastname !== undefined){
-                            errorAPiMessage = json.errors[inc].lastname;
+                        if(json.errors[inc].teamname !== "" && json.errors[inc].teamname !== undefined){
+                            errorAPiMessage = json.errors[inc].teamname;
                         }
                         if(json.errors[inc].country_id !== "" && json.errors[inc].country_id !== undefined){
                             errorAPiMessage = json.errors[inc].country_id;
@@ -150,9 +147,6 @@ const ProfileState = (props) => {
                         }
                         if(json.errors[inc].city_id !== "" && json.errors[inc].city_id !== undefined){
                             errorAPiMessage = json.errors[inc].city_id;
-                        }
-                        if(json.errors[inc].dob !== "" && json.errors[inc].dob !== undefined){
-                            errorAPiMessage = json.errors[inc].dob;
                         }
                         if(json.errors[inc].gender !== "" && json.errors[inc].gender !== undefined){
                             errorAPiMessage = json.errors[inc].gender;
@@ -174,7 +168,7 @@ const ProfileState = (props) => {
     //end of update profile details
 
     //start update profile Email details
-    const updatePlayerEmail = async (data) => {
+    const updateteamEmail = async (data) => {
         setProgressLoadingBar(30)
         var formBody = [];
         for (var property in data) {
@@ -225,7 +219,7 @@ const ProfileState = (props) => {
 
 
     //start update profile Email OTP details
-    const updatePlayerEmailOTP = async (data) => {
+    const updateteamEmailOTP = async (data) => {
         setProgressLoadingBar(30)
         var formBody = [];
         for (var property in data) {
@@ -278,7 +272,7 @@ const ProfileState = (props) => {
     //end of update profile email OTP details
 
     //start update profile password details
-    const updatePlayerPassword = async (data) => {
+    const updateteamPassword = async (data) => {
         setProgressLoadingBar(30)
         var formBody = [];
         for (var property in data) {
@@ -332,10 +326,9 @@ const ProfileState = (props) => {
         
     }
     //end of update profile password details
-
     
     //start update profile account setting
-    const updatePlayerAccountSetting = async (data) => {
+    const updateteamAccountSetting = async (data) => {
         setProgressLoadingBar(30)
         var formBody = [];
         for (var property in data) {
@@ -385,7 +378,7 @@ const ProfileState = (props) => {
     //end of update profile account setting
 
     return (
-        <ProfileContext.Provider value={{ProfileUser,updatePlayer,updatePlayerEmail,updatePlayerEmailOTP,updatePlayerPassword,updatePlayerAccountSetting,playerDetails,successMessage,errorMessage,successMessageEmail,errorMessageEmail,errorMessagePassword,successMessagePassword,errorMessageAccountSettings,successMessageAccountSetting,progressLoadingBar,ProfileUserSports,playerSportsDetails,emailSubmitStyle}}>
+        <ProfileContext.Provider value={{ProfileUser,updateteam,updateteamEmail,updateteamEmailOTP,updateteamPassword,updateteamAccountSetting,teamDetails,successMessage,errorMessage,successMessageEmail,errorMessageEmail,errorMessagePassword,successMessagePassword,errorMessageAccountSettings,successMessageAccountSetting,progressLoadingBar,ProfileUserSports,teamSportsDetails,emailSubmitStyle}}>
             {props.children}
         </ProfileContext.Provider>
     );

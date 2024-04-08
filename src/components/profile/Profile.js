@@ -16,12 +16,12 @@ const Profile = () => {
     const { sidebarOpen } = useContext(OperationContext);
     const { getSports, sportsDetails } = useContext(SportsContext);
     const { countryDetails, getCountry, stateDetails, getState, cityDetails, getCity } = useContext(LocationContext);
-    const { ProfileUser, updatePlayer, updatePlayerEmail, updatePlayerEmailOTP, updatePlayerPassword, updatePlayerAccountSetting, playerDetails, successMessage, errorMessage, successMessageEmail, errorMessageEmail, successMessagePassword, errorMessagePassword, errorMessageAccountSettings,successMessageAccountSetting, progressLoadingBar, ProfileUserSports, playerSportsDetails, emailSubmitStyle } = useContext(ProfileContext);
+    const { ProfileUser, updateteam, updateteamEmail, updateteamEmailOTP, updateteamPassword, updateteamAccountSetting, teamDetails, successMessage, errorMessage, successMessageEmail, errorMessageEmail, successMessagePassword, errorMessagePassword, errorMessageAccountSettings,successMessageAccountSetting, progressLoadingBar, ProfileUserSports, teamSportsDetails, emailSubmitStyle } = useContext(ProfileContext);
     const [progressTopBar, setProgressTopBar] = useState(progressLoadingBar);
     const websiteName = process.env.REACT_APP_WEBSITE_NAME;
     var openSidebar = "";
     if (sidebarOpen === true) { openSidebar = "toggled"; }
-    const playerToken = { 'token': '' };
+    const teamToken = { 'token': '' };
 
     useEffect(() => {
         //eslint-disable-next-line react-hooks/exhaustive-deps
@@ -29,8 +29,8 @@ const Profile = () => {
         getSports();//fetch sports
         getCountry();//fetch country
         document.title = "Profile | " + websiteName;
-        ProfileUser(playerToken);
-        ProfileUserSports(playerToken);
+        ProfileUser(teamToken);
+        ProfileUserSports(teamToken);
     },[websiteName])
 
     const urlkey = process.env.REACT_APP_NODE_BASE_URL;
@@ -38,24 +38,26 @@ const Profile = () => {
     const animatedComponents = makeAnimated();
 
     //set error
-    const [errorFirstname, setErrorFirstname] = useState('');
-    const [errorLastname, setErrorLastname] = useState('');
+    const [errorTeamname, setErrorTeamname] = useState('');
+    const [errorTeamType,setErrorTeamType] = useState('');
+    const [errorTeamAgeRange,setErrorTeamAgeRange] = useState('');
     const [errorEmail, setErrorEmail] = useState('');
     const [errorPassword, setErrorPassword] = useState('');
     const [errorCountry, setErrorCountry] = useState('');
     const [errorState, setErrorState] = useState('');
     const [errorCity, setErrorCity] = useState('');
     const [errorSport, setErrorSport] = useState('');
-    const [errorBirthday, setErrorBirthday] = useState('');
     const [errorGender, setErrorGender] = useState('');
     const [errorTshirtNumber, setErrorTshirtNumber] = useState('');
     const [errorAccountSettings, setErrorAccountSettings] = useState('');
 
     //Check gender from save
     var genderShow = "";
-    if (playerDetails[0]['gender'] === "m") { genderShow = "Male"; }
-    else if (playerDetails[0]['gender'] === "f") { genderShow = "Female"; }
-    else if (playerDetails[0]['gender'] === "o") { genderShow = "Other"; }
+    if (teamDetails[0]['gender'] === "m") { genderShow = "Male"; }
+    else if (teamDetails[0]['gender'] === "f") { genderShow = "Female"; }
+    else if (teamDetails[0]['gender'] === "b") { genderShow = "Both Male & Female"; }
+    else if (teamDetails[0]['gender'] === "o") { genderShow = "Other"; }
+    else if (teamDetails[0]['gender'] === "a") { genderShow = "All"; }
 
     //Tshirt Number
     const [tshirtNumber, setTshirtNumber] = useState("");
@@ -64,19 +66,29 @@ const Profile = () => {
         setErrorTshirtNumber('')
     }
 
-    //Firstname
-    const [firstname, setFirstname] = useState("");
-    const firtnameChange = (event) => {
-        setFirstname(event.target.value);
-        setErrorFirstname('')
+    //teamname
+    const [teamname, setteamname] = useState("");
+    const teamnameChange = (event) => {
+        setteamname(event.target.value);
+        setErrorTeamname('')
     }
 
-    //Lastname
-    const [lastname, setLastname] = useState("");
-    const lastnameChange = (event) => {
-        setLastname(event.target.value);
-        setErrorLastname('')
-    }
+    //Team type
+    const teamtype = [{value:1, label:"Local Team"},{value:2, label:"Club Team"},{value:3, label:"Corporate Team"},{value:4, label:"Organization Or NGO Team"},{value:5, label:"College Team"},{value:6, label:"School Team"},{value:7, label:"Other Team"}];
+    const [selectedOptionsTeamType, setSelectedOptionsTeamType] = useState(0);
+    const TeamTypeChange = (TeamTypeOptions) => {
+        setSelectedOptionsTeamType(TeamTypeOptions);
+        setErrorTeamType('')
+    };
+
+    //Team Age Range
+    const teamAgeRange = [{value:1, label:"5 to 12 years"},{value:2, label:"13 to 18 years"},{value:3, label:"19 to 45 years"},{value:4, label:"46 to 60 years"},{value:5, label:"61 and above"}];
+    const [selectedOptionsTeamAgeRange, setSelectedOptionsTeamAgeRange] = useState([]);
+    const TeamAgeRangeChange = (TeamAgeRangeOptions) => {
+        setSelectedOptionsTeamAgeRange(TeamAgeRangeOptions);
+        setErrorTeamAgeRange('')
+    };
+
 
     //Email
     const [email, setEmail] = useState("");
@@ -150,12 +162,6 @@ const Profile = () => {
         setErrorSport('')
     };
 
-    //Birthday
-    const [birthday, setBirthday] = useState("");
-    const birthdayChange = (event) => {
-        setBirthday(event.target.value);
-        setErrorBirthday('')
-    }
 
     //Gender
     const genderChange = (event) => {
@@ -167,24 +173,27 @@ const Profile = () => {
         const data = new FormData(event.target);
         setProgressTopBar(30)
 
-        const firstnameForm = data.get('firstname').trim();  // Reference by form input's `name` tag
-        const lastnameForm = data.get('lastname').trim();
+        const teamnameForm = data.get('teamname').trim();  // Reference by form input's `name` tag
+        const teamTypeForm = data.get('team_type'); 
+        const teamAgeRangeForm = data.get('age_range'); 
         const countryForm = data.get('country');
         const stateForm = data.get('state');
         const cityForm = data.get('city');
         const sportForm = data.getAll('sports[]');
-        const birthdayForm = data.get('dob').trim();
         const genderForm = data.get('gender').trim();
-        const tshirtNumberForm = data.get('tshirt_number').trim();
 
         const errorSubmit = [];
 
-        if (firstnameForm === "" || firstnameForm === undefined) {
-            setErrorFirstname("Please enter firstname")
+        if(teamnameForm === "" || teamnameForm === undefined){
+            setErrorTeamname("Please enter teamname")
             errorSubmit.push(1)
         }
-        if (lastnameForm === "" || lastnameForm === undefined) {
-            setErrorLastname("Please enter lastname")
+        if(teamTypeForm === "" || teamTypeForm === undefined){
+            setErrorTeamType("Please enter team type")
+            errorSubmit.push(1)
+        }
+        if(teamAgeRangeForm === "" || teamAgeRangeForm === undefined){
+            setErrorTeamAgeRange("Please enter team age range")
             errorSubmit.push(1)
         }
         if (countryForm === "" || countryForm === undefined || countryForm.length < 1) {
@@ -207,16 +216,8 @@ const Profile = () => {
             setErrorSport("Sport cannot be more than 5")
             errorSubmit.push(1)
         }
-        if (birthdayForm === "" || birthdayForm === undefined) {
-            setErrorBirthday("Please enter birth date")
-            errorSubmit.push(1)
-        }
         if (genderForm === "" || genderForm === undefined) {
-            setErrorGender("Please enter gender")
-            errorSubmit.push(1)
-        }
-        if (tshirtNumberForm !== "" && tshirtNumberForm !== 0 && tshirtNumberForm === undefined && isNaN(tshirtNumberForm) === true) {
-            setErrorFirstname("Please enter Tshirt number in numbers")
+            setErrorGender("Please enter team gender")
             errorSubmit.push(1)
         }
 
@@ -229,18 +230,17 @@ const Profile = () => {
             }
 
             var formData = {
-                'firstname': firstnameForm,
-                'lastname': lastnameForm,
+                'teamname': teamnameForm,
+                'type': teamTypeForm,
+                'age_range': teamAgeRangeForm,
                 'country_id': countryForm,
                 'state_id': stateForm,
                 'city_id': cityForm,
-                'dob': birthdayForm,
                 'gender': genderForm,
-                'sports_id': sportsarray,
-                'tshirt_number': tshirtNumberForm,
+                'sports_id': sportsarray
             };
-            updatePlayer(formData);//update details by API
-            ProfileUser(playerToken);//re-fetch all profile data
+            updateteam(formData);//update details by API
+            ProfileUser(teamToken);//re-fetch all profile data
             setProgressTopBar(progressLoadingBar)//loading bar 
         } else {
             setProgressTopBar(100)
@@ -267,7 +267,7 @@ const Profile = () => {
             var formData = {
                 'email': emailForm
             };
-            updatePlayerEmail(formData);//update details by API
+            updateteamEmail(formData);//update details by API
             setProgressTopBar(progressLoadingBar)//loading bar 
         } else {
             setProgressTopBar(100)
@@ -295,8 +295,8 @@ const Profile = () => {
                 'email': email,
                 'otp': emailOTPForm
             };
-            updatePlayerEmailOTP(formData);//update details by API
-            ProfileUser(playerToken);//re-fetch all profile data
+            updateteamEmailOTP(formData);//update details by API
+            ProfileUser(teamToken);//re-fetch all profile data
             setProgressTopBar(progressLoadingBar)//loading bar 
         } else {
             setProgressTopBar(100)
@@ -338,8 +338,8 @@ const Profile = () => {
                 'new_password': new_passwordForm,
                 'confirm_password': confirm_passwordForm
             }
-            updatePlayerPassword(formData);//update details by API
-            ProfileUser(playerToken);//re-fetch all profile data
+            updateteamPassword(formData);//update details by API
+            ProfileUser(teamToken);//re-fetch all profile data
             setProgressTopBar(progressLoadingBar)//loading bar 
         } else {
             setProgressTopBar(100)
@@ -367,7 +367,7 @@ const Profile = () => {
             var formData = {
                 'account_setting': account_setting
             }
-            updatePlayerAccountSetting(formData);//update details by API
+            updateteamAccountSetting(formData);//update details by API
             setProgressTopBar(progressLoadingBar)//loading bar 
         } else {
             setProgressTopBar(100)
@@ -391,34 +391,34 @@ const Profile = () => {
                                         <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12 noPadding">
                                             <div align="center">
                                                 <div className="membr-details-img position-relative">
-                                                    <img src={!!playerDetails[0]['profile_img'] ? (urlkey + "images/" + playerDetails[0]['profile_img']) : "default_player.png"} className="profileImgBox" alt="playing player" />
-                                                    <div className="playernameTshirt">
-                                                        <h1>{!!playerDetails[0]['firstname'] ? (playerDetails[0]['firstname']) : ""} {!!playerDetails[0]['lastname'] ? (playerDetails[0]['lastname']) : ""}</h1>
-                                                        {!!playerDetails[0]['tshirt_number'] ? (<span>TShirt No.: {playerDetails[0]['tshirt_number']}</span>) : ""}
+                                                    <img src={!!teamDetails[0]['profile_img'] ? (urlkey + "images/" + teamDetails[0]['profile_img']) : "default_team.png"} className="profileImgBox" alt="playing team" />
+                                                    <div className="teamnameTshirt">
+                                                        <h1>{!!teamDetails[0]['teamname'] ? (teamDetails[0]['teamname']) : ""}</h1>
+                                                        {!!teamDetails[0]['tshirt_number'] ? (<span>TShirt No.: {teamDetails[0]['tshirt_number']}</span>) : ""}
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="contentProfileGredent"></div>
                                         </div>
                                         <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12 noPadding">
-                                            <div className="playerOverview">
-                                                <h4><i>Player Overview</i></h4>
+                                            <div className="teamOverview">
+                                                <h4><i>Team Overview</i></h4>
                                                 <table>
                                                     <tbody>
                                                         <tr>
-                                                            <td><span>{!!playerDetails[0]['matches'] ? (playerDetails[0]['matches']) : 0}</span><br />Match</td>
-                                                            <td><span>{!!playerDetails[0]['won'] ? (playerDetails[0]['won']) : 0}</span><br />Won</td>
+                                                            <td><span>{!!teamDetails[0]['matches'] ? (teamDetails[0]['matches']) : 0}</span><br />Match</td>
+                                                            <td><span>{!!teamDetails[0]['won'] ? (teamDetails[0]['won']) : 0}</span><br />Won</td>
                                                         </tr>
                                                         <tr>
-                                                            <td><span>{!!playerDetails[0]['draw'] ? (playerDetails[0]['draw']) : 0}</span><br />Draw</td>
-                                                            <td><span>{!!playerDetails[0]['age'] ? (playerDetails[0]['age']) : 0}</span><br />Age</td>
+                                                            <td><span>{!!teamDetails[0]['draw'] ? (teamDetails[0]['draw']) : 0}</span><br />Draw</td>
+                                                            <td><span>{!!teamDetails[0]['team_type_name'] ? (teamDetails[0]['team_type_name']) : 0}</span><br />Team Type</td>
                                                         </tr>
                                                         <tr>
-                                                            <td><span>{!!playerDetails[0]['dob'] ? (playerDetails[0]['dob']) : ""}</span><br />Date of Birth</td>
+                                                            <td><span>{!!teamDetails[0]['age_range_name'] ? (teamDetails[0]['age_range_name']) : 0}</span><br />Age Range</td>
                                                             <td><span>{genderShow}</span><br />Gender</td>
                                                         </tr>
                                                         <tr>
-                                                            <td colSpan={2}><span>{!!playerDetails[0]['sports_list'] ? (playerDetails[0]['sports_list']) : ""}</span><br />Sports</td>
+                                                            <td colSpan={2}><span>{!!teamDetails[0]['sports_list'] ? (teamDetails[0]['sports_list']) : ""}</span><br />Sports</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -435,22 +435,33 @@ const Profile = () => {
                                                 <div className="row">
                                                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div className="input-box">
-                                                            <input type="text" placeholder="Enter First Name" name="firstname" defaultValue={!!firstname ? (firstname) : playerDetails[0]['firstname']} onChange={firtnameChange} className="form-control" required />
-                                                            {!!errorFirstname ? (<span className="text text-danger">{errorFirstname}</span>) : ""}
+                                                            <input type="text" placeholder="Enter Team Name" name="teamname" defaultValue={!!teamname ? (teamname) : teamDetails[0]['teamname']} onChange={teamnameChange} className="form-control" required />
+                                                            {!!errorTeamname ? (<span className="text text-danger">{errorTeamname}</span>) : ""}
                                                         </div>
                                                     </div>
-
+                                                    
                                                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                        <div className="input-box">
-                                                            <input type="text" placeholder="Enter Last Name" name="lastname" defaultValue={!!lastname ? (lastname) : playerDetails[0]['lastname']} onChange={lastnameChange} className="form-control" required />
-                                                            {!!errorLastname ? (<span className="text text-danger">{errorLastname}</span>) : ""}
+                                                        <div className="input-box address">
+                                                            <div className="select-box">
+                                                                {!!teamDetails[0]['type'] && teamDetails[0]['type'] > 0 ? <Select options={teamtype} name="team_type" defaultValue={!!selectedOptionsTeamType && selectedOptionsTeamType.value > 0 ? selectedOptionsTeamType : ({ value: teamDetails[0]['type'], label: teamDetails[0]['team_type_name'] })}  placeholder="Team Type" onChange={TeamTypeChange} /> : ""}
+                                                                {!!errorTeamType ? (<span className="text text-danger">{errorTeamType}</span>) : ""}
+                                                            </div>
                                                         </div>
                                                     </div>
 
                                                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div className="input-box address">
                                                             <div className="select-box">
-                                                                {!!playerDetails[0]['country_id'] && playerDetails[0]['country_id'] > 0 ? <Select name="country" options={countryDetails} defaultValue={!!selectedOptionsCountry && selectedOptionsCountry.value > 0 ? selectedOptionsCountry : ({ value: playerDetails[0]['country_id'], label: playerDetails[0]['country_name'] })} placeholder="Country" onChange={countryChange} /> : ""}
+                                                                {!!teamDetails[0]['age_range'] && teamDetails[0]['age_range'] > 0 ? <Select options={teamAgeRange} name="age_range" defaultValue={!!selectedOptionsTeamAgeRange && selectedOptionsTeamAgeRange.value > 0 ? selectedOptionsTeamAgeRange : ({ value: teamDetails[0]['age_range'], label: teamDetails[0]['age_range_name'] })}  placeholder="Team Age Range" onChange={TeamAgeRangeChange} /> : ""}
+                                                                {!!errorTeamAgeRange ? (<span className="text text-danger">{errorTeamAgeRange}</span>) : ""}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                        <div className="input-box address">
+                                                            <div className="select-box">
+                                                                {!!teamDetails[0]['country_id'] && teamDetails[0]['country_id'] > 0 ? <Select name="country" options={countryDetails} defaultValue={!!selectedOptionsCountry && selectedOptionsCountry.value > 0 ? selectedOptionsCountry : ({ value: teamDetails[0]['country_id'], label: teamDetails[0]['country_name'] })} placeholder="Country" onChange={countryChange} /> : ""}
                                                                 {!!errorCountry ? (<span className="text text-danger">{errorCountry}</span>) : ""}
                                                             </div>
                                                         </div>
@@ -458,7 +469,7 @@ const Profile = () => {
                                                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div className="input-box address">
                                                             <div className="select-box">
-                                                                {!!playerDetails[0]['state_id'] && playerDetails[0]['state_id'] > 0 ? <Select name="state" options={selectedOptionsCountry.value === undefined && stateDetails.length === 0 ? getState(playerDetails[0]['country_id']) : stateDetails} defaultValue={!!selectedOptionsState && selectedOptionsState.value > 0 ? selectedOptionsState : ({ value: playerDetails[0]['state_id'], label: playerDetails[0]['state_name'] })} onChange={stateChange} placeholder="State" /> : ""}
+                                                                {!!teamDetails[0]['state_id'] && teamDetails[0]['state_id'] > 0 ? <Select name="state" options={selectedOptionsCountry.value === undefined && stateDetails.length === 0 ? getState(teamDetails[0]['country_id']) : stateDetails} defaultValue={!!selectedOptionsState && selectedOptionsState.value > 0 ? selectedOptionsState : ({ value: teamDetails[0]['state_id'], label: teamDetails[0]['state_name'] })} onChange={stateChange} placeholder="State" /> : ""}
                                                                 {!!errorState ? (<span className="text text-danger">{errorState}</span>) : ""}
                                                             </div>
                                                         </div>
@@ -466,7 +477,7 @@ const Profile = () => {
                                                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div className="input-box address">
                                                             <div className="select-box">
-                                                                {!!playerDetails[0]['city_id'] && playerDetails[0]['city_id'] > 0 ? <Select name="city" options={selectedOptionsState.value === undefined && cityDetails.length === 0 ? getCity(playerDetails[0]['state_id']) : cityDetails} defaultValue={!!selectedOptionsCity && selectedOptionsCity.value > 0 ? selectedOptionsCity : ({ value: playerDetails[0]['city_id'], label: playerDetails[0]['city_name'] })} onChange={cityChange} placeholder="City" /> : ""}
+                                                                {!!teamDetails[0]['city_id'] && teamDetails[0]['city_id'] > 0 ? <Select name="city" options={selectedOptionsState.value === undefined && cityDetails.length === 0 ? getCity(teamDetails[0]['state_id']) : cityDetails} defaultValue={!!selectedOptionsCity && selectedOptionsCity.value > 0 ? selectedOptionsCity : ({ value: teamDetails[0]['city_id'], label: teamDetails[0]['city_name'] })} onChange={cityChange} placeholder="City" /> : ""}
                                                                 {!!errorCity ? (<span className="text text-danger">{errorCity}</span>) : ""}
                                                             </div>
                                                         </div>
@@ -475,17 +486,9 @@ const Profile = () => {
                                                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                                         <div className="input-box address">
                                                             <div className="select-box">
-                                                                {playerSportsDetails.length > 0 ? <Select name="sports[]" closeMenuOnSelect={false} components={animatedComponents} isMulti options={sportsDetails} defaultValue={!!selectedOptionsSport.length > 0 ? selectedOptionsSport : playerSportsDetails} onChange={sportChange} placeholder="Sports" /> : ""}
+                                                                {teamSportsDetails.length > 0 ? <Select name="sports[]" closeMenuOnSelect={false} components={animatedComponents} isMulti options={sportsDetails} defaultValue={!!selectedOptionsSport.length > 0 ? selectedOptionsSport : teamSportsDetails} onChange={sportChange} placeholder="Sports" /> : ""}
                                                                 {!!errorSport ? (<span className="text text-danger">{errorSport}</span>) : ""}
                                                             </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                        <div className="input-box">
-                                                            <label>Birth Date</label>
-                                                            <input type="date" name="dob" placeholder="Enter birth date" defaultValue={!!birthday ? birthday : playerDetails[0]['dob']} onChange={birthdayChange} className="form-control" required />
-                                                            {!!errorBirthday ? (<span className="text text-danger">{errorBirthday}</span>) : ""}
                                                         </div>
                                                     </div>
 
@@ -494,26 +497,19 @@ const Profile = () => {
                                                             <label>Gender</label>
                                                             <div className="gender-option">
                                                                 <div className="gender">
-                                                                    {!!playerDetails[0]['gender'] ? <input type="radio" id="check-male" name="gender" value="m" defaultChecked={playerDetails[0]['gender'] === "m"} onClick={genderChange} /> : ""}
+                                                                    {!!teamDetails[0]['gender'] ? <input type="radio" id="check-male" name="gender" value="m" defaultChecked={teamDetails[0]['gender'] === "m"} onClick={genderChange} /> : ""}
                                                                     <label htmlFor="check-male">Male</label>
                                                                 </div>
                                                                 <div className="gender">
-                                                                    {!!playerDetails[0]['gender'] ? <input type="radio" id="check-female" name="gender" value="f" defaultChecked={playerDetails[0]['gender'] === "f"} onClick={genderChange} /> : ""}
+                                                                    {!!teamDetails[0]['gender'] ? <input type="radio" id="check-female" name="gender" value="f" defaultChecked={teamDetails[0]['gender'] === "f"} onClick={genderChange} /> : ""}
                                                                     <label htmlFor="check-female">Female</label>
                                                                 </div>
                                                                 <div className="gender">
-                                                                    {!!playerDetails[0]['gender'] ? <input type="radio" id="check-other" name="gender" value="o" defaultChecked={playerDetails[0]['gender'] === "o"} onClick={genderChange} /> : ""}
+                                                                    {!!teamDetails[0]['gender'] ? <input type="radio" id="check-other" name="gender" value="o" defaultChecked={teamDetails[0]['gender'] === "o"} onClick={genderChange} /> : ""}
                                                                     <label htmlFor="check-other">Other</label>
                                                                 </div>
                                                             </div>
                                                             {!!errorGender ? (<span className="text text-danger">{errorGender}</span>) : ""}
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                        <div className="input-box">
-                                                            <label>TShirt Number:</label>
-                                                            <input type="number" placeholder="Enter Tshirt Number" name="tshirt_number" defaultValue={!!tshirtNumber ? (tshirtNumber) : playerDetails[0]['tshirt_number']} onChange={tshirtNumberChange} className="form-control" />
-                                                            {!!errorTshirtNumber ? (<span className="text text-danger">{errorTshirtNumber}</span>) : ""}
                                                         </div>
                                                     </div>
                                                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -535,7 +531,7 @@ const Profile = () => {
                                                     <div className="row">
                                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                             <div className="input-box">
-                                                                <input type="email" name="email" defaultValue={!!email ? (email) : playerDetails[0]['email']} onChange={emailChange} placeholder="Enter Email Address" className="form-control" required />
+                                                                <input type="email" name="email" defaultValue={!!email ? (email) : teamDetails[0]['email']} onChange={emailChange} placeholder="Enter Email Address" className="form-control" required />
                                                                 {!!errorEmail ? (<span className="text text-danger">{errorEmail}</span>) : ""}
                                                             </div>
                                                         </div>
@@ -608,11 +604,11 @@ const Profile = () => {
                                                     <label>Deactivate Account</label>
                                                         <div className="account-option">
                                                             <div className="account">
-                                                                {!!playerDetails[0]['account_deactive'] ? <input type="radio" id="check-yes" name="account_deactive" value="1" defaultChecked={playerDetails[0]['account_deactive'] === "yes"} onClick={accountsChange} /> : ""}
+                                                                {!!teamDetails[0]['account_deactive'] ? <input type="radio" id="check-yes" name="account_deactive" value="1" defaultChecked={teamDetails[0]['account_deactive'] === "yes"} onClick={accountsChange} /> : ""}
                                                                 <label htmlFor="check-yes">Yes</label>
                                                             </div>
                                                             <div className="account">
-                                                                {!!playerDetails[0]['account_deactive'] ? <input type="radio" id="check-no" name="account_deactive" value="0" defaultChecked={playerDetails[0]['account_deactive'] === "no"} onClick={accountsChange} /> : ""}
+                                                                {!!teamDetails[0]['account_deactive'] ? <input type="radio" id="check-no" name="account_deactive" value="0" defaultChecked={teamDetails[0]['account_deactive'] === "no"} onClick={accountsChange} /> : ""}
                                                                 <label htmlFor="check-no">No</label>
                                                             </div>
                                                         </div>

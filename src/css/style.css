@@ -126,7 +126,7 @@ a {
 
 .popup button,
 .box button,
-.playerCardStats button,
+.teamCardStats button,
 .score_card button {
   width: 100%;
   font-size: 14px;
@@ -142,13 +142,13 @@ a {
 
 .popup button:hover,
 .box button:hover,
-.playerCardStats button:hover,
+.teamCardStats button:hover,
 .score_card button:hover,
 .box button:focus,
-.playerCardStats button:focus,
+.teamCardStats button:focus,
 .score_card button:focus,
 .box button:active,
-.playerCardStats button:active,
+.teamCardStats button:active,
 .score_card button:active {
   background-color: #422311 !important;
   opacity: 0.9;
@@ -550,13 +550,14 @@ a {
 
 .popupProfile .profileBox .profileTop .profileImgBox {
   width: 200px;
+  height: 150px;
 }
 
-.popupProfile .playernameTshirt h1 {
+.popupProfile .teamnameTshirt h1 {
   font-size: 24px;
 }
 
-.playernameTshirt {
+.teamnameTshirt {
   position: absolute;
   bottom: 60px;
   z-index: 9;
@@ -585,12 +586,12 @@ a {
   margin-top: -100px;
 }
 
-.playernameTshirt {
+.teamnameTshirt {
   z-index: 200;
   margin-bottom: -3em;
 }
 
-.playernameTshirt h1 {
+.teamnameTshirt h1 {
   text-align: center;
   font-size: 36px;
   color: #fff;
@@ -598,7 +599,7 @@ a {
   margin-bottom: 20PX;
 }
 
-.playernameTshirt span {
+.teamnameTshirt span {
   background: rgba(0, 0, 0, .2);
   border: 1px solid #fff;
   border-radius: 4px;
@@ -617,38 +618,38 @@ a {
   height: 300px;
 }
 
-.playerOverview {
+.teamOverview {
   padding: 1em;
   vertical-align: middle;
-  margin-top: 6em;
+  margin-top: 2em;
 }
 
-.popupProfile .playerOverview {
+.popupProfile .teamOverview {
   margin-top: 1em;
 }
 
-.playerOverview table {
+.teamOverview table {
   width: 80%;
 }
 
-.playerOverview table td {
+.teamOverview table td {
   border: 2px solid #000;
   padding: 1em;
   text-align: center;
   width: 50%;
 }
 
-.popupProfile .playerOverview table td {
+.popupProfile .teamOverview table td {
   padding: 5px;
   font-size: 12px;
 }
 
-.playerOverview table td span {
+.teamOverview table td span {
   font-size: 18px;
   font-weight: 700;
 }
 
-.popupProfile .playerOverview table td span {
+.popupProfile .teamOverview table td span {
   font-size: 12px;
 }
 
@@ -660,29 +661,29 @@ a {
   min-height: auto;
 }
 
-.showPlayersHome,
+.showteamsHome,
 .messageBox {
   padding: 2em 1em;
 }
 /*
-.playerCard {
+.teamCard {
   border: 1px solid #b8b9bb;
   border-radius: 5px;
   margin: 10px;
 }
 
-.playerCard .profileImgSec .payerCardImg {
+.teamCard .profileImgSec .payerCardImg {
   padding: 10px;
   max-width: 100%;
   margin: 0px auto;
   height: 180px;
 }
 
-.playerCardDetails {
+.teamCardDetails {
   border-top: 1px solid #b8b9bb;
 }
 
-.playerCardDetails .playerCardPersonal {
+.teamCardDetails .teamCardPersonal {
   text-align: center;
   background-color: #fff;
   background-image: linear-gradient(180deg, #f0d274 20%, #e8b617);
@@ -690,47 +691,47 @@ a {
   cursor: pointer;
 }
 
-.playerCardDetails .playerCardPersonal p {
+.teamCardDetails .teamCardPersonal p {
   margin: 2px;
 }
 
-.playerCardDetails .playerCardPersonal .playerCardName {
+.teamCardDetails .teamCardPersonal .teamCardName {
   font-size: 12px;
   font-weight: 900;
   text-transform: uppercase;
 }
 
-.playerCardDetails .playerCardCareer .playerCardTshirt {
+.teamCardDetails .teamCardCareer .teamCardTshirt {
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
   margin: 0;
 }
 
-.playerCardCareerText {
+.teamCardCareerText {
   font-size: 15px;
   font-weight: 500;
   text-transform: uppercase;
   margin: 0;
 }
 
-.playerCardDetails .playerCardCareer .playerCardTshirt span {
+.teamCardDetails .teamCardCareer .teamCardTshirt span {
   float: right;
   border-left: 2px solid #000;
   padding-left: 8px;
 }
 
-.playerCardCareer {
+.teamCardCareer {
   background-image: linear-gradient(to bottom, #f0d274 20%, #e9bc2f);
   padding: 2px 10px;
 }
 
-.playerCardCareer .playerCardCareerText {
+.teamCardCareer .teamCardCareerText {
   font-size: 10px;
   font-weight: 900;
 }
 
-.playerCardStats {
+.teamCardStats {
   padding: 2px 10px 10px 10px;
   font-size: 10px;
   font-weight: 900;
@@ -738,15 +739,15 @@ a {
   background-image: linear-gradient(to bottom, #f0d274 40%, #e9bc2f 60%);
 }
 
-.playerCardStatsDetails {
+.teamCardStatsDetails {
   margin-bottom: 2px;
 }
 
-.playerCardStatsDetails span {
+.teamCardStatsDetails span {
   float: right;
 }
 
-.playerCardStats button,
+.teamCardStats button,
 .score_card button {
   height: 30px;
   padding: 5px;
@@ -817,7 +818,7 @@ a {
   color: hsl(0, 0%, 0%);
 }
 
-.messagelink .playername {
+.messagelink .teamname {
   text-transform: 'capitalize' !important;
 }
 
@@ -1284,7 +1285,7 @@ input[type=number] {
   background-color: #f0d274;
 }
 
-.resultListing .playername {
+.resultListing .teamname {
   margin-top: 10px !important;
 }
 
@@ -1332,7 +1333,7 @@ input[type=number] {
     max-height: 500px !important;
   }
 
-  .playerOverview table {
+  .teamOverview table {
     width: 100%;
   }
 
@@ -1362,7 +1363,7 @@ input[type=number] {
     max-height: 500px !important;
   }
 
-  .playerOverview table {
+  .teamOverview table {
     width: 100%;
   }
 
@@ -1392,7 +1393,7 @@ input[type=number] {
     max-height: 600px !important;
   }
 
-  .playerOverview table {
+  .teamOverview table {
     width: 100%;
   }
 
@@ -1423,7 +1424,7 @@ input[type=number] {
     max-height: 450px !important;
   }
 
-  .playerOverview table {
+  .teamOverview table {
     width: 100%;
   }
 
@@ -1453,7 +1454,7 @@ input[type=number] {
     max-height: 450px !important;
   }
 
-  .playerOverview table {
+  .teamOverview table {
     width: 100%;
   }
 
@@ -1481,7 +1482,7 @@ input[type=number] {
     max-height: 480px !important;
   }
 
-  .playerOverview table {
+  .teamOverview table {
     width: 100%;
   }
 
@@ -1511,7 +1512,7 @@ input[type=number] {
     max-height: 420px !important;
   }
 
-  .playerOverview table {
+  .teamOverview table {
     width: 100%;
   }
 
@@ -1541,7 +1542,7 @@ input[type=number] {
     max-height: 600px !important;
   }
 
-  .playerOverview table {
+  .teamOverview table {
     width: 100%;
   }
 
@@ -1783,7 +1784,7 @@ input[type=number] {
 width: 100%;
 text-align: center;
 }
-.scoreCard .playerImgScore{
+.scoreCard .teamImgScore{
 min-height: 50px;
 max-height: 50px;
 }
@@ -1859,7 +1860,7 @@ color: red;
 background-color: #f0d274;
   padding: 3px 7px;
 }
-.scoreCard .addedResultByPlayer{
+.scoreCard .addedResultByteam{
 text-align: center;
 }
 .scoreCard .addResultScore,
@@ -1906,7 +1907,7 @@ opacity: 0.9;
   text-align: center;
   margin-right: 10px;
 }
-.messageCard .playerImgMessage{
+.messageCard .teamImgMessage{
   min-height: 50px;
   max-height: 50px;
 }
@@ -1961,9 +1962,9 @@ opacity: 0.9;
 /* End message new */
 
 
-/* Start home players details */
+/* Start home teams details */
 
-.card-player{
+.card-team{
   width: 100%;
   margin: 1em auto;
   padding: 0 0 1em 0;
@@ -1973,31 +1974,33 @@ opacity: 0.9;
   transition: all 0.5s;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
-.card-player:hover{
+.card-team:hover{
 box-shadow: 0 0 13px rgb(0 0 0 / 20%);
   /*-webkit-transform: scale(1.01);
   transform: scale(1.01);*/
 }
-.card-player .noBorder{
+.card-team .noBorder{
 border:none;
 }
-.playerCard{
+.teamCard{
 display: flex;
 padding: 10px;
 border-bottom: 1px solid #E8E8E8;
 margin-top: 10px;
 }
-.playerCard .playerAlign{
+.teamCard .teamAlign{
 width: 60%;
 text-align: center;
 margin-top: 8px;
 }
-.playerCard .playerImgplayer{
+.teamCard .teamImgteam{
 min-height: 150px;
 max-height: 150px;
+max-width: 100%;
 }
-.playerCard .nameText{
-font-weight: 500;
+.teamCard .nameText{
+  font-weight: 500;
+  width: 100%;
   font-size: 22px;
   line-height: 24px;
   margin-left: 10px;
@@ -2005,7 +2008,7 @@ font-weight: 500;
   transform: translateY(4px);
   font-family: 'Bebas Neue', sans-serif;
 }
-.pointerplayer {
+.pointerteam {
 position: absolute;
 width: 200px;
 height: 20px;
@@ -2033,9 +2036,9 @@ margin-top: -10px;
 font-size: 12px;
 font-weight: 500;
 }
-.addResultplayer,
-.addResultplayer:focus,
-.addResultplayer:hover
+.addResultteam,
+.addResultteam:focus,
+.addResultteam:hover
 {
 /* transform: skew(-20deg); */
 background: #422311 !important;
@@ -2043,7 +2046,7 @@ outline: none !important;
 border:none !important;
 margin-top: 1em !important;
 }
-.addResultplayer:hover
+.addResultteam:hover
 {
   opacity: 0.9;
 }
@@ -2063,44 +2066,44 @@ margin-top: 1em !important;
   -webkit-text-stroke: 1.2px #C4C4C4;
 }
 
-.playerCareer {
+.teamCareer {
 justify-content: space-evenly;
 padding: 0 !important;
 }
-.playerCareer .columns,
-.playerRecent .columns{
+.teamCareer .columns,
+.teamRecent .columns{
 font-size: 12px;
 font-weight: 500;
 padding: 5px;
 text-align: center;
 color: #909090;
 }
-.playerRecent .columns{
+.teamRecent .columns{
 text-align: left;
 color: #000;
 }
-.playerCareer .columns span{
+.teamCareer .columns span{
 font-size: 20px;
 color: #000;
 font-weight: 700;
 }
-.playerCareer .playerStats{
+.teamCareer .teamStats{
 width: 40%;
 }
-.card-player .noPadding{
+.card-team .noPadding{
 padding: 2px;
 }
 .otherDetails .columns span {
   font-size: 14px;
 }
-.playerCard .recentMatches{
+.teamCard .recentMatches{
 float: left;
 }
-.playerRecent .winStats{
+.teamRecent .winStats{
 display: flex;
 align-items: center;
 }
-.playerRecent .winStats .recentPoints{
+.teamRecent .winStats .recentPoints{
   align-items: center;
   width: 22px;
   height: 22px;
@@ -2110,26 +2113,26 @@ align-items: center;
   text-align: center;
   margin-right: 5px;
 }
-.playerRecent .colorGreen{
+.teamRecent .colorGreen{
 color: #2a841b;
   border: 1px solid #2a841b;
 }
-.playerRecent .colorRed{
+.teamRecent .colorRed{
 color: #2a841b;
   border: 1px solid #2a841b;
 }
-.playerRecent .colorOrange{
+.teamRecent .colorOrange{
 color: #cc5500;
   border: 1px solid #cc5500;
 }
-.playerCard .nameText span{
+.teamCard .nameText span{
 font-size: 12px;
 color: #909090;
 position: absolute;
 margin-top: -5px;
 }
 
-/* End of home players details */
+/* End of home teams details */
 
 
 /* Start Challenge message */
@@ -2161,7 +2164,7 @@ margin-top: -5px;
   width: 60%;
   text-align: center;
 }
-.challengeCard .challengeImgplayer{
+.challengeCard .challengeImgteam{
   min-height: 150px;
   max-height: 150px;
 }
@@ -2265,7 +2268,7 @@ margin-top: -5px;
   font-size: 12px;
   color: #000;
 }
-.challengeCareer .playerStats{
+.challengeCareer .teamStats{
   width: 40%;
 }
 .card-challenge .noPadding{

@@ -17,20 +17,21 @@ const Home = () => {
 
     const { authorizeUser } = useContext(AuthorizeContext);
     const { sidebarOpen } = useContext(OperationContext);
-    const { opponentPlayerDetails, popupProfile, opponentPopup, opponentPopupShow } = useContext(OpponentContext);
+    const { opponentTeamDetails, popupProfile, opponentPopup, opponentPopupShow } = useContext(OpponentContext);
     const websiteName = process.env.REACT_APP_WEBSITE_NAME;
     const urlkey = process.env.REACT_APP_NODE_BASE_URL;
     const [offsetListing, setOffsetListing] = useState(0);
     const [progressTopBar, setProgressTopBar] = useState(0);
-    const [playersFound, setPlayersFound] = useState(0);
+    const [teamsFound, setteamsFound] = useState(0);
     const userToken = localStorage.getItem('userToken');
-    const [searchPlayerVar, setSearchPlayerVar] = useState("");
+    const [searchteamVar, setSearchteamVar] = useState("");
+    const [teamTypeSelect, setTeamTypeSelect] = useState("");
     const [genderSelect, setGenderSelect] = useState("");
     const [ageRangeSelect, setAgeRangeSelect] = useState("");
     const [sportsSelectPlain, setSportsSelectPlain] = useState("");
     const [sportsSelect, setSportsSelect] = useState([]);
-    var [playerState, setPlayerState] = useState([]);
-    var [playerPlayingSports, setPlayerPlayingSports] = useState([{ label: "All Sports", value: "" }]);
+    var [teamstate, setteamstate] = useState([]);
+    var [teamPlayingSports, setteamPlayingSports] = useState([{ label: "All Sports", value: "" }]);
     const animatedComponents = makeAnimated();
     const [filterSection, setFilterSection] = useState({ display: "none" });
     const [ChallengePopup, setChallengePopup] = useState({ visibility: "hidden", opacity: 0 });
@@ -52,19 +53,22 @@ const Home = () => {
     const matchContestDefault = [{ label: "Friendly Match", value: "0" }];
 
     //filter data
-    const genderList = [{ label: "All Gender", value: "" }, { label: "Male", value: "m" }, { label: "Female", value: "f" }, { label: "Other", value: "o" }];
+    const genderList = [{ label: "All Gender", value: "" }, { label: "Male", value: "m" }, { label: "Female", value: "f" }, { label: "Both Male & Female", value: "b" }, { label: "Other", value: "o" }, { label: "All", value: "a" }];
     const [genderDetails, setGenderDetails] = useState(genderList);
 
-    const ageList = [{ label: "All Age", value: "" }, { label: "5 to 12 Age", value: "5-12" }, { label: "13 to 18 Age", value: "13-18" }, { label: "19 to 35 Age", value: "19-35" }, { label: "36 to 48 Age", value: "36-48" }, { label: "49 to 60 Age", value: "49-60" }, { label: "61 and Above Age", value: "61" }];
+    const ageList = [{ label: "All Age", value: "" }, { label: "5 to 12 years", value: "1" }, { label: "13 to 18 years", value: "2" }, { label: "19 to 45 years", value: "3" }, { label: "46 to 60 years", value: "4" }, { label: "61 and Above", value: "5" }];
     const [ageDetails, setAgeDetails] = useState(ageList);
 
-    //listing Players With Filters
-    const listingPlayer = { 'limit': 12, 'offset': offsetListing, 'search': searchPlayerVar, 'gender': genderSelect, 'age': ageRangeSelect, 'sports': sportsSelectPlain }
+    const teamTypeList = [{ label: "All Team Types", value: "" }, { label: "Local Team", value: "1" }, { label: "Club Team", value: "2" }, { label: "Corporate Team", value: "3" }, { label: "Organization Or NGO Team", value: "4" }, { label: "College Team", value: "5" }, { label: "School Team", value: "6" }, { label: "Other Team", value: "7" }];
+    const [teamTypeDetails, setTeamTypeDetails] = useState(teamTypeList);
+
+    //listing teams With Filters
+    const listingteam = { 'limit': 12, 'offset': offsetListing, 'search': searchteamVar, 'gender': genderSelect, 'age_range': ageRangeSelect, 'sports': sportsSelectPlain, 'type': teamTypeSelect  }
 
     useEffect(() => {
         //eslint-disable-next-line react-hooks/exhaustive-deps
         authorizeUser();//Check user authorize
-        playersProfile(listingPlayer);//load players profile
+        teamsProfile(listingteam);//load teams profile
         if (window.innerWidth > 720) {
             document.getElementById("filterIcon").click();
         }
@@ -96,17 +100,18 @@ const Home = () => {
         animation: 'fade',
     });
 
-    tippy('.addResultplayer', {
+    tippy('.addResultteam', {
         content: "Send challenge to your opponent and arrange for a joint game at a nearby ground or arena.",
         animation: 'fade',
     });
 
     //fetch more profiles
     const fetchMoreData = () => {
-        playersProfile(listingPlayer);//load players profile
+        teamsProfile(listingteam);//load teams profile
     }
 
-    const playersProfile = async (data) => {
+    const teamsProfile = async (data) => {
+        console.log(data);
         setProgressTopBar(30)
         var formBody = [];
         for (var property in data) {
@@ -130,42 +135,46 @@ const Home = () => {
         if (json !== "" && json !== undefined) {
             setProgressTopBar(100)
             if (json.status) {
-                if (searchPlayerVar !== data.search) {
-                    playerState = [];
-                    setSearchPlayerVar(data.search);
+                if (searchteamVar !== data.search) {
+                    teamstate = [];
+                    setSearchteamVar(data.search);
                     setOffsetListing(12);
                 } else if (genderSelect !== data.gender) {
-                    playerState = [];
+                    teamstate = [];
                     setGenderSelect(data.gender);
                     setOffsetListing(12);
-                } else if (ageRangeSelect !== data.age) {
-                    playerState = [];
-                    setAgeRangeSelect(data.age);
+                } else if (ageRangeSelect !== data.age_range) {
+                    teamstate = [];
+                    setAgeRangeSelect(data.age_range);
                     setOffsetListing(12);
                 } else if (sportsSelectPlain !== data.sports) {
-                    playerState = [];
+                    teamstate = [];
                     setSportsSelectPlain(data.sports);
+                    setOffsetListing(12);
+                } else if (teamTypeSelect !== data.type) {
+                    teamstate = [];
+                    setTeamTypeSelect(data.type);
                     setOffsetListing(12);
                 } else {
                     setOffsetListing(offsetListing + 12);
                 }
 
-                //append players
+                //append teams
                 for (var inc = 0; inc < json.result.length; inc++) {
-                    playerState.push(json.result[inc])
+                    teamstate.push(json.result[inc])
                 }
-                setPlayerState(playerState);
+                setteamstate(teamstate);
 
-                //append player sports
-                if (playerPlayingSports.length < 2) {
-                    for (var sportsInc = 0; sportsInc < json.player_playing_sports.length; sportsInc++) {
-                        playerPlayingSports.push({ label: json.player_playing_sports[sportsInc].sports_name, value: json.player_playing_sports[sportsInc].sport_id });
+                //append team sports
+                if (teamPlayingSports.length < 2) {
+                    for (var sportsInc = 0; sportsInc < json.team_playing_sports.length; sportsInc++) {
+                        teamPlayingSports.push({ label: json.team_playing_sports[sportsInc].sports_name, value: json.team_playing_sports[sportsInc].sport_id });
                     }
-                    setPlayerPlayingSports(playerPlayingSports);
+                    setteamPlayingSports(teamPlayingSports);
                 }
 
                 //total records
-                setPlayersFound(json.total_records);
+                setteamsFound(json.total_records);
             } else if (json.status === false) {
                 if (json.errors !== undefined && json.errors.length > 0) {
                     let errorAPiMessage = "";
@@ -189,11 +198,11 @@ const Home = () => {
     }
 
     const searchbox = (event) => {
-        var searchPlayerVar = event.target.value;
-        searchPlayerVar = searchPlayerVar.trim();
+        var searchteamVar = event.target.value;
+        searchteamVar = searchteamVar.trim();
         setOffsetListing(0);
-        const listingPlayerSearch = { 'limit': 12, 'offset': 0, 'search': searchPlayerVar, 'gender': genderSelect, 'age': ageRangeSelect, 'sports': sportsSelectPlain }
-        playersProfile(listingPlayerSearch);//load players profile
+        const listingteamsearch = { 'limit': 12, 'offset': 0, 'search': searchteamVar, 'gender': genderSelect, 'age_range': ageRangeSelect, 'sports': sportsSelectPlain, 'type': teamTypeSelect }
+        teamsProfile(listingteamsearch);//load teams profile
     }
 
     //gender
@@ -201,8 +210,8 @@ const Home = () => {
         if (genderSelectDetails !== "" && genderSelectDetails.value !== undefined) {
             setGenderDetails(genderSelectDetails);
             setOffsetListing(0);
-            const listingPlayerGender = { 'limit': 12, 'offset': 0, 'search': searchPlayerVar, 'gender': genderSelectDetails.value, 'age': ageRangeSelect, 'sports': sportsSelectPlain }
-            playersProfile(listingPlayerGender);//load players profile
+            const listingteamGender = { 'limit': 12, 'offset': 0, 'search': searchteamVar, 'gender': genderSelectDetails.value, 'age_range': ageRangeSelect, 'sports': sportsSelectPlain, 'type': teamTypeSelect }
+            teamsProfile(listingteamGender);//load teams profile
         }
     }
 
@@ -211,13 +220,23 @@ const Home = () => {
         if (ageSelectDetails !== "" && ageSelectDetails.value !== undefined) {
             setAgeDetails(ageSelectDetails);
             setOffsetListing(0);
-            const listingPlayerAge = { 'limit': 12, 'offset': 0, 'search': searchPlayerVar, 'gender': genderSelect, 'age': ageSelectDetails.value, 'sports': sportsSelectPlain }
-            playersProfile(listingPlayerAge);//load players profile
+            const listingteamAge = { 'limit': 12, 'offset': 0, 'search': searchteamVar, 'gender': genderSelect, 'age_range': ageSelectDetails.value, 'sports': sportsSelectPlain, 'type': teamTypeSelect }
+            teamsProfile(listingteamAge);//load teams profile
+        }
+    }
+    
+    //age
+    const teamTypeChange = (teamTypeSelectDetails) => {
+        if (teamTypeSelectDetails !== "" && teamTypeSelectDetails.value !== undefined) {
+            setTeamTypeDetails(teamTypeSelectDetails);
+            setOffsetListing(0);
+            const listingteamAge = { 'limit': 12, 'offset': 0, 'search': searchteamVar, 'gender': genderSelect, 'age_range': ageRangeSelect, 'sports': sportsSelectPlain, 'type': teamTypeSelectDetails.value }
+            teamsProfile(listingteamAge);//load teams profile
         }
     }
 
-    //players Sports
-    const playerPlayingSportsChange = (sportsSelectDetailsArray) => {
+    //teams Sports
+    const teamPlayingSportsChange = (sportsSelectDetailsArray) => {
         if (sportsSelectDetailsArray !== "") {
             setSportsSelect(sportsSelectDetailsArray);
             var playSportsId = "";
@@ -225,20 +244,20 @@ const Home = () => {
                 playSportsId += sportsSelectDetailsArray[sportsInc].value + ",";
             }
             setOffsetListing(0);
-            const listingPlayerSports = { 'limit': 12, 'offset': 0, 'search': searchPlayerVar, 'gender': genderSelect, 'age': ageRangeSelect, 'sports': playSportsId }
-            playersProfile(listingPlayerSports);//load players profile
+            const listingteamsports = { 'limit': 12, 'offset': 0, 'search': searchteamVar, 'gender': genderSelect, 'age_range': ageRangeSelect, 'sports': playSportsId, 'type': teamTypeSelect }
+            teamsProfile(listingteamsports);//load teams profile
         }
     }
 
     //Show Popup
     const showPopup = (challengeSports, challengeFirstname, challengeLastname, challengeToken_id) => {
-        var PlayerFetchSports = [];
+        var teamFetchSports = [];
         var stringSports = challengeSports.split(',');
         for (var incSports = 0; incSports < stringSports.length; incSports++) {
             var stringSportsInner = challengeSports.split('~');
-            PlayerFetchSports.push({ label: stringSportsInner[1], value: stringSportsInner[0] });
+            teamFetchSports.push({ label: stringSportsInner[1], value: stringSportsInner[0] });
         }
-        setChallengeDetails({ firstname: challengeFirstname, lastname: challengeLastname, sports: PlayerFetchSports, token_id: challengeToken_id });
+        setChallengeDetails({ firstname: challengeFirstname, lastname: challengeLastname, sports: teamFetchSports, token_id: challengeToken_id });
         setChallengePopup({ visibility: "visible", opacity: 1 });
     }
 
@@ -360,14 +379,15 @@ const Home = () => {
                             <br /><br />
                             <div className="containDetails">
 
-                                <div className="showPlayersHome">
+                                <div className="showteamsHome">
                                     <div className="row noMargin">
                                         <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12 noPadding fontStyle">
                                             <div style={filterSection}>
                                                 <div className="row noMargin">
-                                                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4"><Select options={genderList} defaultValue={!!genderDetails && genderDetails.value > 0 ? genderDetails : { label: "All Gender", value: "" }} onChange={genderChange} placeholder="Gender" /></div>
-                                                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4"><Select options={ageList} defaultValue={!!ageDetails && ageDetails.value > 0 ? ageDetails : { label: "All Age", value: "" }} onChange={ageChange} placeholder="Age Range" /></div>
-                                                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4"><Select closeMenuOnSelect={false} components={animatedComponents} isMulti options={playerPlayingSports} defaultValue={!!sportsSelect && sportsSelect.length > 0 ? sportsSelect : ""} onChange={playerPlayingSportsChange} placeholder="All Sports" /></div>
+                                                    <div className="col-lg-3 col-md-3 col-sm-3 col-xs-4"><Select options={teamTypeList} defaultValue={!!teamTypeDetails && teamTypeDetails.value > 0 ? teamTypeDetails : { label: "All Team Types", value: "" }} onChange={teamTypeChange} placeholder="Team Type" /></div>
+                                                    <div className="col-lg-3 col-md-3 col-sm-3 col-xs-4"><Select options={genderList} defaultValue={!!genderDetails && genderDetails.value > 0 ? genderDetails : { label: "All Gender", value: "" }} onChange={genderChange} placeholder="Gender" /></div>
+                                                    <div className="col-lg-3 col-md-3 col-sm-3 col-xs-4"><Select options={ageList} defaultValue={!!ageDetails && ageDetails.value > 0 ? ageDetails : { label: "All Age", value: "" }} onChange={ageChange} placeholder="Age Range" /></div>
+                                                    <div className="col-lg-3 col-md-3 col-sm-3 col-xs-4"><Select closeMenuOnSelect={false} components={animatedComponents} isMulti options={teamPlayingSports} defaultValue={!!sportsSelect && sportsSelect.length > 0 ? sportsSelect : ""} onChange={teamPlayingSportsChange} placeholder="All Sports" /></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -377,50 +397,50 @@ const Home = () => {
                                             </div>
                                         </div>
                                         <div className="col-lg-3 col-md-3 col-sm-3 col-xs-12 noPadding searchBox">
-                                            <input type="search" name="search" className="form-control" defaultValue={searchPlayerVar} placeholder="Search Player Name" onChange={searchbox} />
+                                            <input type="search" name="search" className="form-control" defaultValue={searchteamVar} placeholder="Search team Name" onChange={searchbox} />
                                         </div>
                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
                                             <br />
-                                            <h6 className="topHeadline">Total <b>{playersFound} players</b> from your city</h6>
+                                            <h6 className="topHeadline">Total <b>{teamsFound} teams</b> from your city</h6>
                                         </div>
                                     </div>
                                     <div className="row noMargin">
                                         <InfiniteScroll
-                                            dataLength={playerState.length}
+                                            dataLength={teamstate.length}
                                             next={() => fetchMoreData()}
-                                            hasMore={playerState.length !== playersFound && playersFound !== undefined}
+                                            hasMore={teamstate.length !== teamsFound && teamsFound !== undefined}
                                             loader={<h4>Loading...</h4>}
                                             scrollableTarget="scrollableDiv"
                                             className="row"
                                         >
                                             {
-                                                playerState.length > 0 ? playerState.map((player, i) => {
+                                                teamstate.length > 0 ? teamstate.map((team, i) => {
                                                     let recentMatches = "";
-                                                    var last_matches = player.last_matches;
+                                                    var last_matches = team.last_matches;
                                                     if(last_matches !== null){
                                                         var last_matches = last_matches.split(',');
                                                     }
                                                     return (<div className="col-sm-3 col-xs-3 col-md-3 col-lg-3" key={i}>
-                                                        <div className="card-player">
-                                                            <div className="pointerplayer">{player.all_sports}</div>
-                                                              <div className="playerCard noBorder">
-                                                                  <div className="tshirtNumber tshirtNumberTooltip">{!!player.tshirt_number ? player.tshirt_number : ""}<span className="ot-border">{!!player.tshirt_number ? player.tshirt_number : ""}</span></div>
-                                                                  <div className="nameText"><div onClick={()=>opponentPopupShow(player.token_id)}>{player.firstname} {player.lastname}</div><span>Age {player.age} ({player.gender})</span></div>
+                                                        <div className="card-team">
+                                                            <div className="pointerteam">{team.all_sports}</div>
+                                                              <div className="teamCard noBorder">
+                                                                  <div className="tshirtNumber tshirtNumberTooltip">{!!team.tshirt_number ? team.tshirt_number : ""}<span className="ot-border">{!!team.tshirt_number ? team.tshirt_number : ""}</span></div>
+                                                                  <div className="nameText"><div onClick={()=>opponentPopupShow(team.token_id)}>{team.teamname}</div><span>Age {team.age_range == "1" ? "5 to 12 Years" : team.age_range == "2" ? "13 to 18 Years" : team.age_range == "3" ? "19 to 45 Years" : team.age_range == "4" ? "46 to 60 Years" : team.age_range == "5" ? "61 And Above Years" : "" } (Gender {team.gender == "m" ? "Male" : team.gender == "f" ? "Female" : team.gender == "b" ? "Both Male & Female" : team.gender == "o" ? "Other" : team.gender == "a" ? "All" : ""})</span></div>
                                                               </div>
-                                                              <div className="playerCard playerCareer">
-                                                                  <div className="playerAlign"><img src={!!player.profile_img ? (urlkey + "images/" + player.profile_img) : "default_player.png"} className="img-responsive playerImgplayer" alt="Player profile" /></div>
+                                                              <div className="teamCard teamCareer">
+                                                                  <div className="teamAlign"><img src={!!team.profile_img ? (urlkey + "images/" + team.profile_img) : "default_team.png"} className="img-responsive teamImgteam" alt="team profile" /></div>
                                                               </div>
                                                               <div className="container">
                                                                   <div align="center" className="pointerResult">Career</div>
-                                                                  <div className="playerCard playerCareer noBorder noPadding">
-                                                                      <div className="columns"><span>{player.matches}</span> <br />Played</div>
-                                                                      <div className="columns"><span>{player.won}</span> <br />Won</div>
-                                                                      <div className="columns"><span>{player.draw}</span> <br />Draw</div>
+                                                                  <div className="teamCard teamCareer noBorder noPadding">
+                                                                      <div className="columns"><span>{team.matches}</span> <br />Played</div>
+                                                                      <div className="columns"><span>{team.won}</span> <br />Won</div>
+                                                                      <div className="columns"><span>{team.draw}</span> <br />Draw</div>
                                                                   </div>
-                                                                  <div className="playerRecent noBorder noPadding">
-                                                                        {player.last_matches ? <div className="columns recentMatches"><b>Recent matches</b></div> : ""}
+                                                                  <div className="teamRecent noBorder noPadding">
+                                                                        {team.last_matches ? <div className="columns recentMatches"><b>Recent matches</b></div> : ""}
                                                                         <div className="winStats">
-                                                                        {   player.last_matches ? last_matches.map((matches, inc) => {
+                                                                        {   team.last_matches ? last_matches.map((matches, inc) => {
                                                                             if(matches != undefined && matches !== "" && matches !== null){
                                                                                 var colorMatch = "";
                                                                                 if(matches==="L"){
@@ -437,7 +457,7 @@ const Home = () => {
                                                                       </div>
                                                                   </div>
                                                                   <div align="center">
-                                                                    <button className="btn btn-primary addResultplayer" onClick={() => showPopup(player.sports_with_id, player.firstname, player.lastname, player.token_id)}>Send Challenge</button>
+                                                                    <button className="btn btn-primary addResultteam" onClick={() => showPopup(team.sports_with_id, team.firstname, team.lastname, team.token_id)}>Send Challenge</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -472,7 +492,7 @@ const Home = () => {
                                     <div className="popup popupProfile">
                                         <span className="close" onClick={opponentPopup}>&times;</span>
                                         <div className="content">
-                                            <OpponentProfile opponentDetails={opponentPlayerDetails} />
+                                            <OpponentProfile opponentDetails={opponentTeamDetails} />
                                         </div>
                                     </div>
                                 </div>

@@ -4,16 +4,18 @@ import { useNavigate } from 'react-router-dom';
 import TriggerToastify from "../../components/common/TriggerToastify";
 
 const OpponentProfile = (props) => {
-    var playerDetails = props.opponentDetails;
+    var teamDetails = props.opponentDetails;
     const urlkey = process.env.REACT_APP_NODE_BASE_URL;
     const userToken = localStorage.getItem('userToken');
     const navigate = useNavigate();
 
     //Check gender from save
     var genderShow = "";
-    if (playerDetails[0]['gender'] === "m") { genderShow = "Male"; }
-    else if (playerDetails[0]['gender'] === "f") { genderShow = "Female"; }
-    else if (playerDetails[0]['gender'] === "o") { genderShow = "Other"; }
+    if (teamDetails[0]['gender'] === "m") { genderShow = "Male"; }
+    else if (teamDetails[0]['gender'] === "f") { genderShow = "Female"; }
+    else if (teamDetails[0]['gender'] === "o") { genderShow = "Other"; }
+    else if (teamDetails[0]['gender'] === "b") { genderShow = "Both Male & Female"; }
+    else if (teamDetails[0]['gender'] === "a") { genderShow = "All"; }
 
     const block = (token_id) => {
         var data = {opponent_token_id:token_id}
@@ -71,35 +73,35 @@ const OpponentProfile = (props) => {
                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12 noPadding">
                         <div align="center">
                             <div className="membr-details-img position-relative">
-                                <img src={!!playerDetails[0]['profile_img'] ? (urlkey + "images/" + playerDetails[0]['profile_img']) : "default_player.png"} className="profileImgBox" alt="playing player" />
-                                <div className="playernameTshirt">
-                                    <h1>{!!playerDetails[0]['firstname'] ? (capitalizeWords(playerDetails[0]['firstname'])) : ""} {!!playerDetails[0]['lastname'] ? (capitalizeWords(playerDetails[0]['lastname'])) : ""}</h1>
-                                    {!!playerDetails[0]['tshirt_number'] ? (<span>TShirt No.: {playerDetails[0]['tshirt_number']}</span>) : ""}
+                                <img src={!!teamDetails[0]['profile_img'] ? (urlkey + "images/" + teamDetails[0]['profile_img']) : "default_team.png"} className="profileImgBox" alt="playing team" />
+                                <div className="teamnameTshirt">
+                                    <h1>{!!teamDetails[0]['teamname'] ? (capitalizeWords(teamDetails[0]['teamname'])) : ""}</h1>
+                                    {!!teamDetails[0]['tshirt_number'] ? (<span>TShirt No.: {teamDetails[0]['tshirt_number']}</span>) : ""}
                                 </div>
                             </div>
                         </div>
                         <div className="contentProfileGredent"></div>
-                        {playerDetails[0]['block'] === 0 ? <button className="btn btn-primary btn-sm" onClick={()=>block(playerDetails[0]['token_id'])}>Block</button> : ""}
+                        {teamDetails[0]['block'] === 0 ? <button className="btn btn-primary btn-sm" onClick={()=>block(teamDetails[0]['token_id'])}>Block</button> : ""}
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12 noPadding">
-                        <div className="playerOverview">
-                            <h4><i>Player Overview</i></h4>
+                        <div className="teamOverview">
+                            <h4><i>team Overview</i></h4>
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td><span>{!!playerDetails[0]['matches'] ? (playerDetails[0]['matches']) : 0}</span><br />Match</td>
-                                        <td><span>{!!playerDetails[0]['won'] ? (playerDetails[0]['won']) : 0}</span><br />Won</td>
+                                        <td><span>{!!teamDetails[0]['matches'] ? (teamDetails[0]['matches']) : 0}</span><br />Match</td>
+                                        <td><span>{!!teamDetails[0]['won'] ? (teamDetails[0]['won']) : 0}</span><br />Won</td>
                                     </tr>
                                     <tr>
-                                        <td><span>{!!playerDetails[0]['draw'] ? (playerDetails[0]['draw']) : 0}</span><br />Draw</td>
-                                        <td><span>{!!playerDetails[0]['age'] ? (playerDetails[0]['age']) : 0}</span><br />Age</td>
+                                        <td><span>{!!teamDetails[0]['draw'] ? (teamDetails[0]['draw']) : 0}</span><br />Draw</td>
+                                        <td><span>{!!teamDetails[0]['age'] ? (teamDetails[0]['age']) : 0}</span><br />Age</td>
                                     </tr>
                                     <tr>
-                                        <td><span>{!!playerDetails[0]['dob'] ? (playerDetails[0]['dob']) : ""}</span><br />Date of Birth</td>
+                                        <td><span>{!!teamDetails[0]['dob'] ? (teamDetails[0]['dob']) : ""}</span><br />Date of Birth</td>
                                         <td><span>{genderShow}</span><br />Gender</td>
                                     </tr>
                                     <tr>
-                                        <td colSpan={2}><span>{!!playerDetails[0]['sports_list'] ? (playerDetails[0]['sports_list']) : ""}</span><br />Sports</td>
+                                        <td colSpan={2}><span>{!!teamDetails[0]['sports_list'] ? (teamDetails[0]['sports_list']) : ""}</span><br />Sports</td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -45,7 +45,6 @@ const Signup = () => {
     const [errorState,setErrorState] = useState('');
     const [errorCity,setErrorCity] = useState('');
     const [errorSport,setErrorSport] = useState('');
-    const [errorBirthday,setErrorBirthday] = useState('');
     const [errorGender,setErrorGender] = useState('');
 
     //Firstname
@@ -107,15 +106,15 @@ const Signup = () => {
     }
 
     //Team type
-    const teamtype = [{value:1, label:"Local Team"},{value:2, label:"Corporate Team"},{value:3, label:"Organization Or NGO Team"},{value:4, label:"College Team"},{value:5, label:"School Team"},{value:6, label:"Other Team"}];
-    const [selectedOptionsTeamType, setSelectedOptionsTeamType] = useState([]);
+    const teamtype = [{value:1, label:"Local Team"},{value:2, label:"Club Team"},{value:3, label:"Corporate Team"},{value:4, label:"Organization Or NGO Team"},{value:5, label:"College Team"},{value:6, label:"School Team"},{value:7, label:"Other Team"}];
+    const [selectedOptionsTeamType, setSelectedOptionsTeamType] = useState(0);
     const TeamTypeChange = (TeamTypeOptions) => {
         setSelectedOptionsTeamType(TeamTypeOptions);
         setErrorTeamType('')
     };
 
     //Team Age Range
-    const teamAgeRange = [{value:1, label:"Local Team"},{value:2, label:"Corporate Team"},{value:3, label:"Organization Or NGO Team"},{value:4, label:"College Team"},{value:5, label:"School Team"},{value:6, label:"Other Team"}];
+    const teamAgeRange = [{value:1, label:"8 to 12 years"},{value:2, label:"13 to 18 years"},{value:3, label:"19 to 45 years"},{value:4, label:"46 to 60 years"},{value:5, label:"61 and above"}];
     const [selectedOptionsTeamAgeRange, setSelectedOptionsTeamAgeRange] = useState([]);
     const TeamAgeRangeChange = (TeamAgeRangeOptions) => {
         setSelectedOptionsTeamAgeRange(TeamAgeRangeOptions);
@@ -125,6 +124,8 @@ const Signup = () => {
     const submitSignup = () => {
         setProgressTopBar(30)
         const teamnameForm = teamname.trim();
+        const teamTypeForm = selectedOptionsTeamType.value;
+        const teamAgeRangeForm = selectedOptionsTeamAgeRange.value;
         const emailForm = email.trim();
         const passwordForm = password.trim();
         const countryForm = selectedOptionsCountry;
@@ -137,6 +138,14 @@ const Signup = () => {
         
         if(teamnameForm === "" || teamnameForm === undefined){
             setErrorTeamname("Please enter teamname")
+            errorSubmit.push(1)
+        }
+        if(teamTypeForm === "" || teamTypeForm === undefined){
+            setErrorTeamType("Please enter team type")
+            errorSubmit.push(1)
+        }
+        if(teamAgeRangeForm === "" || teamAgeRangeForm === undefined){
+            setErrorTeamAgeRange("Please enter team age range")
             errorSubmit.push(1)
         }
         if(emailForm === "" || emailForm === undefined){
@@ -182,6 +191,8 @@ const Signup = () => {
             
             var formData =  {
                 'teamname': teamnameForm,
+                'type': teamTypeForm,
+                'age_range': teamAgeRangeForm,
                 'email': emailForm,
                 'password': passwordForm,
                 'country_id': countryForm.value,
@@ -306,7 +317,7 @@ const Signup = () => {
                                             </div>
                                         </div>
 
-                                        <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div className="input-box address">
                                                 <div className="select-box">
                                                     <Select closeMenuOnSelect={false} components={animatedComponents} isMulti options={sportsDetails} value={selectedOptionsSport} onChange={sportChange} placeholder="Sports" />
@@ -335,6 +346,10 @@ const Signup = () => {
                                                     <div className="gender">
                                                         <input type="radio" id="check-other" name="gender" value="o" onClick={genderChange} />
                                                         <label htmlFor="check-other">Other</label>
+                                                    </div>
+                                                    <div className="gender">
+                                                        <input type="radio" id="check-all" name="gender" value="a" onClick={genderChange} />
+                                                        <label htmlFor="check-all">All</label>
                                                     </div>
                                                 </div>
                                                 {!!errorGender ? (<span className="text text-danger">{errorGender}</span>) : ""}

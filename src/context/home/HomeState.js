@@ -6,11 +6,11 @@ const HomeState = (props) => {
 
     const [progressLoadingBar, setProgressLoadingBar] = useState(0);
     const [errorMessage,setErrorMessage] = useState("");
-    const [playersDetails,setPlayersDetails] = useState([{}]);
-    const [playersFound,setPlayersFound] = useState("0 players");
+    const [teamsDetails,setteamsDetails] = useState([{}]);
+    const [teamsFound,setteamsFound] = useState("0 teams");
     const userToken = localStorage.getItem('userToken');
 
-    const playersProfile = async (data) => {
+    const teamsProfile = async (data) => {
         setProgressLoadingBar(30)
         var formBody = [];
         for (var property in data) {
@@ -34,8 +34,8 @@ const HomeState = (props) => {
         if(json !== "" && json !== undefined){
             setProgressLoadingBar(100)
             if(json.status){
-                setPlayersDetails(json.result);
-                setPlayersFound(json.message);
+                setteamsDetails(json.result);
+                setteamsFound(json.message);
             }else if(json.status === false){
                 if(json.errors !== undefined && json.errors.length > 0){
                     let errorAPiMessage = "";
@@ -61,7 +61,7 @@ const HomeState = (props) => {
     }
 
     return (
-        <HomeContext.Provider value={{playersProfile,playersDetails,playersFound,errorMessage,progressLoadingBar}}>
+        <HomeContext.Provider value={{teamsProfile,teamsDetails,teamsFound,errorMessage,progressLoadingBar}}>
             {props.children}
         </HomeContext.Provider>
     );
