@@ -34,7 +34,7 @@ const ChallengeState = (props) => {
         if (json !== "" && json !== undefined) {
             setProgressLoadingBar(100)
             if (json.status) {
-                //append players
+                //append teams
                 for (var inc = 0; inc < json.result.length; inc++) {
                     challengeDetails.push(json.result[inc])
                 }

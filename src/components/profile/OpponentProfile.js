@@ -81,28 +81,29 @@ const OpponentProfile = (props) => {
                             </div>
                         </div>
                         <div className="contentProfileGredent"></div>
+                        <br /><br />
                         {teamDetails[0]['block'] === 0 ? <button className="btn btn-primary btn-sm" onClick={()=>block(teamDetails[0]['token_id'])}>Block</button> : ""}
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12 noPadding">
                         <div className="teamOverview">
-                            <h4><i>team Overview</i></h4>
+                            <h4><i>Team Overview</i></h4>
                             <table>
                                 <tbody>
-                                    <tr>
-                                        <td><span>{!!teamDetails[0]['matches'] ? (teamDetails[0]['matches']) : 0}</span><br />Match</td>
-                                        <td><span>{!!teamDetails[0]['won'] ? (teamDetails[0]['won']) : 0}</span><br />Won</td>
-                                    </tr>
-                                    <tr>
-                                        <td><span>{!!teamDetails[0]['draw'] ? (teamDetails[0]['draw']) : 0}</span><br />Draw</td>
-                                        <td><span>{!!teamDetails[0]['age'] ? (teamDetails[0]['age']) : 0}</span><br />Age</td>
-                                    </tr>
-                                    <tr>
-                                        <td><span>{!!teamDetails[0]['dob'] ? (teamDetails[0]['dob']) : ""}</span><br />Date of Birth</td>
-                                        <td><span>{genderShow}</span><br />Gender</td>
-                                    </tr>
-                                    <tr>
-                                        <td colSpan={2}><span>{!!teamDetails[0]['sports_list'] ? (teamDetails[0]['sports_list']) : ""}</span><br />Sports</td>
-                                    </tr>
+                                <tr>
+                                    <td><span>{!!teamDetails[0]['matches'] ? (teamDetails[0]['matches']) : 0}</span><br />Match</td>
+                                    <td><span>{!!teamDetails[0]['won'] ? (teamDetails[0]['won']) : 0}</span><br />Won</td>
+                                </tr>
+                                <tr>
+                                    <td><span>{!!teamDetails[0]['draw'] ? (teamDetails[0]['draw']) : 0}</span><br />Draw</td>
+                                    <td><span>{!!teamDetails[0]['team_type_name'] ? (teamDetails[0]['team_type_name']) : 0}</span><br />Team Type</td>
+                                </tr>
+                                <tr>
+                                    <td><span>{!!teamDetails[0]['age_range_name'] ? (teamDetails[0]['age_range_name']) : 0}</span><br />Age Range</td>
+                                    <td><span>{genderShow}</span><br />Gender</td>
+                                </tr>
+                                <tr>
+                                    <td colSpan={2}><span>{!!teamDetails[0]['sports_list'] ? (teamDetails[0]['sports_list']) : ""}</span><br />Sports</td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>

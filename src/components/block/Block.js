@@ -13,8 +13,8 @@ import OpponentProfile from "../profile/OpponentProfile";
 
 const Block = () => {
 
-    const { blockListing, unblockOpponent, blockDetails, recordsFound, offsetListing, progressLoadingBar, searchPlayerVar } = useContext(BlockContext);
-    const { opponentPlayerDetails, popupProfile, opponentPopup, opponentPopupShow } = useContext(OpponentContext);
+    const { blockListing, unblockOpponent, blockDetails, recordsFound, offsetListing, progressLoadingBar, searchTeamVar } = useContext(BlockContext);
+    const { opponentTeamDetails, popupProfile, opponentPopup, opponentPopupShow } = useContext(OpponentContext);
     const { authorizeUser } = useContext(AuthorizeContext);
     const { sidebarOpen } = useContext(OperationContext);
     const websiteName = process.env.REACT_APP_WEBSITE_NAME;
@@ -25,7 +25,7 @@ const Block = () => {
     if (sidebarOpen === true) { var openSidebar = "toggled" } else { openSidebar = "" }
 
     //listing challenges With Filters
-    const listing = { 'limit': 10, 'offset': offsetListing, 'search': searchPlayerVar }
+    const listing = { 'limit': 10, 'offset': offsetListing, 'search': searchTeamVar }
 
     useEffect(() => {
         //eslint-disable-next-line react-hooks/exhaustive-deps
@@ -41,10 +41,10 @@ const Block = () => {
 
     //Search box
     const searchbox = (event) => {
-        var searchPlayerVar = event.target.value;
-        searchPlayerVar = searchPlayerVar.trim();
-        const listingPlayerSearch = { 'limit': 10, 'offset': 0, 'search': searchPlayerVar }
-        blockListing(listingPlayerSearch);//load players profile
+        var searchTeamVar = event.target.value;
+        searchTeamVar = searchTeamVar.trim();
+        const listingTeamSearch = { 'limit': 10, 'offset': 0, 'search': searchTeamVar }
+        blockListing(listingTeamSearch);//load Teams profile
     }
 
     const unblock = (opponent_token) => {
@@ -64,14 +64,14 @@ const Block = () => {
                             <br /><br />
                             <div className="containDetails">
 
-                                <div className="showPlayersHome">
+                                <div className="showTeamsHome">
                                     <div className="row noMargin">
                                         <div className="col-lg-9 col-md-9 col-sm-9 col-xs-12 noPadding">
                                             <br />
                                             <h6 className="topHeadline">Total <b>{recordsFound} block opponent found!</b></h6>
                                         </div>
                                         <div className="col-lg-3 col-md-3 col-sm-3 col-xs-12 noPadding searchBox">
-                                            <input type="search" name="search" className="form-control" defaultValue={searchPlayerVar} placeholder="Search Player Name" onChange={searchbox} />
+                                            <input type="search" name="search" className="form-control" defaultValue={searchTeamVar} placeholder="Search Team Name" onChange={searchbox} />
                                         </div>
                                     </div>
                                     <br />
@@ -86,17 +86,17 @@ const Block = () => {
                                             endMessage={<p>No more data to load.</p>}
                                         >
                                             {
-                                                blockDetails.length > 0 ? blockDetails.map((player, i) => {
+                                                blockDetails.length > 0 ? blockDetails.map((team, i) => {
                                                     var messageListDark = "";
-                                                    {player.total_messages > 0 ? messageListDark = "messageListDark" : messageListDark = "" }
+                                                    {team.total_messages > 0 ? messageListDark = "messageListDark" : messageListDark = "" }
                                                     return (<div key={i}>
                                                             <div className={"card-message "+messageListDark}>
                                                                 <div className="messageCard">
-                                                                    <div className="scoreMessage" onClick={()=>opponentPopupShow(player.opponent_token_id)}><img src={!!player.profile_img ? (urlkey + "images/" + player.profile_img) : "default_player.png"} className="img-responsive playerImgMessage" alt="player profile" /></div>
+                                                                    <div className="scoreMessage" onClick={()=>opponentPopupShow(team.opponent_token_id)}><img src={!!team.profile_img ? (urlkey + "images/" + team.profile_img) : "default_team.png"} className="img-responsive teamImgMessage" alt="team profile" /></div>
                                                                     <div className="nameText">
-                                                                        <span className="fontStyle" onClick={()=>opponentPopupShow(player.opponent_token_id)}>{capitalizeWords(player.opponent_name)}</span> <span className="datetime">{dateFormat(player.date, "dd-mm-yyyy hh:mm:ss TT")}</span>
+                                                                        <span className="fontStyle" onClick={()=>opponentPopupShow(team.opponent_token_id)}>{capitalizeWords(team.opponent_name)}</span> <span className="datetime">{dateFormat(team.date, "dd-mm-yyyy hh:mm:ss TT")}</span>
                                                                         <p className="messageText">
-                                                                        <button className="btn btn-primary btn-sm unblockBtn" onClick={()=>unblock(player.opponent_token_id)}>Unblock</button>
+                                                                        <button className="btn btn-primary btn-sm unblockBtn" onClick={()=>unblock(team.opponent_token_id)}>Unblock</button>
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -114,7 +114,7 @@ const Block = () => {
                                     <div className="popup popupProfile">
                                         <span className="close" onClick={opponentPopup}>&times;</span>
                                         <div className="content">
-                                            <OpponentProfile opponentDetails={opponentPlayerDetails} />
+                                            <OpponentProfile opponentDetails={opponentTeamDetails} />
                                         </div>
                                     </div>
                                 </div>

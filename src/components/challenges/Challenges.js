@@ -16,7 +16,7 @@ import capitalizeWords from '../common/CapitalizeWords';
 const Challenges = () => {
 
     const { challengeListing, challengeAccpet, challengeReject, updateChallengesCount, challengeDetails, recordsFound, offsetListing, progressLoadingBar } = useContext(ChallengeContext);
-    const { opponentPlayerDetails, popupProfile, opponentPopup, opponentPopupShow } = useContext(OpponentContext);
+    const { opponentTeamDetails, popupProfile, opponentPopup, opponentPopupShow } = useContext(OpponentContext);
     const { authorizeUser } = useContext(AuthorizeContext);
     const { sidebarOpen } = useContext(OperationContext);
     const websiteName = process.env.REACT_APP_WEBSITE_NAME;
@@ -41,6 +41,12 @@ const Challenges = () => {
             content: "T-Shirt Number",
             animation: 'fade',
         });
+
+        tippy('.teamTooltipDetails', {
+            content: "Team type and team gender.",
+            animation: 'fade',
+        });
+
     },3000)
 
     //sidebar open close
@@ -86,7 +92,7 @@ const Challenges = () => {
                             <br /><br />
                             <div className="containDetails">
 
-                                <div className="showPlayersHome">
+                                <div className="showTeamsHome">
                                     <div className="row noMargin">
                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
                                             <br />
@@ -104,35 +110,43 @@ const Challenges = () => {
                                             endMessage={<p>No more data to load.</p>}
                                         >
                                             {
-                                                challengeDetails.length > 0 ? challengeDetails.map((player, i) => {
+                                                challengeDetails.length > 0 ? challengeDetails.map((team, i) => {
                                                     return (<div className="col-sm-3 col-xs-3 col-md-3 col-lg-3" key={i}>
                                                         <div className="card-challenge">
-                                                            <div className="pointerchallenge">{player.sport_name}</div>
-                                                              <div className="challengeCard noBorder">
-                                                                  <div className="tshirtNumber tshirtNumberTooltip">{!!player.tshirt_number ? player.tshirt_number : ""}<span className="ot-border">{!!player.tshirt_number ? player.tshirt_number : ""}</span></div>
-                                                                  <div className="nameText" onClick={()=>opponentPopupShow(player.opponent_token_id)}><div>{capitalizeWords(player.firstname)} {capitalizeWords(player.lastname)}</div><span>Age {player.age} ({player.gender == "m" ? "Male" : ""} {player.gender == "f" ? "Female" : ""} {player.gender == "o" ? "Other" : ""})</span></div>
-                                                              </div>
-                                                              <div align="center" className="pointerResult">Players career</div>
+                                                            <div className="pointerchallenge">{team.sport_name}</div>
+                                                                <div className="challengeCard noBorder">
+                                                                  <div className="tshirtNumber tshirtNumberTooltip">{!!team.tshirt_number ? team.tshirt_number : ""}<span className="ot-border">{!!team.tshirt_number ? team.tshirt_number : ""}</span></div>
+                                                                  <div className="nameText" onClick={()=>opponentPopupShow(team.opponent_token_id)}>
+                                                                    <div>{capitalizeWords(team.teamname)}</div>
+                                                                  </div>
+                                                                </div>
+                                                                <div className="otherDetailsBlock">
+                                                                    <div className="otherDetailsTeam teamTooltipDetails">{team.type_name} ({team.gender == "m" ? "Male" : team.gender == "f" ? "Female" : team.gender == "b" ? "Both Male & Female" : team.gender == "o" ? "Other" : team.gender == "a" ? "All" : ""})</div>
+                                                                    <div className="otherDetailsTeam">Age Group: {team.age_range} </div><br />
+                                                                </div>
+                                                              
+                                                              <div align="center" className="pointerResult">Teams career</div>
                                                               <div className="challengeCard challengeCareer noBorder noPadding">
-                                                                  <div className="columns"><span>{player.matches}</span> <br />Played</div>
-                                                                  <div className="columns"><span>{player.won}</span> <br />Won</div>
-                                                                  <div className="columns"><span>{player.draw}</span> <br />Draw</div>
+                                                                  <div className="columns"><span>{team.matches}</span> <br />Played</div>
+                                                                  <div className="columns"><span>{team.won}</span> <br />Won</div>
+                                                                  <div className="columns"><span>{team.draw}</span> <br />Draw</div>
                                                               </div>
                                                               <div className="challengeCard challengeCareer">
-                                                                  <div className="challengeAlign"><img src={!!player.profile_img ? (urlkey + "images/" + player.profile_img) : "default_player.png"} className="img-responsive challengeImgplayer" /></div>
+                                                                  <div className="challengeAlign"><img src={!!team.profile_img ? (urlkey + "images/" + team.profile_img) : "default_team.png"} className="img-responsive challengeImgTeam" /></div>
                                                               </div>
                                                               <div className="container">
                                                                   <div className="challengeRecent noBorder noPadding">
-                                                                      <div className="columns recentMatches"><b>Challenge Message:</b><div className="matchText text text-success">({player.match_contest == 1 ? 'Prize money match' : 'Friendly match'})</div></div>
-                                                                      <p>{player.challenge_message}</p>
-                                                                      <span>{dateFormat(player.date, "dd-mm-yyyy hh:mm:ss TT")}</span>
+                                                                  <div className="recentMatches"><div className="matchText text text-success">({team.match_contest == 1 ? 'Prize Money Match' : 'Friendly Match'})</div></div>
+                                                                      <div className="recentMatches"><b>Challenge Message:</b></div>
+                                                                      <p>{team.challenge_message}</p>
+                                                                      <span>{dateFormat(team.date, "dd-mm-yyyy hh:mm:ss TT")}</span>
                                                                   </div>
                                                                   <div align="center">
                                                                     <div className="buttonsSet">
-                                                                        <div className="buttonAction acceptButton acceptButtonTooltip" onClick={() => acceptButton(player.challenge_id)}>
+                                                                        <div className="buttonAction acceptButton acceptButtonTooltip" onClick={() => acceptButton(team.challenge_id)}>
                                                                             <span className="material-symbols-outlined done">done</span>
                                                                         </div>
-                                                                        <div className="buttonAction declineButton rejectButtonTooltip" onClick={() => rejectButton(player.challenge_id)}>
+                                                                        <div className="buttonAction declineButton rejectButtonTooltip" onClick={() => rejectButton(team.challenge_id)}>
                                                                             <span className="material-symbols-outlined close">close</span>
                                                                         </div>
                                                                     </div>
@@ -152,7 +166,7 @@ const Challenges = () => {
                                     <div className="popup popupProfile">
                                         <span className="close" onClick={opponentPopup}>&times;</span>
                                         <div className="content">
-                                            <OpponentProfile opponentDetails={opponentPlayerDetails} />
+                                            <OpponentProfile opponentDetails={opponentTeamDetails} />
                                         </div>
                                     </div>
                                 </div>

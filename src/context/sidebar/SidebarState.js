@@ -4,7 +4,7 @@ import TriggerToastify from "../../components/common/TriggerToastify";
 
 const SidebarState = (props) => {
 
-    const [playerBasicDetails,setPlayerBasicDetails] = useState([{}]);
+    const [teamBasicDetails,setTeamBasicDetails] = useState([{}]);
     const userToken = localStorage.getItem('userToken');
 
     const BasicProfileUser = async (data) => {
@@ -28,7 +28,7 @@ const SidebarState = (props) => {
         const json = await response.json();
         if(json !== "" && json !== undefined){
             if(json.status){
-                setPlayerBasicDetails(json.result);
+                setTeamBasicDetails(json.result);
             }else if(json.status === false){
                 if(json.errors !== undefined && json.errors.length > 0){
                     let errorAPiMessage = "";
@@ -47,7 +47,7 @@ const SidebarState = (props) => {
 
     
     //start update profile other details
-    const updatePlayerOtherDetails = async (data) => {
+    const updateTeamOtherDetails = async (data) => {
 
         const urlkey = process.env.REACT_APP_NODE_BASE_URL;
         const updateProfileOtherUrl = urlkey+'profile';
@@ -82,7 +82,7 @@ const SidebarState = (props) => {
     //end of update profile other details
 
     return (
-        <SidebarContext.Provider value={{BasicProfileUser,playerBasicDetails,updatePlayerOtherDetails}}>
+        <SidebarContext.Provider value={{BasicProfileUser,teamBasicDetails,updateTeamOtherDetails}}>
             {props.children}
         </SidebarContext.Provider>
     );

@@ -8,16 +8,16 @@ import LoadingBar from 'react-top-loading-bar';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import capitalizeWords from '../common/CapitalizeWords';
 import dateFormat from 'dateformat';
-import io from "socket.io-client";
+//import io from "socket.io-client";
 import { useNavigate } from 'react-router-dom';
 import OpponentContext from "../../context/profile/OpponentContext";
 import OpponentProfile from "../profile/OpponentProfile";
-const socket = io.connect(process.env.REACT_APP_SOCKET_URL);
+//const socket = io.connect(process.env.REACT_APP_SOCKET_URL);
 
 const Chat = () => {
 
   const { chatListing, updateChatCount, chatDetails, addNewMessage, opponentDetails, recordsFound, offsetListing, progressLoadingBar } = useContext(ChatContext);
-  const { opponentPlayerDetails, popupProfile, opponentPopup, opponentPopupShow } = useContext(OpponentContext);
+  const { opponentTeamDetails, popupProfile, opponentPopup, opponentPopupShow } = useContext(OpponentContext);
   const { authorizeUser } = useContext(AuthorizeContext);
   const { sidebarOpen } = useContext(OperationContext);
   const websiteName = process.env.REACT_APP_WEBSITE_NAME;
@@ -26,11 +26,10 @@ const Chat = () => {
   const challenge_id = query.get('challenge_id')
   const urlkey = process.env.REACT_APP_NODE_BASE_URL;
   const navigate = useNavigate();
-  //const [socketMessages, setSocketMessages] = useState([]);
 
   if (challenge_id === undefined || challenge_id === "" || challenge_id === null) { navigate("/messages"); }
 
-  socket.emit("join_room", challenge_id);
+  // socket.emit("join_room", challenge_id);
 
   //sidebar open close
   if (sidebarOpen === true) { var openSidebar = "toggled" } else { openSidebar = "" }
@@ -50,12 +49,11 @@ const Chat = () => {
 
   useEffect(() => {
     //eslint-disable-next-line react-hooks/exhaustive-deps
-    socket.on("receive_message", (data) => {
-      console.log("ok")
-      chatListing(listing);//load messages
-    })
+    // socket.on("receive_message", (data) => {
+    //   chatListing(listing);//load messages
+    // })
 
-  }, [socket])
+  })//, [socket]
 
 
   //send Message
@@ -68,11 +66,11 @@ const Chat = () => {
     if (enterMessage !== "" && enterMessage !== undefined) {
       addNewMessage({ challenge_id: challenge_id, message: enterMessage })
       setEnterMessage("");
-      const message = {
-        "room": challenge_id,
-        "msg": enterMessage
-      }
-      await socket.emit("send_message", message);
+      // const message = {
+      //   "room": challenge_id,
+      //   "msg": enterMessage
+      // }
+      // await socket.emit("send_message", message);
     }
   }
 
@@ -103,7 +101,7 @@ const Chat = () => {
                           var seenColor = "";
                           var profileImg = "";
                           { message.sent_by === "you" ? sender = "right-msg" : sender = "left-msg" }
-                          { message.sent_by === "you" && message.profile_img ? profileImg = (urlkey + "images/" + message.profile_img) : profileImg = "default_player.png" }
+                          { message.sent_by === "you" && message.profile_img ? profileImg = (urlkey + "images/" + message.profile_img) : profileImg = "default_team.png" }
                           { message.seen === 0 ? seenColor = "#000" : seenColor = "#0000FF" }
                           return (<div key={i} className={"msg " + sender}>
                             <div
@@ -139,7 +137,7 @@ const Chat = () => {
                   <div className="popup popupProfile">
                     <span className="close" onClick={opponentPopup}>&times;</span>
                     <div className="content">
-                      <OpponentProfile opponentDetails={opponentPlayerDetails} />
+                      <OpponentProfile opponentDetails={opponentTeamDetails} />
                     </div>
                   </div>
                 </div>

@@ -8,8 +8,8 @@ const Sidebar = () => {
 
     const { logoutAPI } = useContext(AuthorizeContext);
 
-    const { BasicProfileUser,playerBasicDetails,updatePlayerOtherDetails } = useContext(SidebarContext);
-    const playerToken = { 'token': '' };
+    const { BasicProfileUser,teamBasicDetails,updateTeamOtherDetails } = useContext(SidebarContext);
+    const teamToken = { 'token': '' };
     const inputFileRef = useRef( null );
     const formFileRef = useRef( null );
 
@@ -23,7 +23,7 @@ const Sidebar = () => {
 
     useEffect(() => {
         //eslint-disable-next-line react-hooks/exhaustive-deps
-        BasicProfileUser(playerToken);
+        BasicProfileUser(teamToken);
         handleResize();
     },[])
 
@@ -65,9 +65,9 @@ const Sidebar = () => {
         const errorSubmit = [];
         //Submit form
         if (errorSubmit !== undefined && errorSubmit.length < 1) {
-            updatePlayerOtherDetails(formData);//update details by API 
+            updateTeamOtherDetails(formData);//update details by API 
             setTimeout(() => {
-                BasicProfileUser(playerToken);//re-fetch all profile data
+                BasicProfileUser(teamToken);//re-fetch all profile data
             }, 2000);
         }
     }
@@ -90,7 +90,7 @@ const Sidebar = () => {
                         <div align="center">
                             <div className="profileImgOuterCover">
                                 <span className="material-symbols-outlined imageInfo">info</span>
-                                <img src={!!playerBasicDetails[0]['profile_img'] ? (urlkey + "images/" + playerBasicDetails[0]['profile_img']) : "default_player.png"} className="img-responsive profileimg" alt="player profile" />
+                                <img src={!!teamBasicDetails[0]['profile_img'] ? (urlkey + "images/" + teamBasicDetails[0]['profile_img']) : "default_team.png"} className="img-responsive profileimg" alt="team profile" />
                                 <div className="uploadImage" onClick={onBtnClick}>
                                     <div align="center">
                                         <span className="material-symbols-outlined">add_a_photo</span>
@@ -101,7 +101,7 @@ const Sidebar = () => {
                                 <button type="submit" ref={formFileRef} className="btn btn-primary" style={{display:'none'}}>Update</button>
                                 </form>
                             </div>
-                            <div className="profileName noHref noPointer" style={{ textTransform: 'capitalize' }}>{!!playerBasicDetails[0]['firstname'] ? playerBasicDetails[0]['firstname'] : ""} {!!playerBasicDetails[0]['lastname'] ? playerBasicDetails[0]['lastname'] : ""}</div>
+                            <div className="profileName noHref noPointer" style={{ textTransform: 'capitalize' }}>{!!teamBasicDetails[0]['teamname'] ? teamBasicDetails[0]['teamname'] : ""}</div>
                         </div>
                     </li>
                     <li> <a href="/home"><span className="material-symbols-outlined">home</span> Home</a> </li>

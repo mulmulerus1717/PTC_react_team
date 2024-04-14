@@ -10,7 +10,7 @@ const BlockState = (props) => {
     const [recordsFound, setRecordsFound] = useState(0);
     var [blockDetails, setBlockDetails] = useState([]);
     const [offsetListing, setOffsetListing] = useState(0);
-    const [searchPlayerVar, setSearchPlayerVar] = useState("");
+    const [searchTeamVar, setSearchTeamVar] = useState("");
     const navigate = useNavigate();
 
     const blockListing = async (data) => {
@@ -37,9 +37,9 @@ const BlockState = (props) => {
         if (json !== "" && json !== undefined) {
             setProgressLoadingBar(100)
             if (json.status) {
-                if (searchPlayerVar !== data.search) {
+                if (searchTeamVar !== data.search) {
                     blockDetails = [];
-                    setSearchPlayerVar(data.search);
+                    setSearchTeamVar(data.search);
                     setOffsetListing(10);
                 } else {
                     setOffsetListing(offsetListing + 10);
@@ -121,7 +121,7 @@ const BlockState = (props) => {
     }
 
     return (
-        <BlockContext.Provider value={{blockListing, unblockOpponent, blockDetails, recordsFound, offsetListing, progressLoadingBar, searchPlayerVar}}>
+        <BlockContext.Provider value={{blockListing, unblockOpponent, blockDetails, recordsFound, offsetListing, progressLoadingBar, searchTeamVar}}>
             {props.children}
         </BlockContext.Provider>
     );

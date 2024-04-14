@@ -38,7 +38,7 @@ const Home = () => {
     const [ChallengeDetails, setChallengeDetails] = useState({ firstname: "", lastname: "", sports: [], token_id: "" });
     const [errorSports, setErrorSports] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
-    
+
     //sidebar open close
     if (sidebarOpen === true) { var openSidebar = "toggled" } else { openSidebar = "" }
 
@@ -63,7 +63,7 @@ const Home = () => {
     const [teamTypeDetails, setTeamTypeDetails] = useState(teamTypeList);
 
     //listing teams With Filters
-    const listingteam = { 'limit': 12, 'offset': offsetListing, 'search': searchteamVar, 'gender': genderSelect, 'age_range': ageRangeSelect, 'sports': sportsSelectPlain, 'type': teamTypeSelect  }
+    const listingteam = { 'limit': 12, 'offset': offsetListing, 'search': searchteamVar, 'gender': genderSelect, 'age_range': ageRangeSelect, 'sports': sportsSelectPlain, 'type': teamTypeSelect }
 
     useEffect(() => {
         //eslint-disable-next-line react-hooks/exhaustive-deps
@@ -73,15 +73,15 @@ const Home = () => {
             document.getElementById("filterIcon").click();
         }
         document.title = "Home | " + websiteName;
-    },[websiteName])
+    }, [websiteName])
 
     //tooltip
-    setTimeout(function() { 
+    setTimeout(function () {
         tippy('.info_sports', {
             content: "Choose a sport or game for your challenge.",
             animation: 'fade',
         });
-    
+
         tippy('.info_match', {
             content: "Choose friendly match or some prize money for your challenge",
             animation: 'fade',
@@ -89,6 +89,11 @@ const Home = () => {
 
         tippy('.info_message', {
             content: "Let's set up a challenge message to discussed the time, location, etc and play together on the ground or in the arena.",
+            animation: 'fade',
+        });
+
+        tippy('.teamTooltipDetails', {
+            content: "Team type and team gender.",
             animation: 'fade',
         });
 
@@ -100,7 +105,7 @@ const Home = () => {
         animation: 'fade',
     });
 
-    tippy('.addResultteam', {
+    tippy('.addResultTeam', {
         content: "Send challenge to your opponent and arrange for a joint game at a nearby ground or arena.",
         animation: 'fade',
     });
@@ -111,7 +116,6 @@ const Home = () => {
     }
 
     const teamsProfile = async (data) => {
-        console.log(data);
         setProgressTopBar(30)
         var formBody = [];
         for (var property in data) {
@@ -224,7 +228,7 @@ const Home = () => {
             teamsProfile(listingteamAge);//load teams profile
         }
     }
-    
+
     //age
     const teamTypeChange = (teamTypeSelectDetails) => {
         if (teamTypeSelectDetails !== "" && teamTypeSelectDetails.value !== undefined) {
@@ -379,7 +383,7 @@ const Home = () => {
                             <br /><br />
                             <div className="containDetails">
 
-                                <div className="showteamsHome">
+                                <div className="showTeamsHome">
                                     <div className="row noMargin">
                                         <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12 noPadding fontStyle">
                                             <div style={filterSection}>
@@ -417,47 +421,54 @@ const Home = () => {
                                                 teamstate.length > 0 ? teamstate.map((team, i) => {
                                                     let recentMatches = "";
                                                     var last_matches = team.last_matches;
-                                                    if(last_matches !== null){
+                                                    if (last_matches !== null) {
                                                         var last_matches = last_matches.split(',');
                                                     }
                                                     return (<div className="col-sm-3 col-xs-3 col-md-3 col-lg-3" key={i}>
                                                         <div className="card-team">
-                                                            <div className="pointerteam">{team.all_sports}</div>
-                                                              <div className="teamCard noBorder">
-                                                                  <div className="tshirtNumber tshirtNumberTooltip">{!!team.tshirt_number ? team.tshirt_number : ""}<span className="ot-border">{!!team.tshirt_number ? team.tshirt_number : ""}</span></div>
-                                                                  <div className="nameText"><div onClick={()=>opponentPopupShow(team.token_id)}>{team.teamname}</div><span>Age {team.age_range == "1" ? "5 to 12 Years" : team.age_range == "2" ? "13 to 18 Years" : team.age_range == "3" ? "19 to 45 Years" : team.age_range == "4" ? "46 to 60 Years" : team.age_range == "5" ? "61 And Above Years" : "" } (Gender {team.gender == "m" ? "Male" : team.gender == "f" ? "Female" : team.gender == "b" ? "Both Male & Female" : team.gender == "o" ? "Other" : team.gender == "a" ? "All" : ""})</span></div>
-                                                              </div>
-                                                              <div className="teamCard teamCareer">
-                                                                  <div className="teamAlign"><img src={!!team.profile_img ? (urlkey + "images/" + team.profile_img) : "default_team.png"} className="img-responsive teamImgteam" alt="team profile" /></div>
-                                                              </div>
-                                                              <div className="container">
-                                                                  <div align="center" className="pointerResult">Career</div>
-                                                                  <div className="teamCard teamCareer noBorder noPadding">
-                                                                      <div className="columns"><span>{team.matches}</span> <br />Played</div>
-                                                                      <div className="columns"><span>{team.won}</span> <br />Won</div>
-                                                                      <div className="columns"><span>{team.draw}</span> <br />Draw</div>
-                                                                  </div>
-                                                                  <div className="teamRecent noBorder noPadding">
-                                                                        {team.last_matches ? <div className="columns recentMatches"><b>Recent matches</b></div> : ""}
-                                                                        <div className="winStats">
-                                                                        {   team.last_matches ? last_matches.map((matches, inc) => {
-                                                                            if(matches != undefined && matches !== "" && matches !== null){
+                                                            <div className="pointerTeam">{team.all_sports}</div>
+                                                            <div className="teamCard noBorder">
+                                                                <div className="tshirtNumber tshirtNumberTooltip">{!!team.tshirt_number ? team.tshirt_number : ""}<span className="ot-border">{!!team.tshirt_number ? team.tshirt_number : ""}</span></div>
+                                                                <div className="nameText">
+                                                                    <div onClick={() => opponentPopupShow(team.token_id)}>{team.teamname}</div>
+                                                                </div>
+                                                            </div>
+                                                            <div className="otherDetailsBlock">
+                                                                <div className="otherDetailsTeam teamTooltipDetails">{team.type_name} ({team.gender == "m" ? "Male" : team.gender == "f" ? "Female" : team.gender == "b" ? "Both Male & Female" : team.gender == "o" ? "Other" : team.gender == "a" ? "All" : ""})</div>
+                                                                <div className="otherDetailsTeam">Age Group: {team.age_range} </div>
+                                                            </div>
+
+                                                            <div className="teamCard teamCareer">
+                                                                <div className="teamAlign"><img src={!!team.profile_img ? (urlkey + "images/" + team.profile_img) : "default_team.png"} className="img-responsive teamImgTeam" alt="team profile" /></div>
+                                                            </div>
+                                                            <div className="container">
+                                                                <div align="center" className="pointerResult">Career</div>
+                                                                <div className="teamCard teamCareer noBorder noPadding">
+                                                                    <div className="columns"><span>{team.matches}</span> <br />Played</div>
+                                                                    <div className="columns"><span>{team.won}</span> <br />Won</div>
+                                                                    <div className="columns"><span>{team.draw}</span> <br />Draw</div>
+                                                                </div>
+                                                                <div className="teamRecent noBorder noPadding">
+                                                                    {team.last_matches ? <div className="columns recentMatches"><b>Recent matches</b></div> : ""}
+                                                                    <div className="winStats">
+                                                                        {team.last_matches ? last_matches.map((matches, inc) => {
+                                                                            if (matches != undefined && matches !== "" && matches !== null) {
                                                                                 var colorMatch = "";
-                                                                                if(matches==="L"){
+                                                                                if (matches === "L") {
                                                                                     var colorMatch = "recentPoints colorRed";
-                                                                                }else if(matches==="D"){
+                                                                                } else if (matches === "D") {
                                                                                     var colorMatch = "recentPoints colorOrange";
-                                                                                }else if(matches==="W"){
+                                                                                } else if (matches === "W") {
                                                                                     var colorMatch = "recentPoints colorGreen";
                                                                                 }
-                                                                                return(<div key={inc} className={colorMatch}>{matches}</div>)
+                                                                                return (<div key={inc} className={colorMatch}>{matches}</div>)
                                                                             }
                                                                         }) : ""
-                                                                    }
-                                                                      </div>
-                                                                  </div>
-                                                                  <div align="center">
-                                                                    <button className="btn btn-primary addResultteam" onClick={() => showPopup(team.sports_with_id, team.firstname, team.lastname, team.token_id)}>Send Challenge</button>
+                                                                        }
+                                                                    </div>
+                                                                </div>
+                                                                <div align="center">
+                                                                    <button className="btn btn-primary addResultTeam" onClick={() => showPopup(team.sports_with_id, team.firstname, team.lastname, team.token_id)}>Send Challenge</button>
                                                                 </div>
                                                             </div>
                                                         </div>

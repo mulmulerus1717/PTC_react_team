@@ -9,7 +9,7 @@ const MessagesState = (props) => {
     const [recordsFound, setRecordsFound] = useState(0);
     var [messagesDetails, setMessagesDetails] = useState([]);
     const [offsetListing, setOffsetListing] = useState(0);
-    const [searchPlayerVar, setSearchPlayerVar] = useState("");
+    const [searchteamVar, setSearchteamVar] = useState("");
 
     const messagesListing = async (data) => {
         setProgressLoadingBar(30)
@@ -35,9 +35,9 @@ const MessagesState = (props) => {
         if (json !== "" && json !== undefined) {
             setProgressLoadingBar(100)
             if (json.status) {
-                if (searchPlayerVar !== data.search) {
+                if (searchteamVar !== data.search) {
                     messagesDetails = [];
-                    setSearchPlayerVar(data.search);
+                    setSearchteamVar(data.search);
                     setOffsetListing(10);
                 } else {
                     setOffsetListing(offsetListing + 10);
@@ -85,7 +85,7 @@ const MessagesState = (props) => {
     }
 
     return (
-        <MessagesContext.Provider value={{messagesListing, updateMessageCount, messagesDetails, recordsFound, offsetListing, progressLoadingBar, searchPlayerVar}}>
+        <MessagesContext.Provider value={{messagesListing, updateMessageCount, messagesDetails, recordsFound, offsetListing, progressLoadingBar, searchteamVar}}>
             {props.children}
         </MessagesContext.Provider>
     );

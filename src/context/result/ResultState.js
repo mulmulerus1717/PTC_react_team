@@ -10,9 +10,9 @@ const ResultState = (props) => {
     const [recordsFound, setRecordsFound] = useState(0);
     var [resultDetails, setResultDetails] = useState([]);
     const [offsetListing, setOffsetListing] = useState(0);
-    const [searchPlayerVar, setSearchPlayerVar] = useState("");
+    const [searchteamVar, setSearchteamVar] = useState("");
     const [popup, setPopup] = useState({ visibility: "hidden", opacity: 0 });
-    const [addResultDetails, setAddResultDetails] = useState({ challenges_id: "", player_token: "", playername: "", player_profile: "", opponent_token: "", opponentname: "", opponent_profile: "" });
+    const [addResultDetails, setAddResultDetails] = useState({ challenges_id: "", team_token: "", teamname: "", team_profile: "", opponent_token: "", opponentname: "", opponent_profile: "" });
     const navigate = useNavigate();
     const [statusSelect, setStatusSelect] = useState("");
 
@@ -40,9 +40,9 @@ const ResultState = (props) => {
         if (json !== "" && json !== undefined) {
             setProgressLoadingBar(100)
             if (json.status) {
-                if (searchPlayerVar !== data.search) {
+                if (searchteamVar !== data.search) {
                     resultDetails = [];
-                    setSearchPlayerVar(data.search);
+                    setSearchteamVar(data.search);
                     setOffsetListing(10);
                 } else if (statusSelect !== data.status) {
                     resultDetails = [];
@@ -131,18 +131,18 @@ const ResultState = (props) => {
 
     //hide Popup
     const hidePopup = () => {
-        setAddResultDetails({ challenges_id: "", player_token: "", playername: "", player_profile: "", opponent_token: "", opponentname: "", opponent_profile: "" });//unset details
+        setAddResultDetails({ challenges_id: "", team_token: "", teamname: "", team_profile: "", opponent_token: "", opponentname: "", opponent_profile: "" });//unset details
         setPopup({ visibility: "hidden", opacity: 0 });
     }
 
     //Show Popup
-    const showPopup = (challenges_id, player_token, playername, player_profile, opponent_token, opponentname, opponent_profile) => {
-        setAddResultDetails({ challenges_id: challenges_id, player_token: player_token, playername: playername, player_profile: player_profile, opponent_token: opponent_token, opponentname: opponentname, opponent_profile: opponent_profile });
+    const showPopup = (challenges_id, team_token, teamname, team_profile, opponent_token, opponentname, opponent_profile) => {
+        setAddResultDetails({ challenges_id: challenges_id, team_token: team_token, teamname: teamname, team_profile: team_profile, opponent_token: opponent_token, opponentname: opponentname, opponent_profile: opponent_profile });
         setPopup({ visibility: "visible", opacity: 1 });
     }
 
     return (
-        <ResultContext.Provider value={{resultListing, addResultAPI, popup, hidePopup, showPopup, statusSelect, addResultDetails, resultDetails, recordsFound, offsetListing, progressLoadingBar, searchPlayerVar }}>
+        <ResultContext.Provider value={{resultListing, addResultAPI, popup, hidePopup, showPopup, statusSelect, addResultDetails, resultDetails, recordsFound, offsetListing, progressLoadingBar, searchteamVar }}>
             {props.children}
         </ResultContext.Provider>
     );
