@@ -12,6 +12,7 @@ import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
 import OpponentContext from "../../context/profile/OpponentContext";
 import OpponentProfile from "../profile/OpponentProfile";
+import SportsCity from "../sportsCity/SportsCity";
 
 const Home = () => {
 
@@ -419,7 +420,6 @@ const Home = () => {
                                         >
                                             {
                                                 teamstate.length > 0 ? teamstate.map((team, i) => {
-                                                    let recentMatches = "";
                                                     var last_matches = team.last_matches;
                                                     if (last_matches !== null) {
                                                         var last_matches = last_matches.split(',');
@@ -473,7 +473,7 @@ const Home = () => {
                                                             </div>
                                                         </div>
                                                     </div>)
-                                                }) : ""
+                                                }) : <SportsCity />
                                             }
                                         </InfiniteScroll>
                                     </div>

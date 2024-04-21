@@ -37,6 +37,8 @@ import Privacy from "./components/common/Privacy";
 import Cookies from "./components/common/Cookies";
 import NotificationState from "./context/notification/NotificationState";
 import NotificationAll from "./components/notification/NotificationAll";
+import SportsCityState from "./context/sportsCity/SportsCityState";
+import SportsCityAll from "./components/sportsCity/SportsCityAll";
 
 function App() {
 
@@ -76,7 +78,7 @@ function App() {
         },
         {
           path: "home",
-          element: <NotificationState><HomeState><OpponentState><Home /></OpponentState></HomeState></NotificationState>,
+          element: <SportsCityState><NotificationState><HomeState><OpponentState><Home /></OpponentState></HomeState></NotificationState></SportsCityState>,
         },
         {
           path: "profile",
@@ -105,6 +107,10 @@ function App() {
         {
           path: "notification",
           element: <NotificationState><BlockState><OpponentState><NotificationAll /></OpponentState></BlockState></NotificationState>,
+        },
+        {
+          path: "sports",
+          element: <NotificationState><SportsCityState><SportsCityAll /></SportsCityState></NotificationState>,
         },
       ]
     }

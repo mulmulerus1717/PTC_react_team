@@ -106,6 +106,7 @@ const Sidebar = () => {
                     </li>
                     <li> <a href="/home"><span className="material-symbols-outlined">home</span> Home</a> </li>
                     <li> <a href="/profile"><span className="material-symbols-outlined">person</span> Profile</a> </li>
+                    <li> <a href="/sports"><span className="material-symbols-outlined">sports_and_outdoors</span> Sports</a> </li>
                     <li> <a href="/block"><span className="material-symbols-outlined">block</span> Block</a> </li>
                     <li className="noHref" onClick={logout}><span className="material-symbols-outlined">logout</span> Logout</li>
                 </ul>

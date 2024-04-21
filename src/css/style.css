@@ -2417,3 +2417,58 @@ color: #cc5500;
   font-size: 14px;
 }
 /* End Notification Block */
+
+
+/* Sports city start */
+.inner-sports{
+  padding: 0px !important;
+  margin-top: 1em !important;
+}
+.sports-head{
+  align-items: center;
+  width: 100%;
+  margin: 0 0 10px 0 !important;
+}
+.sports-head .sports-heading{
+  font-size: 12px;
+  margin: 0 0 5px 0;
+  width: 80%;
+}
+.search-seeall .linkSeeAll{
+  width: 20%;
+}
+.search-seeall{
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.sports-head span a{
+  float: right;
+}
+.inner-sports .sports-child{
+  width: 25%;
+  float: left;
+  text-align: center;
+  padding: 8px;
+  border-radius: 5px;
+}
+.inner-sports .sports-child:hover{
+  background-color: #e6e3e3;
+}
+.inner-sports .sports-child p{
+  margin: 0;
+}
+.inner-sports .sports-child button,
+.inner-sports .sports-child button:active{
+  background-color: #422311;
+  outline: none;
+  border: none;
+  font-size: 12px;
+}
+
+@media only screen and (max-width: 749px) {
+  .inner-sports .sports-child{
+    width: 33.33%;
+  }
+}
+/* Sports city end */
