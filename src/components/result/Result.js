@@ -188,7 +188,9 @@ const Result = () => {
                                                                         <div className="scoreResult">
                                                                             {capitalizeWords(team.teamname)} sent match challenge<br />
 
-                                                                            <div className="matchText text text-success">{team.match_contest == 1 ? 'Prize money' : 'Friendly'} match invitation</div>
+                                                                            <div className="matchText text">Match challenge: <b>{team.match_contest_name}</b> invitation</div>
+                                                                            <div className="matchText text">Match playground: <b>{team.location_place}</b></div>
+                                                                            {team.match_contest = 1 ? <div className="matchText text"> Losers pay amount: <b>Rs. {team.amount}</b> </div> : ""}
                                                                             <span className="matchStatus">Match status {accept_status}</span><br />
                                                                             {team.team_result !== null && team.opponent_result !== null && team.team_result !== team.opponent_result ? "Note: Match result not matching with opponent result!" : ""}
                                                                         </div>

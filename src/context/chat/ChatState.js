@@ -106,6 +106,8 @@ const ChatState = (props) => {
         if (json !== "" && json !== undefined) {
             setProgressLoadingBar(100)
             if (json.status) {
+                chatDetails=[];
+                setChatDetails(chatDetails);
                 //listing challenges With Filters
                 const listing = { 'challenge_id': data.challenge_id, 'limit': 1000000, 'offset': 0 }
                 chatListing(listing);//load messages

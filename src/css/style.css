@@ -46,8 +46,8 @@ a {
 
 .nav-link .badge-danger{
   position: absolute;
-    margin-top: -8px;
-    margin-left: -10px !important;
+    margin-top: -4px;
+    margin-left: -15px !important;
     font-size: 10px;
     border-radius: 50%;
 }
@@ -2178,6 +2178,10 @@ color: #cc5500;
   text-align: left;
   transform: translateY(4px);
 }
+.card-challenge .matchText{
+  font-size: 12px;
+  color: #000 !important;
+}
 .pointerchallenge {
   position: absolute;
   width: 200px;
@@ -2237,7 +2241,6 @@ color: #cc5500;
 }
 .challengeRecent .matchText{
   text-align:left;
-  font-weight: 700;
 }
 .challengeRecent .recentMatches{
   padding: 1px 0;

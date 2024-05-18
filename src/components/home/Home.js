@@ -39,6 +39,7 @@ const Home = () => {
     const [ChallengeDetails, setChallengeDetails] = useState({ firstname: "", lastname: "", sports: [], token_id: "" });
     const [errorSports, setErrorSports] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const [matchSection, setMatchSection] = useState({ display: "none" });
 
     //sidebar open close
     if (sidebarOpen === true) { var openSidebar = "toggled" } else { openSidebar = "" }
@@ -50,8 +51,12 @@ const Home = () => {
     });
 
     //contest
-    const matchContest = [{ label: "Friendly Match", value: "0" }, { label: "Prize Money Match", value: "1" }];
+    const matchContest = [{ label: "Friendly Match", value: "0" }, { label: "Losers pay", value: "1" }];
     const matchContestDefault = [{ label: "Friendly Match", value: "0" }];
+
+    //Place (Location)
+    const matchLocation = [{ label: "Playground", value: "0" }, { label: "Turf", value: "1" }, { label: "Arena", value: "2" }, { label: "Other", value: "3" }];
+    const matchLocationDefault = [{ label: "Turf", value: "1" }];
 
     //filter data
     const genderList = [{ label: "All Gender", value: "" }, { label: "Male", value: "m" }, { label: "Female", value: "f" }, { label: "Both Male & Female", value: "b" }, { label: "Other", value: "o" }, { label: "All", value: "a" }];
@@ -254,6 +259,15 @@ const Home = () => {
         }
     }
 
+    //match options
+    const matchChange = (matchOptions) => {
+        if (matchOptions.value !== '' && matchOptions.value !== undefined && matchOptions.value == "1") {
+            setMatchSection({ display: "flex" });
+        } else {
+            setMatchSection({ display: "none" });
+        }
+    };
+
     //Show Popup
     const showPopup = (challengeSports, challengeFirstname, challengeLastname, challengeToken_id) => {
         var teamFetchSports = [];
@@ -289,11 +303,28 @@ const Home = () => {
 
         const sport_idForm = data.get('sport_id').trim();  // Reference by form input's `name` tag
         const matchForm = data.get('match').trim();
+        const placeForm = data.get('place').trim();
         const messageForm = data.get('message').trim();
+        const amountForm = data.get('amount').trim();
         const errorSubmit = [];
 
         if (sport_idForm === "" || sport_idForm === undefined) {
             setErrorSports("Please select sports")
+            errorSubmit.push(1)
+        }
+        
+        if (matchForm === "" || matchForm === undefined) {
+            setErrorMessage("Please select match")
+            errorSubmit.push(1)
+        }
+
+        if (placeForm === "" || placeForm === undefined) {
+            setErrorMessage("Please select place/location")
+            errorSubmit.push(1)
+        }
+
+        if (matchForm == "1" && (amountForm === "" || amountForm === "0")) {
+            setErrorMessage("Please add amount")
             errorSubmit.push(1)
         }
 
@@ -312,6 +343,9 @@ const Home = () => {
 
             var formData = {
                 'sport_id': sport_idForm,
+                'place': placeForm,
+                'match': matchForm,
+                'amount': amountForm,
                 'match': matchForm,
                 'message': messageForm,
                 'opponent_token': ChallengeDetails.token_id
@@ -486,9 +520,17 @@ const Home = () => {
                                         <span className="close" onClick={hidePopup}>&times;</span>
                                         <div className="content">
                                             <form action="#" className="form" onSubmit={handleSubmitChallenge}>
-                                                {ChallengeDetails.sports[0] !== undefined ? (<div className="infoMessage"><div className="info_one"><Select name="sport_id" options={ChallengeDetails.sports} defaultValue={ChallengeDetails.sports[0]} placeholder="Sports" /></div><div className="info_sports setPointer"><span className="material-symbols-outlined filter">info</span></div></div>) : ""}
-                                                {!!errorSports ? (<span className="text text-danger">{errorSports}</span>) : ""}
-                                                <div className="infoMessage"><div className="info_one"><Select name="match" options={matchContest} defaultValue={matchContestDefault} placeholder="Match" /></div><div className="info_match setPointer"><span className="material-symbols-outlined filter">info</span></div></div>
+                                                <div className="content_info_msg">
+                                                    <div>
+                                                        {ChallengeDetails.sports[0] !== undefined ? (<div className="infoMessage"><div className="info_one"><Select name="sport_id" options={ChallengeDetails.sports} defaultValue={ChallengeDetails.sports[0]} placeholder="Sports" /></div><div className="info_sports setPointer"><span className="material-symbols-outlined filter">info</span></div></div>) : ""}
+                                                        {!!errorSports ? (<span className="text text-danger">{errorSports}</span>) : ""}
+                                                    </div>
+                                                    <div className="infoMessage"><div className="info_one"><Select name="place" options={matchLocation} defaultValue={matchLocationDefault} placeholder="Place" /></div><div className="info_place setPointer"><span className="material-symbols-outlined filter">info</span></div></div>
+                                                </div>
+                                                <div className="content_info_msg">
+                                                    <div className="infoMessage"><div className="info_one"><Select name="match" options={matchContest} defaultValue={matchContestDefault} placeholder="Match" onChange={matchChange} /></div><div className="info_match setPointer"><span className="material-symbols-outlined filter">info</span></div></div>
+                                                    <div className="infoMessage" style={matchSection}><div className="info_one"><input type="number" name="amount" className="form-control" placeholder="Amount" /></div><div className="info_lp_amount setPointer"><span className="material-symbols-outlined filter">info</span></div></div>
+                                                </div>
                                                 <div className="infoMessage"><div className="info_one"><textarea name="message" className="form-control challengeBox" defaultValue="let's play today"></textarea></div><div className="info_message setPointer"><span className="material-symbols-outlined filter">info</span></div></div>
                                                 {!!errorMessage ? (<span className="text text-danger">{errorMessage}</span>) : ""}
                                                 <button className="btn btn-primary">Send Challenge</button>

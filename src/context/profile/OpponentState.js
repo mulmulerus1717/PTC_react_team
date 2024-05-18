@@ -5,7 +5,7 @@ const OpponentState = (props) => {
 
     const userToken = localStorage.getItem('userToken');
     const [opponentTeamDetails, setOpponentTeamDetails] = useState([{}]);
-    const [popupProfile, setPopupProfile] = useState({ visibility: "hidden", opacity: 0 });
+    const [popupProfile, setPopupProfile] = useState({ visibility: "hidden", opacity: 0, display:"none" });
 
     const OpponentUser = async (data) => {
         var formBody = [];
@@ -45,14 +45,14 @@ const OpponentState = (props) => {
 
     //hide Popup
     const opponentPopup = () => {
-        setPopupProfile({ visibility: "hidden", opacity: 0 });
+        setPopupProfile({ visibility: "hidden", opacity: 0, display:"none" });
     }
 
     //Show Popup
     const opponentPopupShow = (token) => {
         var data = {token_id : token}
         OpponentUser(data);//set Team token for API fetch
-        setPopupProfile({ visibility: "visible", opacity: 1 });
+        setPopupProfile({ visibility: "visible", opacity: 1, display:"block" });
     }
 
     return (
