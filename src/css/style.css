@@ -1060,13 +1060,16 @@ input[type=number] {
   padding: 10px 5px;
 }
 
+.card-player .buttonsSet,
 .challengesCard .buttonsSet {
   margin: 5px 0px;
   font-size: 12px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
+.card-player .buttonAction,
 .challengesCard .buttonAction {
   padding: 1px;
   border: 1px solid #000;
@@ -1079,10 +1082,12 @@ input[type=number] {
   cursor: pointer;
 }
 
+.card-player .acceptButton,
 .challengesCard .acceptButton {
   color: green;
 }
 
+.card-player .declineButton,
 .challengesCard .declineButton {
   color: red;
 }
@@ -2475,3 +2480,174 @@ color: #cc5500;
   }
 }
 /* Sports city end */
+
+
+/* Start home players details */
+
+.card-player{
+  width: 100%;
+  margin: 1em auto;
+  padding: 0 0 1em 0;
+  position: relative;
+  background: #FFFFFF;
+  border-radius: 2px;
+  transition: all 0.5s;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.card-player:hover{
+box-shadow: 0 0 13px rgb(0 0 0 / 20%);
+  /*-webkit-transform: scale(1.01);
+  transform: scale(1.01);*/
+}
+.card-player .noBorder{
+border:none;
+}
+.playerCard{
+display: flex;
+padding: 10px;
+border-bottom: 1px solid #E8E8E8;
+margin-top: 10px;
+}
+.playerCard .playerAlign{
+width: 60%;
+text-align: center;
+margin-top: 8px;
+}
+.playerCard .playerImgplayer{
+min-height: 150px;
+max-height: 150px;
+}
+.playerCard .nameText{
+font-weight: 500;
+  font-size: 22px;
+  line-height: 24px;
+  margin-left: 10px;
+  text-align: left;
+  transform: translateY(4px);
+  font-family: 'Bebas Neue', sans-serif;
+}
+.pointerResult{
+width: 150px;
+height: 20px;
+padding: 1px;
+transform: skew(-20deg);
+background: #17B169;
+font-style: normal;
+color: #fff;
+text-align: center;
+margin: auto;
+margin-top: -10px;
+font-size: 12px;
+font-weight: 500;
+}
+.addResultplayer,
+.addResultplayer:focus,
+.addResultplayer:hover
+{
+/* transform: skew(-20deg); */
+background: #422311 !important;
+outline: none !important;
+border:none !important;
+margin-top: 1em !important;
+}
+.addResultplayer:hover
+{
+  opacity: 0.9;
+}
+.tshirtNumber {
+  position: relative;
+  z-index: 1;
+  font-weight: 400;
+  font-size: 45px;
+  line-height: 45px;
+}
+.tshirtNumber .ot-border {
+  position: absolute;
+  z-index: -1;
+  top: -3px;
+  left: 3px;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.2px #C4C4C4;
+}
+
+.playerCareer {
+justify-content: space-evenly;
+padding: 0 !important;
+}
+.playerCareer .columns,
+.playerRecent .columns{
+font-size: 12px;
+font-weight: 500;
+padding: 5px;
+text-align: center;
+color: #909090;
+}
+.playerRecent .columns{
+text-align: left;
+color: #000;
+}
+.playerCareer .columns span{
+font-size: 20px;
+color: #000;
+font-weight: 700;
+}
+.playerCareer .playerStats{
+width: 40%;
+}
+.card-player .noPadding{
+padding: 2px;
+}
+.otherDetails .columns span {
+  font-size: 14px;
+}
+.playerCard .recentMatches{
+float: left;
+}
+.playerRecent .winStats{
+display: flex;
+align-items: center;
+}
+.playerRecent .winStats .recentPoints{
+  align-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  text-transform: uppercase;
+  font-size: 12px;
+  text-align: center;
+  margin-right: 5px;
+}
+.playerRecent .colorGreen{
+color: #2a841b;
+  border: 1px solid #2a841b;
+}
+.playerRecent .colorRed{
+color: #2a841b;
+  border: 1px solid #2a841b;
+}
+.playerRecent .colorOrange{
+color: #cc5500;
+  border: 1px solid #cc5500;
+}
+.pointerplayer {
+  position: absolute;
+  width: 200px;
+  height: 20px;
+  padding: 1px;
+  transform: skew(-20deg);
+  background: #422311;
+  font-style: normal;
+  color: #fff;
+  text-align: center;
+  margin-top: -10px;
+  font-size: 12px;
+  font-weight: 500;
+  }
+.playerCard .nameText span{
+font-size: 12px;
+color: #909090;
+position: absolute;
+margin-top: -5px;
+}
+
+/* End of home players details */

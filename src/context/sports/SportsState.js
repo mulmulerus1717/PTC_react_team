@@ -59,7 +59,20 @@ const SportState = (props) => {
         formBody = formBody.join("&");
 
         const urlkey = process.env.REACT_APP_NODE_BASE_URL;
+        const urlPlayerkey = process.env.REACT_APP_NODE_BASE_PLAYER_URL;
         const loginURL = urlkey+'sports/add_sports';
+        const loginPlayerURL = urlPlayerkey+'sports/add_sports';
+
+        /* Start Team add new sports */
+        await fetch(loginPlayerURL,{
+            method: 'POST',
+            headers:{
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            body: formBody
+        });
+        /* End Team add new sports */
+
         const response = await fetch(loginURL,{
             method: 'POST',
             headers:{

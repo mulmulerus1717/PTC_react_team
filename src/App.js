@@ -39,6 +39,7 @@ import NotificationState from "./context/notification/NotificationState";
 import NotificationAll from "./components/notification/NotificationAll";
 import SportsCityState from "./context/sportsCity/SportsCityState";
 import SportsCityAll from "./components/sportsCity/SportsCityAll";
+import Players from "./components/players/Players";
 
 function App() {
 
@@ -79,6 +80,10 @@ function App() {
         {
           path: "home",
           element: <SportsCityState><NotificationState><HomeState><OpponentState><Home /></OpponentState></HomeState></NotificationState></SportsCityState>,
+        },
+        {
+          path: "players",
+          element: <NotificationState><Players /></NotificationState>,
         },
         {
           path: "profile",
