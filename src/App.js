@@ -40,6 +40,7 @@ import NotificationAll from "./components/notification/NotificationAll";
 import SportsCityState from "./context/sportsCity/SportsCityState";
 import SportsCityAll from "./components/sportsCity/SportsCityAll";
 import Players from "./components/players/Players";
+import TeamPlayers from "./components/players/TeamPlayers";
 
 function App() {
 
@@ -84,6 +85,10 @@ function App() {
         {
           path: "players",
           element: <NotificationState><Players /></NotificationState>,
+        },
+        {
+          path: "team_players",
+          element: <NotificationState><TeamPlayers /></NotificationState>,
         },
         {
           path: "profile",

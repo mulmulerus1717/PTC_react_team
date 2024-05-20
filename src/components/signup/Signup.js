@@ -106,7 +106,7 @@ const Signup = () => {
     }
 
     //Team type
-    const teamtype = [{value:1, label:"Local Team"},{value:2, label:"Club Team"},{value:3, label:"Corporate Team"},{value:4, label:"Organization Or NGO Team"},{value:5, label:"College Team"},{value:6, label:"School Team"},{value:7, label:"Other Team"}];
+    const teamtype = [{value:8, label:"Turf Team"},{value:1, label:"Local Team"},{value:2, label:"Club Team"},{value:3, label:"Corporate Team"},{value:4, label:"Organization Or NGO Team"},{value:5, label:"College Team"},{value:6, label:"School Team"},{value:7, label:"Other Team"}];
     const [selectedOptionsTeamType, setSelectedOptionsTeamType] = useState(0);
     const TeamTypeChange = (TeamTypeOptions) => {
         setSelectedOptionsTeamType(TeamTypeOptions);

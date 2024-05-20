@@ -105,6 +105,8 @@ const Sidebar = () => {
                         </div>
                     </li>
                     <li> <a href="/home"><span className="material-symbols-outlined">home</span> Home</a> </li>
+                    <li> <a href="/players"><span className="material-symbols-outlined">handshake</span> Players Join Request</a> </li>
+                    <li> <a href="/team_players"><span className="material-symbols-outlined">groups_3</span> Team Players</a> </li>
                     <li> <a href="/profile"><span className="material-symbols-outlined">person</span> Profile</a> </li>
                     <li> <a href="/sports"><span className="material-symbols-outlined">sports_and_outdoors</span> Sports</a> </li>
                     <li> <a href="/block"><span className="material-symbols-outlined">block</span> Block</a> </li>

@@ -5,14 +5,14 @@ import Navbar from "../common/Navbar";
 import Sidebar from "../common/Sidebar";
 import LoadingBar from 'react-top-loading-bar';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import TriggerToastify from "../../components/common/TriggerToastify";
+import TriggerToastify from "../common/TriggerToastify";
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
 import { useNavigate } from 'react-router-dom';
 
-const Players = () => {
+const TeamPlayers = () => {
 
     const { authorizeUser } = useContext(AuthorizeContext);
     const { sidebarOpen } = useContext(OperationContext);
@@ -45,7 +45,7 @@ const Players = () => {
     const genderList = [{ label: "All Gender", value: "" }, { label: "Male", value: "m" }, { label: "Female", value: "f" }, { label: "Other", value: "o" }];
     const [genderDetails, setGenderDetails] = useState(genderList);
 
-    const ageList = [{ label: "All Age", value: "" }, { label: "5 to 12 Age", value: "5-12" }, { label: "13 to 18 Age", value: "13-18" }, { label: "19 to 35 Age", value: "19-35" }, { label: "36 to 48 Age", value: "36-48" }, { label: "49 to 60 Age", value: "49-60" }, { label: "61 and Above Age", value: "61" }];
+    const ageList = [{ label: "All Age", value: "" }, { label: "5 to 12 Age", value: "5-12" }, { label: "13 to 18 Age", value: "13-18" }, { label: "19 to 35 Age", value: "19-35" }, { label: "36 to 48 Age", value: "36-48" }, { label: "49 to 60 Age", value: "49-60" }, { label: "61 and Above Age", value: "61" }];;
     const [ageDetails, setAgeDetails] = useState(ageList);
 
     //listing Players With Filters
@@ -102,7 +102,7 @@ const Players = () => {
     });
 
     tippy('.rejectButtonTooltip', {
-        content: "Reject player request to join your team.",
+        content: "Remove player your team.",
         animation: 'fade',
     });
 
@@ -122,7 +122,7 @@ const Players = () => {
         formBody = formBody.join("&");
 
         const urlkey = process.env.REACT_APP_NODE_BASE_URL;
-        const homeURL = urlkey + 'teams/receive_request';
+        const homeURL = urlkey + 'teams/team_players';
         const response = await fetch(homeURL, {
             method: 'POST',
             headers: {
@@ -223,7 +223,7 @@ const Players = () => {
     }
 
     //Submit challenge
-    const handleSubmitChallenge = (team_player_id,status) => {//submit form with form data
+    const handleSubmitChallenge = (team_player_id) => {//submit form with form data
         setProgressTopBar(30)
 
         const errorSubmit = [];
@@ -237,10 +237,9 @@ const Players = () => {
         if (errorSubmit !== undefined && errorSubmit.length < 1) {
 
             var formData = {
-                'team_player_id': team_player_id,
-                'status':status
+                'team_player_id': team_player_id
             }
-            acceptRequest(formData);//update details by API
+            removePlayers(formData);//update details by API
         } else {
             setProgressTopBar(100)
         }
@@ -248,7 +247,7 @@ const Players = () => {
     }
 
     //send challenge
-    const acceptRequest = async (data) => {
+    const removePlayers = async (data) => {
         setProgressTopBar(30)
         var formBody = [];
         for (var property in data) {
@@ -259,13 +258,9 @@ const Players = () => {
         formBody = formBody.join("&");
 
         const urlkey = process.env.REACT_APP_NODE_BASE_URL;
-        if(data.status=='accept'){
-            var acceptRequestUrl = urlkey + 'teams/accept_request';
-        }else{
-            var acceptRequestUrl = urlkey + 'teams/reject_request';
-        }
+        var removePlayersUrl = urlkey + 'teams/reject_request';
         
-        const response = await fetch(acceptRequestUrl, {
+        const response = await fetch(removePlayersUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -286,11 +281,8 @@ const Players = () => {
                         if (json.errors[inc].opponent_token !== "" && json.errors[inc].opponent_token !== undefined) {
                             errorAPiMessage = json.errors[inc].opponent_token;
                         }
-                        if (json.errors[inc].sport_id !== "" && json.errors[inc].sport_id !== undefined) {
-                            errorAPiMessage = json.errors[inc].sport_id;
-                        }
-                        if (json.errors[inc].message !== "" && json.errors[inc].message !== undefined) {
-                            errorAPiMessage = json.errors[inc].message;
+                        if (json.errors[inc].team_player_id !== "" && json.errors[inc].team_player_id !== undefined) {
+                            errorAPiMessage = json.errors[inc].team_player_id;
                         }
                     }
                     TriggerToastify(errorAPiMessage, "error");
@@ -333,7 +325,7 @@ const Players = () => {
                                         </div>
                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
                                             <br />
-                                            <h6 className="topHeadline">Total <b>{playersFound} players</b> join request from your city.</h6>
+                                            <h6 className="topHeadline">Total <b>{playersFound} players</b> in your team from your city.</h6>
                                         </div>
                                     </div>
                                     <div className="row noMargin">
@@ -387,14 +379,10 @@ const Players = () => {
                                                                         }
                                                                     </div>
                                                                 </div>
-                                                                <div>Message: {player.message}</div>
                                                                 <div align="center">
                                                                     {errorMessage != "" ? '<div class="text text-danger">'+errorMessage+'</div>' : ""} 
                                                                     <div className="buttonsSet">
-                                                                        <div className="buttonAction acceptButton acceptButtonTooltip" onClick={() => handleSubmitChallenge(player.team_player_id,'accept')}>
-                                                                            <span className="material-symbols-outlined done">done</span>
-                                                                        </div>
-                                                                        <div className="buttonAction declineButton rejectButtonTooltip" onClick={() => handleSubmitChallenge(player.team_player_id,'reject')}>
+                                                                        <div className="buttonAction declineButton rejectButtonTooltip" onClick={() => handleSubmitChallenge(player.team_player_id)}>
                                                                             <span className="material-symbols-outlined close">close</span>
                                                                         </div>
                                                                     </div>
@@ -417,4 +405,4 @@ const Players = () => {
     );
 }
 
-export default Players;
+export default TeamPlayers;
