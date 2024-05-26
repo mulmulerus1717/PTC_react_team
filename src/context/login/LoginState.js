@@ -209,9 +209,56 @@ const LoginState = (props) => {
         }
     }
 
+    const loginAdminUser = async (data) => {
+        setProgressLoadingBar(30)
+        var formBody = [];
+        for (var property in data) {
+            var encodedKeySignup = encodeURIComponent(property);
+            var encodedValueSignup = encodeURIComponent(data[property]);
+            formBody.push(encodedKeySignup + "=" + encodedValueSignup);
+        }
+        formBody = formBody.join("&");
+
+        const urlkey = process.env.REACT_APP_NODE_BASE_URL;
+        const loginURL = urlkey+'login/admin_login';
+        const response = await fetch(loginURL,{
+            method: 'POST',
+            headers:{
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            body: formBody
+        });
+        const json = await response.json();
+        if(json !== "" && json !== undefined){
+            setProgressLoadingBar(100)
+            if(json.status){
+                if(json.token !== undefined && json.token !== ''){
+                    localStorage.setItem('userToken', json.token)//store token
+                }
+                setSuccessMessage(json.message);
+                navigate("/home_admin");
+            }else if(json.status === false){
+                if(json.errors !== undefined && json.errors.length > 0){
+                    let errorAPiMessage = "";
+                    for(let inc=0; inc < json.errors.length; inc++){
+                        if(json.errors[inc].email !== "" && json.errors[inc].email !== undefined){
+                            errorAPiMessage = json.errors[inc].email;
+                        }
+                        if(json.errors[inc].password !== "" && json.errors[inc].password !== undefined){
+                            errorAPiMessage = json.errors[inc].password;
+                        }
+                    }
+                    setErrorMessage(errorAPiMessage);
+                }else{
+                    setErrorMessage(json.message)
+                }
+            }
+        }
+    }
+
 
     return (
-        <LoginContext.Provider value={{ loginUser, successMessage, successMessageForgot, errorMessage, errorMessageForgot, progressLoadingBar, popup, hidePopup, showPopup, sendForgotPassword, enterOTP, sendChangeForgotPassword, resendOTP, seconds, timeOutInterval }}>
+        <LoginContext.Provider value={{ loginUser, successMessage, successMessageForgot, errorMessage, errorMessageForgot, progressLoadingBar, popup, hidePopup, showPopup, sendForgotPassword, enterOTP, sendChangeForgotPassword, resendOTP, seconds, timeOutInterval,loginAdminUser }}>
             {props.children}
         </LoginContext.Provider>
     );

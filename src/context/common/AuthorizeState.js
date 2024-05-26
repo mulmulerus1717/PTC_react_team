@@ -62,8 +62,61 @@ const AuthorizeState = (props) => {
     }
     //end of logout
 
+    //start logout
+    const logoutAdminAPI = async () => {
+
+        const urlkey = process.env.REACT_APP_NODE_BASE_URL;
+        const logoutUrl = urlkey+'authorize/destroy_admin';
+
+        const response = await fetch(logoutUrl, {
+            method: 'GET',
+                headers:{
+                    'Content-Type':'application/x-www-form-urlencoded',
+                    'Authorization': 'Bearer '+userToken
+                }
+        })
+        const json = await response.json();
+        if(json !== "" && json !== undefined){
+            if(json.status){
+                localStorage.removeItem('userToken');//destroy token
+                navigate("/admin_login");//navigate login
+            }
+        }
+        
+    }
+    //end of logout
+    
+    const authorizeAdminUser = async () => {
+        if(userToken === undefined || userToken === ''){
+            navigate("/login_admin");//navigate login
+        }else{
+            const urlkey = process.env.REACT_APP_NODE_BASE_URL;
+            const loginURL = urlkey+'authorize/admin';
+            const response = await fetch(loginURL,{
+                method: 'GET',
+                headers:{
+                    'Content-Type':'application/x-www-form-urlencoded',
+                    'Authorization': 'Bearer '+userToken
+                }
+            });
+            const json = await response.json();
+            if(json !== "" && json !== undefined){
+                if(json.status === false || json.status ===undefined){
+                    localStorage.removeItem('userToken');//destroy token
+                    navigate("/admin_login");//navigate login
+                }
+            }
+        }
+    }
+
+    const unAuthorizeAdminUser = async () => {
+        if(userToken !== undefined && userToken !== '' && userToken !== null){
+            navigate("/home_admin");//navigate login
+        }
+    }
+
     return (
-        <AuthorizeContext.Provider value={{authorizeUser,unAuthorizeUser,logoutAPI}}>
+        <AuthorizeContext.Provider value={{authorizeUser,unAuthorizeUser,unAuthorizeAdminUser,logoutAPI,authorizeAdminUser,logoutAdminAPI}}>
             {props.children}
         </AuthorizeContext.Provider>
     );

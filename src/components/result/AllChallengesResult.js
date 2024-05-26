@@ -1,31 +1,21 @@
 import React, { useContext, useEffect, useState } from "react";
-import AuthorizeContext from "../../context/common/AuthorizeContext";
-import OperationContext from "../../context/common/OperationContext";
-import ResultContext from "../../context/result/ResultContext";
-import Navbar from "../common/Navbar";
-import Sidebar from "../common/Sidebar";
+import AllChallengesResultContext from "../../context/result/AllChallengesResultContext";
 import LoadingBar from 'react-top-loading-bar';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import capitalizeWords from '../common/CapitalizeWords';
 import dateFormat from 'dateformat';
 import Select from 'react-select';
 import OpponentContext from "../../context/profile/OpponentContext";
-import OpponentProfile from "../profile/OpponentProfile";
 
-const Result = () => {
+const AllChallengesResult = () => {
 
-    const { resultListing, addResultAPI, popup, hidePopup, showPopup, statusSelect, addResultDetails, resultDetails, recordsFound, offsetListing, progressLoadingBar, searchteamVar } = useContext(ResultContext);
+    const { resultListing, addResultAPI, popup, hidePopup, showPopup, statusSelect, addResultDetails, resultDetails, recordsFound, offsetListing, progressLoadingBar, searchteamVar } = useContext(AllChallengesResultContext);
     const { opponentTeamDetails, popupProfile, opponentPopup, opponentPopupShow } = useContext(OpponentContext);
-    const { authorizeUser } = useContext(AuthorizeContext);
-    const { sidebarOpen } = useContext(OperationContext);
     const websiteName = process.env.REACT_APP_WEBSITE_NAME;
     const urlkey = process.env.REACT_APP_NODE_BASE_URL;
     const [progressTopBar, setProgressTopBar] = useState(progressLoadingBar);
     const [errorMessage, setErrorMessage] = useState('');
-
-    //sidebar open close
-    if (sidebarOpen === true) { var openSidebar = "toggled" } else { openSidebar = "" }
-
+    
     //filter data
     const matchStatusList = [{ label: "All Status", value: "" }, { label: "Pending", value: "pending" }, { label: "Accept", value: "accept" }, { label: "Decline", value: "decline" }, { label: "Complete", value: "complete" }];
     const [matchStatusDetails, setMatchStatusDetails] = useState(matchStatusList);
@@ -35,9 +25,8 @@ const Result = () => {
 
     useEffect(() => {
         //eslint-disable-next-line react-hooks/exhaustive-deps
-        authorizeUser();//Check user authorize
         resultListing(listing);//load result profile
-        document.title = "Result | " + websiteName;
+        document.title = "All Challenges | " + websiteName;
     }, [websiteName])
 
     //fetch more challenges
@@ -63,19 +52,14 @@ const Result = () => {
     }
 
     //Submit challenge
-    const handleSubmitChallenge = (event) => {//submit form with form data
+    const handleSubmit = (event) => {//submit form with form data
         event.preventDefault();
         const data = new FormData(event.target);
         setProgressTopBar(30)
 
-        const resultForm = data.get('result').trim();  // Reference by form input's `name` tag
+        const linkForm = data.get('link').trim();  // Reference by form input's `name` tag
         const challengeIdForm = data.get('challenge_id').trim();
         const errorSubmit = [];
-
-        if (resultForm === "" || resultForm === undefined) {
-            setErrorMessage("Please choose match result")
-            errorSubmit.push(1)
-        }
 
         if (challengeIdForm === "" || challengeIdForm === undefined) {
             setErrorMessage("challenge id not found")
@@ -86,7 +70,7 @@ const Result = () => {
         if (errorSubmit !== undefined && errorSubmit.length < 1) {
             var formData = {
                 'challenge_id': challengeIdForm,
-                'result': resultForm
+                'link': linkForm
             }
             addResultAPI(formData);//update details by API
             setProgressTopBar(progressLoadingBar)
@@ -99,9 +83,7 @@ const Result = () => {
         <>
             <div className="container-fluid noMargin noPadding">
                 <LoadingBar color='#f11946' height={2} shadow={true} progress={progressTopBar} onLoaderFinished={() => setProgressTopBar(0)} />
-                <Navbar />
-                <div id="wrapper" className={openSidebar}>
-                    <Sidebar />
+                <div id="wrapper">
                     <div id="page-content-wrapper noMargin noPadding ">
                         <div className="container-fluid noMargin noPadding">
                             <br /><br />
@@ -205,7 +187,7 @@ const Result = () => {
                                                                     </div>
 
                                                                     <div align="center" className="pointerResult">teams added result</div>
-                                                                    <div className="scoreCard row addedResultByteam noBorderBottom">
+                                                                    <div className="row addedResultByteam noBorderBottom">
                                                                         <div className="col-sm-6 col-xs-6 col-md-6 col-lg-6">
                                                                             {!!team.team_result ? (<div align="center"><img src={!!team.team_profile ? (urlkey + "images/" + team.team_profile) : "default_team.png"} className="img-responsive teamImgScore" alt="team" /></div>) : (<div className="fontStyle" align="center"><b>Pending</b></div>)}
                                                                             <div className="nameText" align="center">{!!team.team_result ? (capitalizeWords(team.teamname) + " added " + resultTextteam + " as ") : ""}<br /><span className="hilightName" style={resultNameteamStyle}>{!!team.team_result ? (capitalizeWords(team.team_result)) : ""}</span></div>
@@ -214,12 +196,17 @@ const Result = () => {
                                                                             {!!team.opponent_result ? (<div align="center"><img src={!!team.opponent_profile ? (urlkey + "images/" + team.opponent_profile) : "default_team.png"} className="img-responsive teamImgScore" alt="team" /></div>) : (<div className="fontStyle" align="center"><b>Pending</b></div>)}
                                                                             <div className="nameText"  align="center">{!!team.opponent_result ? (capitalizeWords(team.opponentname) + " added " + resultText + " as ") : ""}<br /><span className="hilightName" style={resultNameOpponentStyle}>{!!team.opponent_result ? (capitalizeWords(team.opponent_result)) : ""}</span></div>
                                                                         </div>
-                                                                        {team.accept_status === 1 ? 
                                                                         <div className="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                                                            <br />
-                                                                            <div align="center"><button className="btn btn-primary addResultScore" style={addResultBtn} onClick={() => showPopup(team.challenges_id, team.team_token, team.teamname, team.team_profile, team.opponent_token, team.opponentname, team.opponent_profile)}>Add Result</button></div>
+                                                                            <p><b>Live Link:</b> https://team.playtoconquer.com/live_match?challenge_id={team.challenges_id}</p>
+                                                                            <br /><br />
+                                                                            <div align="center">
+                                                                                <form action="#" className="form" onSubmit={handleSubmit}>
+                                                                                    <input type="hidden" name="challenge_id" value={team.challenges_id} />
+                                                                                    <textarea className="form-control" style={{"border":"1px solid black"}} name="link" border="1">{team.link}</textarea>
+                                                                                    <button className="btn btn-primary">Add Result</button>
+                                                                                </form>
+                                                                            </div>
                                                                         </div>
-                                                                        : ""}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -231,60 +218,6 @@ const Result = () => {
                                     </div>
                                 </div>
 
-                                {/* Popup Start */}
-                                <div id="popup" className="overlay" style={popup}>
-                                    <div className="popup">
-                                        <h4>Add Match Result</h4>
-                                        <span className="close" onClick={hidePopup}>&times;</span>
-                                        <div className="content">
-                                            <form action="#" className="form" onSubmit={handleSubmitChallenge}>
-                                                <input type="hidden" name="challenge_id" value={addResultDetails.challenges_id} />
-                                                <table className="table table-responsive">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td><input type="radio" id="teamMatch" name="result" value={addResultDetails.team_token} /></td>
-                                                            <td>
-                                                                <label htmlFor="teamMatch">
-                                                                <img src={!!addResultDetails.team_profile ? (urlkey + "images/" + addResultDetails.team_profile) : "default_team.png"} className="img-responsive messageProfileimg" alt="playing_image" />
-                                                                &nbsp;&nbsp;<b>{capitalizeWords(addResultDetails.teamname)}</b> as winner
-                                                                </label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><input type="radio" id="opponentMatch" name="result" value={addResultDetails.opponent_token} /></td>
-                                                            <td>
-                                                                <label htmlFor="opponentMatch">
-                                                                <img src={!!addResultDetails.opponent_profile ? (urlkey + "images/" + addResultDetails.opponent_profile) : "default_team.png"} className="img-responsive messageProfileimg" alt="playing_image" />
-                                                                &nbsp;&nbsp;<b>{capitalizeWords(addResultDetails.opponentname)}</b> as winner
-                                                                </label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><input type="radio" id="drawMatch" name="result" value="draw" /></td>
-                                                            <td><label htmlFor="drawMatch"><b>Draw</b></label></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                {!!errorMessage ? (<span className="text text-danger">{errorMessage}</span>) : ""}
-                                                <button className="btn btn-primary">Send</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                {/* Popup Ends */}
-
-
-                                {/* Popup Start */}
-                                <div id="popupProfile" className="overlay" style={popupProfile}>
-                                    <div className="popup popupProfile">
-                                        <span className="close" onClick={opponentPopup}>&times;</span>
-                                        <div className="content">
-                                            <OpponentProfile opponentDetails={opponentTeamDetails} />
-                                        </div>
-                                    </div>
-                                </div>
-                                {/* Popup Ends */}
-
                             </div>
                         </div>
                     </div>
@@ -294,4 +227,4 @@ const Result = () => {
     );
 }
 
-export default Result; 
+export default AllChallengesResult; 

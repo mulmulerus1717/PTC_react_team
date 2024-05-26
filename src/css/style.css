@@ -46,10 +46,10 @@ a {
 
 .nav-link .badge-danger{
   position: absolute;
-    margin-top: -4px;
-    margin-left: -15px !important;
-    font-size: 10px;
-    border-radius: 50%;
+  margin-top: -2px;
+  margin-left: -20px !important;
+  font-size: 10px;
+  border-radius: 50%;
 }
 
 .iconStyle .filter {
@@ -422,7 +422,8 @@ a {
   margin-right: 5px;
 }
 .sidebar-nav li a:hover,
-.sidebar-nav .noHref:hover {
+.sidebar-nav .noHref:hover, 
+.sidebar-nav .adminHref:hover{
   text-decoration: none;
   color: #fff;
   background: rgba(255, 255, 255, 0.2);
@@ -2506,7 +2507,6 @@ border:none;
 display: flex;
 padding: 10px;
 border-bottom: 1px solid #E8E8E8;
-margin-top: 10px;
 }
 .playerCard .playerAlign{
 width: 60%;
@@ -2578,9 +2578,14 @@ padding: 0 !important;
 .playerRecent .columns{
 font-size: 12px;
 font-weight: 500;
-padding: 5px;
 text-align: center;
 color: #909090;
+}
+.card-player .messagePlayer{
+  font-size: 12px;
+}
+.noMarginTop{
+  margin-top: 0 !important;
 }
 .playerRecent .columns{
 text-align: left;
@@ -2651,3 +2656,24 @@ margin-top: -5px;
 }
 
 /* End of home players details */
+
+/* Start Turf Admin Panel */
+
+.addPlayer{
+  max-width: 70%;
+  margin: 0px auto;
+}
+
+.sidebar-nav .adminHref{
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+  padding: 0 20px;
+}
+.noTextDecoration{
+  text-decoration: none;
+}
+.adminDashboard a{
+  text-decoration: none;
+}
+/* End of Turf Admin Panel */

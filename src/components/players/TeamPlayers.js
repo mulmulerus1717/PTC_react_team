@@ -310,8 +310,8 @@ const TeamPlayers = () => {
                                         <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12 noPadding fontStyle">
                                             <div style={filterSection}>
                                                 <div className="row noMargin">
-                                                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4"><Select options={genderList} defaultValue={!!genderDetails && genderDetails.value > 0 ? genderDetails : { label: "All Gender", value: "" }} onChange={genderChange} placeholder="Gender" /></div>
-                                                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4"><Select options={ageList} defaultValue={!!ageDetails && ageDetails.value > 0 ? ageDetails : { label: "All Age", value: "" }} onChange={ageChange} placeholder="Age Range" /></div>
+                                                    <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6"><Select options={genderList} defaultValue={!!genderDetails && genderDetails.value > 0 ? genderDetails : { label: "All Gender", value: "" }} onChange={genderChange} placeholder="Gender" /></div>
+                                                    <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6"><Select options={ageList} defaultValue={!!ageDetails && ageDetails.value > 0 ? ageDetails : { label: "All Age", value: "" }} onChange={ageChange} placeholder="Age Range" /></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -354,11 +354,18 @@ const TeamPlayers = () => {
                                                                 <div className="playerAlign"><img src={!!player.profile_img ? (urlkey + "images/" + player.profile_img) : "default_player.png"} className="img-responsive playerImgplayer" alt="Player profile" /></div>
                                                             </div>
                                                             <div className="container">
-                                                                <div align="center" className="pointerResult">Career</div>
+                                                            <div align="center" className="pointerResult">Individual Career</div>
                                                                 <div className="playerCard playerCareer noBorder noPadding">
                                                                     <div className="columns"><span>{player.matches}</span> <br />Played</div>
                                                                     <div className="columns"><span>{player.won}</span> <br />Won</div>
                                                                     <div className="columns"><span>{player.draw}</span> <br />Draw</div>
+                                                                </div>
+                                                                <div align="center" className="pointerResult noMarginTop">Teams Career</div>
+                                                                <div className="playerCard playerCareer noBorder noPadding">
+                                                                    <div className="columns"><span>{player.teams}</span> <br />Play for Teams</div>
+                                                                    <div className="columns"><span>{player.teams_matches}</span> <br />Teams Matches</div>
+                                                                    <div className="columns"><span>{player.teams_won}</span> <br />Teams Won</div>
+                                                                    <div className="columns"><span>{player.teams_draw}</span> <br />Teams Draw</div>
                                                                 </div>
                                                                 <div className="playerRecent noBorder noPadding">
                                                                     {player.last_matches ? <div className="columns recentMatches"><b>Recent matches</b></div> : ""}

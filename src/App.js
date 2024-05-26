@@ -42,12 +42,30 @@ import SportsCityAll from "./components/sportsCity/SportsCityAll";
 import Players from "./components/players/Players";
 import TeamPlayers from "./components/players/TeamPlayers";
 
+import AllChallengesResult from "./components/result/AllChallengesResult";
+import AllChallengesResultState from "./context/result/AllChallengesResultState";
+import ChallengesLive from "./components/result/ChallengesLive";
+
+import LoginAdmin from "./components/login/LoginAdmin";
+import HomeAdmin from "./components/admin/HomeAdmin";
+import AddPlayer from "./components/admin/AddPlayer";
+import AddTeams from "./components/admin/AddTeams";
+import CreateMatch from "./components/admin/CreateMatch";
+import ViewMatches from "./components/admin/ViewMatches";
+
+import LiveMatch from "./components/result/LiveMatch";
+
+
 function App() {
 
   const router = createBrowserRouter([
     {
       path: "/",
       element: <AuthorizeState><LoginState><Login /></LoginState></AuthorizeState>,
+    },
+    {
+      path: "/admin_login",
+      element: <AuthorizeState><LoginState><LoginAdmin /></LoginState></AuthorizeState>,
     },
     {
       path: "/signup",
@@ -70,6 +88,18 @@ function App() {
       element: <Cookies />,
     },
     {
+      path: "/all_challenges",
+      element: <AllChallengesResultState><OpponentState><AllChallengesResult /></OpponentState></AllChallengesResultState>,
+    },
+    {
+      path: "/live_match",
+      element: <OpponentState><ChallengesLive /></OpponentState>,
+    },
+    {
+      path: "/live_result",
+      element: <OpponentState><LiveMatch /></OpponentState>,
+    },
+    {
       element: <><AuthorizeState><OperationState><SidebarState><Layout /><Outlet /></SidebarState></OperationState></AuthorizeState></>,
       children: [
         {
@@ -81,6 +111,26 @@ function App() {
         {
           path: "home",
           element: <SportsCityState><NotificationState><HomeState><OpponentState><Home /></OpponentState></HomeState></NotificationState></SportsCityState>,
+        },
+        {
+          path: "home_admin",
+          element: <HomeState><OpponentState><HomeAdmin /></OpponentState></HomeState>,
+        },
+        {
+          path: "add_teams",
+          element: <HomeState><OpponentState><AddTeams /></OpponentState></HomeState>,
+        },
+        {
+          path: "add_player",
+          element: <HomeState><OpponentState><AddPlayer /></OpponentState></HomeState>,
+        },
+        {
+          path: "create_match",
+          element: <HomeState><OpponentState><CreateMatch /></OpponentState></HomeState>,
+        },
+        {
+          path: "view_matches",
+          element: <HomeState><OpponentState><ViewMatches /></OpponentState></HomeState>,
         },
         {
           path: "players",

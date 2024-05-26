@@ -138,7 +138,7 @@ const Challenges = () => {
                                                                   <div className="challengeRecent noBorder noPadding">
                                                                   <div className="matchText text text-success">Match challenge: <b>{team.match_contest_name}</b></div>
                                                                       <div className="matchText text text-success">Match playground: <b>{team.location_place}</b></div>
-                                                                      {team.match_contest = 1 ? <div className="matchText text text-success"> Losers pay amount: <b>Rs. {team.amount}</b></div> : ""}
+                                                                      {team.match_contest == 1 ? <div className="matchText text text-success"> Losers pay amount: <b>Rs. {team.amount}</b></div> : ""}
                                                                       <div className="recentMatches"><b>Challenge Message:</b></div>
                                                                       <p>{team.challenge_message}</p>
                                                                       <span>{dateFormat(team.date, "dd-mm-yyyy hh:mm:ss TT")}</span>

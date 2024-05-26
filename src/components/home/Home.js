@@ -529,7 +529,7 @@ const Home = () => {
                                                 </div>
                                                 <div className="content_info_msg">
                                                     <div className="infoMessage"><div className="info_one"><Select name="match" options={matchContest} defaultValue={matchContestDefault} placeholder="Match" onChange={matchChange} /></div><div className="info_match setPointer"><span className="material-symbols-outlined filter">info</span></div></div>
-                                                    <div className="infoMessage" style={matchSection}><div className="info_one"><input type="number" name="amount" className="form-control" placeholder="Amount" /></div><div className="info_lp_amount setPointer"><span className="material-symbols-outlined filter">info</span></div></div>
+                                                    <div className="infoMessage" style={matchSection}><div className="info_one"><input type="number" className="form-control" placeholder="Amount" /></div><div className="info_lp_amount setPointer"><span className="material-symbols-outlined filter">info</span></div></div>
                                                 </div>
                                                 <div className="infoMessage"><div className="info_one"><textarea name="message" className="form-control challengeBox" defaultValue="let's play today"></textarea></div><div className="info_message setPointer"><span className="material-symbols-outlined filter">info</span></div></div>
                                                 {!!errorMessage ? (<span className="text text-danger">{errorMessage}</span>) : ""}
